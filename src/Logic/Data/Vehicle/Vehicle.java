@@ -54,9 +54,22 @@ public class Vehicle {
 		return this.maintenance;
 	}
 
+
 	public void setAvaliable(boolean avaliable) {
 		this.avaliable = avaliable;
 	}
+
+	public void setMake(String make) { this.make = make; }
+
+	public void setRegisterPlate(String RegisterPlate) { this.registerPlate = registerPlate;}
+
+	public void setNumOfSeats(int NumOfSeats){ this.numOfSeats = numOfSeats;}
+
+	public void setModel(String model) {this.model = model; }
+
+	public void setFuelType(String fuelType){this.fuelType = fuelType;}
+
+	public void setMaintenance(Maintenance maintenance){this.maintenance = maintenance;}
 
 	public boolean edit(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		// TODO - implement Vehicle.edit
