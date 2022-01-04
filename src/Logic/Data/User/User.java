@@ -47,6 +47,12 @@ public class User {
 
 	public void edit(String name, String email, String phoneNumber, String drivingLicense) {
 		// TODO - implement User.edit
+		this.admin = admin;
+		this.name = name;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.drivingLicense = phoneNumber;
+		this.password = password;
 		throw new UnsupportedOperationException();
 	}
 
