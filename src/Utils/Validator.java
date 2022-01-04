@@ -8,10 +8,6 @@ public class Validator {
     /**metodos de Validação User*/
 
 //    private boolean admin;    todo --
-//    private String name;              --
-//    private String email;             --
-//    private String phoneNumber;   todo --Dani
-//    private String drivingLicense;    todo --Dani
 //    private Booking booking;  todo --
 //    private String password;          --
 
@@ -36,12 +32,12 @@ public class Validator {
 
 
     private static boolean phoneNumberValidation(String phoneNumber){
-        String pattern ="";
+        String pattern ="(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
         return phoneNumber.matches(pattern);
     }
 
     private static boolean drivingLicenseValidation(String drivingLicense){
-        String pattern ="ola";
+        String pattern ="[0-9]";
         return drivingLicense.matches(pattern);
     }
 
