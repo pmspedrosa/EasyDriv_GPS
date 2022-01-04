@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class JSONManager{
+public class JSONManager{
     private static FileWriter file;
 
     public void writeToFile(JSONArray list) {
@@ -34,7 +34,7 @@ class JSONManager{
         }
     }
 
-    public JSONArray readFromFile(EntityType entity){
+    public static JSONArray readFromFile(EntityType entity){
         JSONParser jsonParser = new JSONParser();
         JSONArray objectList = new JSONArray();
         try {
@@ -57,7 +57,7 @@ class JSONManager{
         return objectList;
     }
 
-    private String getPath() {
+    private static String getPath() {
         return System.getProperty("user.dir");
     }
 

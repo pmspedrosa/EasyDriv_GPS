@@ -1,6 +1,7 @@
 package Logic.Data.User;
 
 import Logic.Data.Booking.Booking;
+import Utils.Logger;
 
 public class User {
 
@@ -13,8 +14,15 @@ public class User {
 	private String password;
 
 	public User(boolean admin, String name, String email, String phoneNumber, String drivingLicense, String password) {
-		// TODO - implement User.User
-		throw new UnsupportedOperationException();
+		this.admin = admin;
+		this.name = name;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.drivingLicense = phoneNumber;
+		this.password = password;
+
+		Logger.getInstance().debug("User criado");
+		// throw new UnsupportedOperationException();
 	}
 
 	public boolean getAdmin() {
