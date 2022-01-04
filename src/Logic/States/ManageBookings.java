@@ -8,33 +8,29 @@ public class ManageBookings extends StateAdapter {
 
 	public ManageBookings(Controller controller) {
 		super(controller);
-		// TODO - implement ManageBookings.ManageBookings
-		throw new UnsupportedOperationException();
 	}
 
+
+	@Override
 	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		// TODO - implement ManageBookings.search
-		throw new UnsupportedOperationException();
+		getController().search(startDatatime,endDatatime,destination,shared);
+		return new ManageBookings(getController());
 	}
 
-	public IState remove(String key) {
-		// TODO - implement ManageBookings.remove
-		throw new UnsupportedOperationException();
+	@Override
+	public IState remove(String email) {
+		getController().removeBooking(email);
+		return new ManageBookings(getController());
 	}
 
+	@Override
 	public IState cancel() {
-		// TODO - implement ManageBookings.cancel
-		throw new UnsupportedOperationException();
+		return new Menu(getController());
 	}
 
-	public IState exit() {
-		// TODO - implement ManageBookings.exit
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement ManageBookings.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.MANAGE_BOOKINGS;
 	}
 
 }

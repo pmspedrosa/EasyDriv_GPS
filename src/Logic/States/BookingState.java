@@ -1,6 +1,8 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.User.User;
+import Logic.Data.Vehicle.Vehicle;
 
 import java.security.Timestamp;
 
@@ -8,33 +10,29 @@ public class BookingState extends StateAdapter {
 
 	public BookingState(Controller controller) {
 		super(controller);
-		// TODO - implement BookingState.BookingState
-		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		// TODO - implement BookingState.search
-		throw new UnsupportedOperationException();
+		getController().search(startDatatime,endDatatime,destination,shared);
+		return new BookingState(getController());
 	}
 
-	public IState confirm() {
-		// TODO - implement BookingState.confirm
-		throw new UnsupportedOperationException();
+	@Override
+	public IState booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle)
+	{
+		getController().addBoking(startDatatime,endDatatime,destination,user,vehicle);
+		return new Menu(getController());
 	}
 
+	@Override
 	public IState cancel() {
-		// TODO - implement BookingState.cancel
-		throw new UnsupportedOperationException();
+		return new Menu(getController());
 	}
 
-	public IState exit() {
-		// TODO - implement BookingState.exit
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement BookingState.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.BOOKING;
 	}
 
 }

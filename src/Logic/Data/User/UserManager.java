@@ -26,7 +26,7 @@ public class UserManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean editUser(String name, String email, String phoneNumber, String drivingLicense) {
+	public boolean editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
 		// TODO - implement UserManager.editUser
 		throw new UnsupportedOperationException();
 	}
@@ -36,4 +36,9 @@ public class UserManager {
 		throw new UnsupportedOperationException();
 	}
 
+	public boolean login(String email, String password)
+	{
+		//percorre lista de users e retorna true caso email e password estejam em algum user
+		return false;
+	}
 }
