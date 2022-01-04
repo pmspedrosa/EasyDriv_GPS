@@ -25,8 +25,7 @@ public class Controller {
 	private ArrayList<Booking> listOfBookings;
 
 	public boolean addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
-		// TODO - implement Controller.addUser
-		throw new UnsupportedOperationException();
+		return userManager.addUser(name,email,phoneNumber,drivingLicense, password);
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {
@@ -44,18 +43,15 @@ public class Controller {
 
 
 	public boolean removeUser(String email) {
-		// TODO - implement Controller.removeUser
-		throw new UnsupportedOperationException();
+		return userManager.removeUser(email);
 	}
 
 	public ArrayList<User> listUsers() {
-		// TODO - implement Controller.listUsers
-		throw new UnsupportedOperationException();
+		return userManager.listUsers();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		// TODO - implement Controller.getBookings
-		throw new UnsupportedOperationException();
+		return bookingManager.getBookings(startDatatime,endDatatime,destination,shared);
 	}
 
 	public void addBoking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
@@ -63,23 +59,19 @@ public class Controller {
 	}
 
 	public boolean removeBooking(Vehicle vehicle) {
-		// TODO - implement Controller.removeBooking
-		throw new UnsupportedOperationException();
+		return bookingManager.removeBooking(vehicle);
 	}
 
 	public boolean removeBooking(User user) {
-		// TODO - implement Controller.removeBooking
-		throw new UnsupportedOperationException();
+		return bookingManager.removeBooking(user);
 	}
 
-	public boolean removeBooking(String email) {
-		// TODO - implement Controller.removeBooking
-		throw new UnsupportedOperationException();
-	}
+//	public boolean removeBooking(String email) {
+//		return bookingManager.
+//	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		// TODO - implement Controller.addVehicle
-		throw new UnsupportedOperationException();
+		vehicleManager.addVehicle(make,registerPlate,numOfSeats,fuelType,model,available);
 	}
 
 	public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
@@ -87,18 +79,16 @@ public class Controller {
 	}
 
 	public Vehicle getVehicle(String registerPlate) {
-		// TODO - implement Controller.getVehicle
-		throw new UnsupportedOperationException();
+		return vehicleManager.getVehicle(registerPlate);
 	}
 
 	public boolean removeVehicle(String registerPlate) {
-		// TODO - implement Controller.removeVehicle
-		throw new UnsupportedOperationException();
+		return vehicleManager.removeVehicle(registerPlate);
+
 	}
 
 	public ArrayList<Vehicle> listVehicles() {
-		// TODO - implement Controller.listVehicles
-		throw new UnsupportedOperationException();
+		return vehicleManager.listVehicles();
 	}
 
 	public void setState(IState state) {
