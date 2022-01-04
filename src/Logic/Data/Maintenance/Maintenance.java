@@ -10,12 +10,20 @@ public class Maintenance {
 	private String other;
 	private boolean allWentWell;
 
-	public Maintenance(int operational, int lowPressureTires, int lightsOnBoard, int accident, int cleaning, int other) {
-		// TODO - implement Maintenance.Maintenance
-		throw new UnsupportedOperationException();
-	}
+//	public Maintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) {
+//		// TODO - implement Maintenance.Maintenance
+//
+//		throw new UnsupportedOperationException();
+//	}
 
-	public Maintenance(int allWentWell) {
+	public Maintenance() {
+		this.operational = true;
+		this.lowPressureTires = false;
+		this.ligthsOnBoard=false;
+		this.accident = false;
+		this.cleaning=false;
+		this.other = null;
+		this.allWentWell = true;
 		// TODO - implement Maintenance.Maintenance
 		throw new UnsupportedOperationException();
 	}
@@ -50,12 +58,26 @@ public class Maintenance {
 
 	public void repair() {
 		// TODO - implement Maintenance.repair
+		this.operational = true;
+		this.lowPressureTires = false;
+		this.ligthsOnBoard=false;
+		this.accident = false;
+		this.cleaning=false;
+		this.other = null;
+		this.allWentWell = true;
 		throw new UnsupportedOperationException();
 	}
 
 
 	public void edit(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) {
 		// TODO - implement Maintenance.edit
+		this.operational = operational;
+		this.lowPressureTires = lowPressureTires;
+		this.ligthsOnBoard=lightsOnBoard;
+		this.accident = accident;
+		this.cleaning=cleaning;
+		this.other = other;
+		this.allWentWell = allWentWell;
 		throw new UnsupportedOperationException();
 	}
 

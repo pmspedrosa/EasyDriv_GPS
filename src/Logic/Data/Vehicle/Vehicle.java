@@ -60,6 +60,12 @@ public class Vehicle {
 
 	public boolean edit(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		// TODO - implement Vehicle.edit
+		this.make = make;
+		this.registerPlate = registerPlate;
+		this.numOfSeats = numOfSeats;
+		this.fuelType = fuelType;
+		this.model = model;
+		this.avaliable = available;
 		throw new UnsupportedOperationException();
 	}
 
