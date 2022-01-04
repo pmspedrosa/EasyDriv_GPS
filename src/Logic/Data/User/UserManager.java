@@ -22,7 +22,7 @@ public class UserManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean addUser(String name, String email, String phoneNumber, String drivingLicense) {
+	public boolean addUser(String name,String email,String phoneNumber,String drivingLicense,String password) {
 		// TODO - implement UserManager.addUser
 		throw new UnsupportedOperationException();
 	}
