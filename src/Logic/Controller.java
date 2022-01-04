@@ -24,8 +24,8 @@ public class Controller {
 	//to get after someone do search
 	private ArrayList<Booking> listOfBookings;
 
-	public boolean addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
-		return userManager.addUser(name,email,phoneNumber,drivingLicense, password);
+	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		userManager.addUser(name,email,phoneNumber,drivingLicense, password);
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {
@@ -42,8 +42,8 @@ public class Controller {
 	}
 
 
-	public boolean removeUser(String email) {
-		return userManager.removeUser(email);
+	public void removeUser(String email) {
+		userManager.removeUser(email);
 	}
 
 	public ArrayList<User> listUsers() {
@@ -67,7 +67,7 @@ public class Controller {
 	}
 
 //	public boolean removeBooking(String email) {
-//		return bookingManager.
+//		return bookingManager.removeBooking(email);
 //	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
@@ -91,18 +91,12 @@ public class Controller {
 		return vehicleManager.listVehicles();
 	}
 
-	public void setState(IState state) {
-		// TODO - implement Controller.setState
-		throw new UnsupportedOperationException();
-	}
-
 	public Vehicle getSelectedVehicle() {
 		return this.selectedVehicle;
 	}
 
 	public void setSelectedVehicle(String registrationPlate) {
-		// TODO - implement Controller.setSelectedVehicle
-		throw new UnsupportedOperationException();
+		selectedVehicle = vehicleManager.getVehicle(registrationPlate);
 	}
 
 	public Booking getSelectedBooking() {
@@ -110,13 +104,7 @@ public class Controller {
 	}
 
 	public void setSelectedBooking(String registrationPlate) {
-		// TODO - implement Controller.setSelectedBooking
-		throw new UnsupportedOperationException();
-	}
-
-	public SystemState getActualState() {
-		// TODO - implement Controller.getActualState
-		throw new UnsupportedOperationException();
+		selectedBooking = bookingManager.getBooking(registrationPlate);
 	}
 
 	public boolean login(String email, String password)
@@ -141,6 +129,6 @@ public class Controller {
 
 	public void deliver()
 	{
-		//deliver
+		bookingManager.removeBooking(user);
 	}
 }

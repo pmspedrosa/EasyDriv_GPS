@@ -40,9 +40,25 @@ public class BookingManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public void getBooking(String registrationPlate) {
-		// TODO - implement BookingManager.getBooking
-		throw new UnsupportedOperationException();
+	public Booking getBooking(String registrationPlate) {
+		for (Booking booking : bookings )
+		{
+			if (booking.getVehicle().getRegisterPlate().equals(registrationPlate))
+				return booking;
+		}
+		return null;
+	}
+
+	public Booking getBookingByEmail(String email) {
+		for (Booking booking : bookings )
+		{
+			for (User user : booking.getUsers() )
+			{
+				if (user.getEmail().equals(email))
+					return booking;
+			}
+		}
+		return null;
 	}
 
 	public void loadBookings() {
