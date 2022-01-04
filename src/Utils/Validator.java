@@ -33,6 +33,18 @@ public class Validator {
         String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}";
         return pass.matches(pattern);
     }
+
+
+    private static boolean phoneNumberValidation(String phoneNumber){
+        String pattern ="";
+        return phoneNumber.matches(pattern);
+    }
+
+    private static boolean drivingLicenseValidation(String drivingLicense){
+        String pattern ="ola";
+        return drivingLicense.matches(pattern);
+    }
+
    /*
     ^ start of the line
     (?=.*[0-9]) a digit must occur at least once
