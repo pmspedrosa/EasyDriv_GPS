@@ -6,28 +6,22 @@ public class AddUser extends StateAdapter {
 
 	public AddUser(Controller controller) {
 		super(controller);
-		// TODO - implement AddUser.AddUser
-		throw new UnsupportedOperationException();
 	}
 
-	public IState confirm() {
-		// TODO - implement AddUser.confirm
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public IState cancel() {
-		// TODO - implement AddUser.cancel
-		throw new UnsupportedOperationException();
+		return new ManageUsers(getController());
 	}
 
-	public IState addUser(String name, String email, String phoneNumber, String drivingLicense) {
-		// TODO - implement AddUser.addUser
-		throw new UnsupportedOperationException();
+	@Override
+	public IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		getController().addUser(name, email, phoneNumber, drivingLicense, password);
+		return new ManageUsers(getController());
 	}
 
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement AddUser.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.ADD_USER;
 	}
 
 }

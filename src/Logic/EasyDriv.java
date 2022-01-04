@@ -4,6 +4,7 @@ import Logic.Data.Booking.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Logic.States.IState;
+import Logic.States.Login;
 import Logic.States.SystemState;
 
 import java.security.Timestamp;
@@ -15,163 +16,144 @@ public class EasyDriv {
 	private IState state;
 
 	public EasyDriv() {
-		// TODO - implement EasyDriv.EasyDriv
-		throw new UnsupportedOperationException();
+		controller = new Controller();
+		setState(new Login(controller));
+	}
+
+	private void setState(IState state){
+		this.state = state;
 	}
 
 	public void login(String email, String password) {
-		// TODO - implement EasyDriv.login
-		throw new UnsupportedOperationException();
+		setState(state.login(email, password));
 	}
 
 	public void manageUsers() {
-		// TODO - implement EasyDriv.manageUsers
-		throw new UnsupportedOperationException();
+		setState(state.manageUsers());
+
 	}
 
 	public void addUser() {
-		// TODO - implement EasyDriv.addUser
-		throw new UnsupportedOperationException();
+		setState(state.addUser());
 	}
 
-	public void addUser(String name, String email, String phoneNumber, String drivingLicense) {
-		// TODO - implement EasyDriv.addUser
-		throw new UnsupportedOperationException();
+	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		setState(state.addUser(name, email, phoneNumber, drivingLicense, password));
+
 	}
 
 	public void editUser() {
-		// TODO - implement EasyDriv.editUser
-		throw new UnsupportedOperationException();
+		setState(state.editUser());
 	}
 
 	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		// TODO - implement EasyDriv.search
-		throw new UnsupportedOperationException();
+		setState(state.search(startDatatime,endDatatime,destination,shared));
 	}
 
 	public SystemState getActualState() {
-		// TODO - implement EasyDriv.getActualState
-		throw new UnsupportedOperationException();
+		return state.getActualState();
 	}
 
-	public void editUser(String email, String nome, String phoneNumber, String drivingLicense, String password) {
-		// TODO - implement EasyDriv.editUser
-		throw new UnsupportedOperationException();
+	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
+		setState(state.editUser(email, name, phoneNumber, drivingLicense, password));
+
 	}
 
 	public void manageBookings() {
-		// TODO - implement EasyDriv.manageBookings
-		throw new UnsupportedOperationException();
+		setState(state.manageBookings());
 	}
 
 	public void booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		// TODO - implement EasyDriv.booking
-		throw new UnsupportedOperationException();
+		setState(state.booking(startDatatime, endDatatime, destination, user, vehicle));
+
 	}
 
 	public void deliver() {
-		// TODO - implement EasyDriv.deliver
-		throw new UnsupportedOperationException();
+		setState(state.deliver());
 	}
 
 	public void manageVehicles() {
-		// TODO - implement EasyDriv.manageVehicles
-		throw new UnsupportedOperationException();
+		setState(state.manageVehicles());
+
 	}
 
 	public void addVehicle() {
-		// TODO - implement EasyDriv.addVehicle
-		throw new UnsupportedOperationException();
+		setState(state.addVehicle());
+
 	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		// TODO - implement EasyDriv.addVehicle
-		throw new UnsupportedOperationException();
+		setState(state.addVehicle(make, registerPlate, numOfSeats, fuelType, model, available));
+
 	}
 
 	public void editVehicle() {
-		// TODO - implement EasyDriv.editVehicle
-		throw new UnsupportedOperationException();
+		setState(state.editVehicle());
 	}
 
 	public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		// TODO - implement EasyDriv.editVehicle
-		throw new UnsupportedOperationException();
+		setState(state.editVehicle(make, registerPlate, numOfSeats, fuelType, model, available));
+
 	}
 
 	public void checkMaintenance() {
-		// TODO - implement EasyDriv.checkMaintenance
-		throw new UnsupportedOperationException();
+		setState(state.checkMaintenance());
 	}
 
 	public void editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) {
-		// TODO - implement EasyDriv.editMaintenance
-		throw new UnsupportedOperationException();
+		setState(state.editMaintenance(operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell));
 	}
 
 	public void remove(String key) {
-		// TODO - implement EasyDriv.remove
-		throw new UnsupportedOperationException();
+		setState(state.remove(key));
 	}
 
 	public void confirm() {
-		// TODO - implement EasyDriv.confirm
-		throw new UnsupportedOperationException();
+		setState(state.confirm());
 	}
 
 	public void cancel() {
-		// TODO - implement EasyDriv.cancel
-		throw new UnsupportedOperationException();
+		setState(state.cancel());
 	}
 
 	public void exit() {
-		// TODO - implement EasyDriv.exit
-		throw new UnsupportedOperationException();
+		//exit, no need state call
 	}
 
 	public User getUser(String email) {
-		// TODO - implement EasyDriv.getUser
-		throw new UnsupportedOperationException();
+		return controller.getUser(email);
 	}
 
 	public ArrayList<User> listUsers() {
-		// TODO - implement EasyDriv.listUsers
-		throw new UnsupportedOperationException();
+		return controller.listUsers();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		// TODO - implement EasyDriv.getBookings
-		throw new UnsupportedOperationException();
+		return controller.getBookings(startDatatime,endDatatime,destination,shared);
 	}
 
 	public Vehicle getVehicle(String registerPlate) {
-		// TODO - implement EasyDriv.getVehicle
-		throw new UnsupportedOperationException();
+		return controller.getVehicle(registerPlate);
 	}
 
 	public ArrayList<Vehicle> listVehicles() {
-		// TODO - implement EasyDriv.listVehicles
-		throw new UnsupportedOperationException();
+		return controller.listVehicles();
 	}
 
 	public void setSelectedVehicle(String registrationPlate) {
-		// TODO - implement EasyDriv.setSelectedVehicle
-		throw new UnsupportedOperationException();
+		controller.setSelectedVehicle(registrationPlate);
 	}
 
 	public Vehicle getSelectedVehicle() {
-		// TODO - implement EasyDriv.getSelectedVehicle
-		throw new UnsupportedOperationException();
+		return  controller.getSelectedVehicle();
 	}
 
 	public void setSelectedBooking(String registrationPlate) {
-		// TODO - implement EasyDriv.setSelectedBooking
-		throw new UnsupportedOperationException();
+		controller.setSelectedBooking(registrationPlate);
 	}
 
 	public Booking getSelectedBooking() {
-		// TODO - implement EasyDriv.getSelectedBooking
-		throw new UnsupportedOperationException();
+		return controller.getSelectedBooking();
 	}
 
 }

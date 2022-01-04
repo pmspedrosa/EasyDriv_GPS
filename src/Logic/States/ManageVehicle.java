@@ -6,38 +6,37 @@ public class ManageVehicle extends StateAdapter {
 
 	public ManageVehicle(Controller controller) {
 		super(controller);
-		// TODO - implement ManageVehicle.ManageVehicle
-		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public IState addVehicle() {
-		// TODO - implement ManageVehicle.addVehicle
-		throw new UnsupportedOperationException();
+		return new AddVehicle(getController());
 	}
 
+	@Override
 	public IState editVehicle() {
-		// TODO - implement ManageVehicle.editVehicle
-		throw new UnsupportedOperationException();
+		return new EditVehicle(getController());
 	}
 
-	public IState remove(String key) {
-		// TODO - implement ManageVehicle.remove
-		throw new UnsupportedOperationException();
+	@Override
+	public IState remove(String registrationPlate) {
+		getController().removeVehicle(registrationPlate);
+		return new ManageVehicle(getController());
 	}
 
+	@Override
 	public IState checkMaintenance() {
-		// TODO - implement ManageVehicle.checkMaintenance
-		throw new UnsupportedOperationException();
+		return new CheckMaintenance(getController());
 	}
 
+	@Override
 	public IState cancel() {
-		// TODO - implement ManageVehicle.cancel
-		throw new UnsupportedOperationException();
+		return new Menu(getController());
 	}
 
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement ManageVehicle.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.MANAGE_VEHICLE;
 	}
 
 }

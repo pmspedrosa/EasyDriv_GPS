@@ -6,28 +6,18 @@ public class ManageProfile extends StateAdapter {
 
 	public ManageProfile(Controller controller) {
 		super(controller);
-		// TODO - implement ManageProfile.ManageProfile
-		throw new UnsupportedOperationException();
 	}
 
-	public IState confirm() {
-		// TODO - implement ManageProfile.confirm
-		throw new UnsupportedOperationException();
+	@Override
+	public IState editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
+		getController().editUser(email, name, phoneNumber, drivingLicense, password, true);
+		return new Menu(getController());
 	}
 
-	public IState cancel() {
-		// TODO - implement ManageProfile.cancel
-		throw new UnsupportedOperationException();
-	}
+	@Override
+	public IState cancel() { return new Menu(getController()); }
 
-	public IState exit() {
-		// TODO - implement ManageProfile.exit
-		throw new UnsupportedOperationException();
-	}
-
-	public SystemState getActualState() {
-		// TODO - implement ManageProfile.getActualState
-		throw new UnsupportedOperationException();
-	}
+	@Override
+	public SystemState getActualState() { return SystemState.MANAGE_PROFILE; }
 
 }

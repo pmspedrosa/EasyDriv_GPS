@@ -1,5 +1,6 @@
 package Logic.States;
 
+import Logic.Controller;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
@@ -11,7 +12,7 @@ public interface IState {
 
 	IState manageUsers();
 
-	IState addUser(String name, String email, String phoneNumber, String drivingLicense);
+	IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password);
 
 	IState editUser();
 
@@ -37,6 +38,19 @@ public interface IState {
 
 	IState cancel();
 
+	SystemState getActualState();
+
 	IState exit();
 
+	IState addUser();
+
+	IState editUser(String email, String nome, String phoneNumber, String drivingLicense, String password);
+
+	IState addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available);
+
+	IState editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available);
+
+	IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell);
+
+	Controller getController();
 }

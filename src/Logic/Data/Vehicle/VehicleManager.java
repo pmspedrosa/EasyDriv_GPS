@@ -31,4 +31,7 @@ public class VehicleManager {
 		throw new UnsupportedOperationException();
 	}
 
+    public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available)
+    {
+    }
 }

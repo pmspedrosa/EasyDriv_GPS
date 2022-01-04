@@ -6,38 +6,32 @@ public class ManageUsers extends StateAdapter {
 
 	public ManageUsers(Controller controller) {
 		super(controller);
-		// TODO - implement ManageUsers.ManageUsers
-		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public IState addUser() {
-		// TODO - implement ManageUsers.addUser
-		throw new UnsupportedOperationException();
+		return new AddUser(getController());
 	}
 
+	@Override
 	public IState editUser() {
-		// TODO - implement ManageUsers.editUser
-		throw new UnsupportedOperationException();
+		return new EditUser(getController());
 	}
 
-	public IState remove(String key) {
-		// TODO - implement ManageUsers.remove
-		throw new UnsupportedOperationException();
+	@Override
+	public IState remove(String email) {
+		getController().removeUser(email);
+		return new ManageUsers(getController());
 	}
 
+	@Override
 	public IState cancel() {
-		// TODO - implement ManageUsers.cancel
-		throw new UnsupportedOperationException();
+		return new Menu(getController());
 	}
 
-	public IState exit() {
-		// TODO - implement ManageUsers.exit
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement ManageUsers.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.MANAGE_USERS;
 	}
 
 }

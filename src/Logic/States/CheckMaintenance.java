@@ -6,24 +6,23 @@ public class CheckMaintenance extends StateAdapter {
 
 	public CheckMaintenance(Controller controller) {
 		super(controller);
-		// TODO - implement CheckMaintenance.CheckMaintenance
-		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public IState confirm() {
-		// TODO - implement CheckMaintenance.confirm
-		throw new UnsupportedOperationException();
+		return new ManageVehicle(getController());
 	}
 
-	public SystemState getActualState() {
-		// TODO - implement CheckMaintenance.getActualState
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard,
 								  boolean accident, boolean cleaning, String other, boolean allWentWell) {
-		// TODO - implement CheckMaintenance.editMaintenance
-		throw new UnsupportedOperationException();
+		getController().editMaintenance(operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell);
+		return new CheckMaintenance(getController());
+	}
+
+	@Override
+	public SystemState getActualState() {
+		return SystemState.CHECK_MAINTENANCE;
 	}
 
 }

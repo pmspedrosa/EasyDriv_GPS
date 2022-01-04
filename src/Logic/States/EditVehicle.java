@@ -6,28 +6,22 @@ public class EditVehicle extends StateAdapter {
 
 	public EditVehicle(Controller controller) {
 		super(controller);
-		// TODO - implement EditVehicle.EditVehicle
-		throw new UnsupportedOperationException();
 	}
 
-	public IState confirm() {
-		// TODO - implement EditVehicle.confirm
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public IState cancel() {
-		// TODO - implement EditVehicle.cancel
-		throw new UnsupportedOperationException();
+		return new ManageVehicle(getController());
 	}
 
-	public SystemState getActualState() {
-		// TODO - implement EditVehicle.getActualState
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public IState editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		// TODO - implement EditVehicle.editVehicle
-		throw new UnsupportedOperationException();
+		getController().editVehicle(make,registerPlate,numOfSeats,fuelType,model,available);
+		return new ManageVehicle(getController());
 	}
 
+	@Override
+	public SystemState getActualState() {
+		return SystemState.EDIT_VEHICLE;
+
+	}
 }
