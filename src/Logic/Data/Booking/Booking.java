@@ -42,19 +42,23 @@ public class Booking {
 		return this.shared;
 	}
 
-	public boolean addUser(int user) {
-		// TODO - implement Booking.addUser
-		throw new UnsupportedOperationException();
+	public boolean addUser(User user) {
+		if(users.size()>1){
+			shared=true;
+		}
+		return users.add(user);
 	}
 
-	public boolean removeUser(int username) {
-		// TODO - implement Booking.removeUser
-		throw new UnsupportedOperationException();
+	public boolean removeUser(User user) {
+		if(users.size()<=1){
+			shared=false;
+		}
+		return users.remove(user);
+
 	}
 
 	public ArrayList<User> getUsers() {
-		// TODO - implement Booking.getUsers
-		throw new UnsupportedOperationException();
+		return users;
 	}
 
 	public Vehicle getVehicle() {
