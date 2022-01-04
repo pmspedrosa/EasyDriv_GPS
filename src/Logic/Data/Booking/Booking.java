@@ -2,6 +2,7 @@ package Logic.Data.Booking;
 
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
+import Utils.Logger;
 
 import java.security.Timestamp;
 import java.util.*;
@@ -21,6 +22,8 @@ public class Booking {
 		this.destination = destination;
 		this.users = users;
 		this.vehicle = vehicle;
+
+		Logger.getInstance().debug("Booking criado");
 	}
 
 	public Timestamp getStartDatatime() {

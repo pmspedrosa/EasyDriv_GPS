@@ -1,6 +1,7 @@
 package Logic.Data.Vehicle;
 
 import Logic.Data.Maintenance.Maintenance;
+import Utils.Logger;
 
 public class Vehicle {
 
@@ -20,7 +21,9 @@ public class Vehicle {
 		this.fuelType = fuelType;
 		this.model = model;
 		this.avaliable = available;
-		//throw new UnsupportedOperationException();
+
+		Logger.getInstance().debug("Vehicle criado");
+		throw new UnsupportedOperationException();
 	}
 
 	public String getMake() {
@@ -51,11 +54,9 @@ public class Vehicle {
 		return this.maintenance;
 	}
 
-
 	public void setAvaliable(boolean avaliable) {
 		this.avaliable = avaliable;
 	}
-
 
 	public boolean edit(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		// TODO - implement Vehicle.edit
