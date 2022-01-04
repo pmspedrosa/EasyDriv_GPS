@@ -23,7 +23,6 @@ public class Vehicle {
 		this.avaliable = available;
 
 		Logger.getInstance().debug("Vehicle criado");
-		throw new UnsupportedOperationException();
 	}
 
 	public String getMake() {
@@ -58,15 +57,13 @@ public class Vehicle {
 		this.avaliable = avaliable;
 	}
 
-	public boolean edit(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		// TODO - implement Vehicle.edit
+	public void edit(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		this.make = make;
 		this.registerPlate = registerPlate;
 		this.numOfSeats = numOfSeats;
 		this.fuelType = fuelType;
 		this.model = model;
 		this.avaliable = available;
-		throw new UnsupportedOperationException();
+		Logger.getInstance().debug("Vehicle editado");
 	}
-
 }

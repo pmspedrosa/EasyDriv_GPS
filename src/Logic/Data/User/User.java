@@ -1,6 +1,5 @@
 package Logic.Data.User;
 
-import Logic.Data.Booking.Booking;
 import Utils.Logger;
 
 public class User {
@@ -10,7 +9,6 @@ public class User {
 	private String email;
 	private String phoneNumber;
 	private String drivingLicense;
-	private Booking booking;
 	private String password;
 
 	public User(boolean admin, String name, String email, String phoneNumber, String drivingLicense, String password) {
@@ -22,7 +20,6 @@ public class User {
 		this.password = password;
 
 		Logger.getInstance().debug("User criado");
-		// throw new UnsupportedOperationException();
 	}
 
 	public boolean getAdmin() {
@@ -41,28 +38,28 @@ public class User {
 		return this.phoneNumber;
 	}
 
-	public String getDrivingLicense() {
-		return this.drivingLicense;
-	}
+	public String getDrivingLicense() { return this.drivingLicense; }
+
+	public String getPassword() { return this.password; }
+
+	public void setAdmin(boolean admin) { this.admin = admin; }
+
+	public void setName(String name) { this.name = name; }
+
+	public void setEmail(String email) { this.email = name; }
+
+	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+	public void setDrivingLicense(String drivingLicense) { this.drivingLicense = drivingLicense; }
+
+	public void setPassword(String password) { this.password = password; }
 
 	public void edit(String name, String email, String phoneNumber, String drivingLicense) {
-		// TODO - implement User.edit
 		this.admin = admin;
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.drivingLicense = phoneNumber;
 		this.password = password;
-		throw new UnsupportedOperationException();
 	}
-
-	public boolean setBooking(Booking booking) {
-		// TODO - implement User.setBooking
-		throw new UnsupportedOperationException();
-	}
-
-	public Booking getBooking() {
-		return this.booking;
-	}
-
 }
