@@ -12,9 +12,9 @@ import java.io.IOException;
 class JSONManager{
     private static FileWriter file;
 
-    public void writeToFile(JSONArray list, String path) {
+    public void writeToFile(JSONArray list) {
         try {
-            file = new FileWriter(path);
+            file = new FileWriter(getPath());
             file.write(list.toJSONString());
             Logger.getInstance().debug("Ficheiro escrito com sucesso");
 
@@ -34,11 +34,11 @@ class JSONManager{
         }
     }
 
-    public JSONArray readFromFile(String path, EntityType entity){
+    public JSONArray readFromFile(EntityType entity){
         JSONParser jsonParser = new JSONParser();
         JSONArray objectList = new JSONArray();
         try {
-            FileReader reader = new FileReader(path);
+            FileReader reader = new FileReader(getPath());
             Object object = jsonParser.parse(reader);
 
             objectList = (JSONArray)object;
@@ -55,6 +55,10 @@ class JSONManager{
         }
 
         return objectList;
+    }
+
+    private String getPath() {
+        return System.getProperty("user.dir");
     }
 
     public String getFileName(EntityType entity) {
