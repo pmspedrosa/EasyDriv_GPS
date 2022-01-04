@@ -2,6 +2,7 @@ package Logic.Data.Booking;
 
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
+import Utils.Logger;
 
 import java.security.Timestamp;
 import java.util.*;
@@ -15,8 +16,14 @@ public class Booking {
 	private ArrayList<User> users;
 	private Vehicle vehicle;
 
-	public Booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		// TODO - implement Booking.Booking
+	public Booking(Timestamp startDatatime, Timestamp endDatatime, String destination, ArrayList<User> users, Vehicle vehicle) {
+		this.startDatatime = startDatatime;
+		this.endDatatime = endDatatime;
+		this.destination = destination;
+		this.users = users;
+		this.vehicle = vehicle;
+
+		Logger.getInstance().debug("Booking criado");
 	}
 
 	public Timestamp getStartDatatime() {
