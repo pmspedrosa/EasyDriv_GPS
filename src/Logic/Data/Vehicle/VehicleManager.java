@@ -7,7 +7,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class VehicleManager {
 
@@ -49,6 +48,10 @@ public class VehicleManager {
 		// TODO - implement VehicleManager.listVehicles
 		throw new UnsupportedOperationException();
 	}
+
+    public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available)
+    {
+    }
 
 	public void loadVehicles() {
 		Logger.getInstance().debug("Load Vehicles");

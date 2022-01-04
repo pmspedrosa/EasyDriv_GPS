@@ -6,23 +6,18 @@ public class Login extends StateAdapter {
 
 	public Login(Controller controller) {
 		super(controller);
-		// TODO - implement Login.Login
-		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public IState login(String email, String password) {
-		// TODO - implement Login.login
-		throw new UnsupportedOperationException();
+		boolean loggedIn = getController().login(email, password);
+		if (loggedIn) return new Menu(getController());
+		else return this;
 	}
 
-	public IState exit() {
-		// TODO - implement Login.exit
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement Login.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.LOGIN;
 	}
 
 }

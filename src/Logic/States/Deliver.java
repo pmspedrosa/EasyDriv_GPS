@@ -6,23 +6,22 @@ public class Deliver extends StateAdapter {
 
 	public Deliver(Controller controller) {
 		super(controller);
-		// TODO - implement Deliver.Deliver
-		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public IState confirm() {
-		// TODO - implement Deliver.confirm
-		throw new UnsupportedOperationException();
+		getController().deliver();
+		return new Menu(getController());
 	}
 
+	@Override
 	public IState cancel() {
-		// TODO - implement Deliver.cancel
-		throw new UnsupportedOperationException();
+		return new Menu(getController());
 	}
 
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement Deliver.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.DELIVER;
 	}
 
 }

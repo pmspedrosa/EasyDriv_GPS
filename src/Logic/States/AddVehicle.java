@@ -5,28 +5,22 @@ import Logic.Controller;
 public class AddVehicle extends StateAdapter {
 	public AddVehicle(Controller controller) {
 		super(controller);
-		// TODO - implement AddVehicle.AddVehicle
-		throw new UnsupportedOperationException();
 	}
 
-	public IState confirm() {
-		// TODO - implement AddVehicle.confirm
-		throw new UnsupportedOperationException();
-	}
-
+	@Override
 	public IState cancel() {
-		// TODO - implement AddVehicle.cancel
-		throw new UnsupportedOperationException();
+		return new ManageVehicle(getController());
 	}
 
+	@Override
 	public IState addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		// TODO - implement AddVehicle.addVehicle
-		throw new UnsupportedOperationException();
+		getController().addVehicle(make, registerPlate, numOfSeats, fuelType, model, available);
+		return new ManageVehicle(getController());
 	}
 
+	@Override
 	public SystemState getActualState() {
-		// TODO - implement AddVehicle.getActualState
-		throw new UnsupportedOperationException();
+		return SystemState.ADD_VEHICLE;
 	}
 
 }
