@@ -49,7 +49,9 @@ public class Controller {
 	}
 
 	public void removeUser(String email) {
+		loadUserManager();
 		userManager.removeUser(email);
+		saveUserManager();
 	}
 
 	public ArrayList<User> listUsers() {
