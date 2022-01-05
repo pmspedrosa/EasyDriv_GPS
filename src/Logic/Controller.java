@@ -8,6 +8,9 @@ import Logic.Data.Vehicle.Vehicle;
 import Logic.Data.Vehicle.VehicleManager;
 import Logic.States.IState;
 import Logic.States.SystemState;
+import Utils.EntityType;
+import Utils.JSONManager;
+import com.google.gson.Gson;
 
 import java.security.Timestamp;
 import java.util.ArrayList;
@@ -32,6 +35,9 @@ public class Controller {
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
 		userManager.addUser(name,email,phoneNumber,drivingLicense, password);
+		JSONManager.writeToFile(userManager);
+		JSONManager.readFromFile(EntityType.USER);
+		//TODO: Prego
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {

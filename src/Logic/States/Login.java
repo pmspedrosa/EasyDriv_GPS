@@ -23,9 +23,6 @@ public class Login extends StateAdapter {
 	@Override
 	public IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
 		getController().addUser(name, email, phoneNumber, drivingLicense, password);
-		var jsonlist = new JSONArray();
-		jsonlist.add(getController().listUsers());
-		Utils.JSONManager.writeToFile(jsonlist);
 		return this;
 	}
 

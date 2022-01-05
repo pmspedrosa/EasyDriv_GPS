@@ -52,13 +52,13 @@ public class VehicleManager {
     {
     }
 
-	public void loadVehicles() {
+	/*public void loadVehicles() {
 		Logger.getInstance().debug("Load Vehicles");
-		JSONArray listVehiclesFromJson = JSONManager.readFromFile(EntityType.VEHICLE);
+		//JSONArray listVehiclesFromJson = JSONManager.readFromFile(EntityType.VEHICLE);
 
 		listVehiclesFromJson.forEach(vehicle -> vehicles.add(parseVehicleObject( (JSONObject) vehicle)));
 		Logger.getInstance().debug("Acabei o load vehicles");
-	}
+	}*/
 
 	private Vehicle parseVehicleObject(JSONObject v) {
 		JSONObject vehicleObject = (JSONObject) v.get("vehicle");

@@ -14,7 +14,7 @@ public class UserManager {
 
 	public UserManager() {
 		users = new ArrayList<>();
-		loadUsers();
+		//loadUsers();
 	}
 
 	public ArrayList<User> listUsers() {
@@ -59,16 +59,16 @@ public class UserManager {
 		users.removeIf(user -> user.getEmail().equals(email));
 		Logger.getInstance().debug("User removido");
 	}
-
+/*
 	public void loadUsers() {
 		Logger.getInstance().debug("Load Users");
-		JSONArray listUserFromJson = JSONManager.readFromFile(EntityType.USER);
+		//JSONArray listUserFromJson = JSONManager.readFromFile(EntityType.USER);
 
 		if(listUserFromJson != null) {
-			listUserFromJson.forEach(user -> users.add(parseUserObject((JSONObject) user)));
+			// listUserFromJson.forEach(user -> users.add(parseUserObject((JSONObject) user)));
 			Logger.getInstance().debug("Acabei o load users");
 		}
-	}
+	}*/
 
 	private User parseUserObject(JSONObject u) {
 		JSONObject userObject = (JSONObject) u.get("user");
