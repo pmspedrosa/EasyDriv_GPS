@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 public class AddUserController
 {
     private EasyDriv easyDriv;
-    private Stage stage;
-    private Scene manageUsers;
+    private ScenesControllers scenesControllers;
 
     @FXML TextField tfEmail;
     @FXML TextField tfName;
@@ -21,12 +20,10 @@ public class AddUserController
     @FXML TextField tfPassword;
     @FXML TextField tfPasswordConfirmation;
 
-
-    public void set(EasyDriv easyDriv, Stage stage, Scene manageUsers)
+    public void set(ScenesControllers scenesControllers)
     {
-        this.easyDriv = easyDriv;
-        this.stage = stage;
-        this.manageUsers = manageUsers;
+        this.scenesControllers = scenesControllers;
+        this.easyDriv = scenesControllers.getEasyDriv();
     }
 
 
@@ -35,9 +32,9 @@ public class AddUserController
     {
         //TODO verificaçoes, e strings fora
         String email = tfEmail.getText();
-        easyDriv.addUser(email, tfName.getText(), tfPhoneNumber.getText(), tfDrivingLicense.getText(), tfPassword.getText());
+        easyDriv.addUser(tfName.getText(), email, tfPhoneNumber.getText(), tfDrivingLicense.getText(), tfPassword.getText());
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
-            stage.setScene(manageUsers);
+            scenesControllers.setManageUsersScene();
     }
 
     @FXML
@@ -45,6 +42,6 @@ public class AddUserController
     {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
-            stage.setScene(manageUsers);
+            scenesControllers.setManageUsersScene();
     }
 }
