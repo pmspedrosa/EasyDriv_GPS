@@ -46,22 +46,24 @@ public class VehicleManager {
 		return false;
 	}
 
-	public ArrayList<Vehicle> listVehicles() {
-		return vehicles;
-	}
+	public ArrayList<Vehicle> listVehicles() { return vehicles; }
 
-    public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
+    public boolean editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		for(Vehicle v:vehicles){
 			if(v.getRegisterPlate().equals(registerPlate)){
 				v.setMake(make);
 				v.setRegisterPlate(registerPlate);
+				if(numOfSeats > 7) {
+					return false;
+				}
 				v.setNumOfSeats(numOfSeats);
 				v.setFuelType(fuelType);
 				v.setModel(model);
 				v.setAvaliable(available);
 				Logger.getInstance().debug("Veículo editado");
-				return;
+				return true;
 			}
 		}
+		return false;
     }
 }
