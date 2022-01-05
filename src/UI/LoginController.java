@@ -42,10 +42,11 @@ public class LoginController {
         userScene = new Scene(userPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
-    public void set(EasyDriv easyDriv, Stage stage, Scene loginScene) {
+    public void set(EasyDriv easyDriv, Stage stage, Scene loginScene) throws IOException
+    {
         this.easyDriv = easyDriv;
         this.stage = stage;
-        adminPanelController.set(easyDriv, stage, loginScene);
+        adminPanelController.set(easyDriv, stage, loginScene, adminScene);
         userPanelController.set(easyDriv, stage, loginScene);
     }
 
