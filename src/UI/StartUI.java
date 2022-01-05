@@ -22,10 +22,12 @@ public class StartUI extends Application {
     private Stage stage;
 
     //Parents
-    private Parent loginRoot;
+//    private Parent loginRoot;
+//
+//    private LoginController loginController;
+//    private Scene loginScene;
 
-    private LoginController loginController;
-    private Scene loginScene;
+    private ScenesControllers scenesControllers;
 
 
     @Override
@@ -34,9 +36,10 @@ public class StartUI extends Application {
         easyDriv = new EasyDriv();
         stage = primaryStage;
 
-        initializeRootsAndControllers();
+        scenesControllers = new ScenesControllers(easyDriv, stage);
+
         //Image icone = new Image(Objects.requireNonNull(StartUI.class.getResourceAsStream("Resources/icone.png")));
-        primaryStage.setScene(loginScene);
+        scenesControllers.setLoginStage();
 
         primaryStage.setResizable(false);
         primaryStage.setTitle("EasyDriv");
@@ -51,17 +54,17 @@ public class StartUI extends Application {
 
     }
 
-    private void initializeRootsAndControllers() throws IOException {
-        FXMLLoader loader = loaderFXML("login");
-        loginRoot = loader.load();
-        loginController = loader.getController();
-        loginScene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
-        loginController.set(easyDriv, stage, loginScene);
-    }
-
-    private FXMLLoader loaderFXML(String fxml) {
-        return new FXMLLoader(StartUI.class.getResource("Resources/" + fxml + ".fxml"));
-    }
+//    private void initializeRootsAndControllers() throws IOException {
+//        FXMLLoader loader = loaderFXML("login");
+//        loginRoot = loader.load();
+//        loginController = loader.getController();
+//        loginScene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+//        loginController.set(easyDriv, stage, loginScene);
+//    }
+//
+//    private FXMLLoader loaderFXML(String fxml) {
+//        return new FXMLLoader(StartUI.class.getResource("Resources/" + fxml + ".fxml"));
+//    }
 
     public static void main(String[] args)  { launch(); }
 
