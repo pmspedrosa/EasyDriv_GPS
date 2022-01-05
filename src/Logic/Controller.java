@@ -36,11 +36,9 @@ public class Controller {
 			user = userManager.getUser(email);
 	}
 
-
 	public User getUser(String email) {
 		return this.user;
 	}
-
 
 	public void removeUser(String email) {
 		userManager.removeUser(email);
@@ -54,21 +52,17 @@ public class Controller {
 		return bookingManager.getBookings(startDatatime,endDatatime,destination,shared);
 	}
 
-	public void addBoking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		bookingManager.addBoking(startDatatime, endDatatime, destination, user, vehicle);
+	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+		bookingManager.addBooking(startDatatime, endDatatime, destination, user, vehicle);
 	}
 
-	public boolean removeBooking(Vehicle vehicle) {
-		return bookingManager.removeBooking(vehicle);
+	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
+		return bookingManager.removeBooking(startDatatime, vehicle);
 	}
 
-	public boolean removeBooking(User user) {
-		return bookingManager.removeBooking(user);
+	public boolean removeBooking(Timestamp startDatatime, String email) {
+		return bookingManager.removeBooking(startDatatime, email);
 	}
-
-//	public boolean removeBooking(String email) {
-//		return bookingManager.removeBooking(email);
-//	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		vehicleManager.addVehicle(make,registerPlate,numOfSeats,fuelType,model,available);
