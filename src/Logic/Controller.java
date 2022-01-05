@@ -6,11 +6,8 @@ import Logic.Data.User.User;
 import Logic.Data.User.UserManager;
 import Logic.Data.Vehicle.Vehicle;
 import Logic.Data.Vehicle.VehicleManager;
-import Logic.States.IState;
-import Logic.States.SystemState;
 import Utils.EntityType;
 import Utils.JSONManager;
-import com.google.gson.Gson;
 
 import java.security.Timestamp;
 import java.util.ArrayList;

@@ -1,6 +1,7 @@
 package Logic.Data.Vehicle;
 
 import Utils.Logger;
+import Utils.Validator;
 
 import java.util.ArrayList;
 
@@ -24,26 +25,43 @@ public class VehicleManager {
 	}
 
 	private boolean isRegisterPlateValid(String registerPlate) {
-		//TODO: Opá não sei garantir que a matricula está bem, fica para depois
-		return true;
+		return Validator.registerPlatevalidation(registerPlate);
 	}
 
 	public Vehicle getVehicle(String registerPlate) {
-		
-		// TODO - implement VehicleManager.getVehicle
-		throw new UnsupportedOperationException();
+		for (Vehicle v:vehicles) {
+			if(v.getRegisterPlate().equals(registerPlate)) {
+				return v;
+			}
+		}
+		return null;
 	}
 
 	public boolean removeVehicle(String registerPlate) {
-		// TODO - implement VehicleManager.removeVehicle
-		throw new UnsupportedOperationException();
+		for (Vehicle v:vehicles) {
+			if(v.getRegisterPlate().equals(registerPlate)) {
+				return vehicles.remove(v);
+			}
+		}
+		return false;
 	}
 
 	public ArrayList<Vehicle> listVehicles() {
-		// TODO - implement VehicleManager.listVehicles
-		throw new UnsupportedOperationException();
+		return vehicles;
 	}
 
     public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
+		for(Vehicle v:vehicles){
+			if(v.getRegisterPlate().equals(registerPlate)){
+				v.setMake(make);
+				v.setRegisterPlate(registerPlate);
+				v.setNumOfSeats(numOfSeats);
+				v.setFuelType(fuelType);
+				v.setModel(model);
+				v.setAvaliable(available);
+				Logger.getInstance().debug("Veículo editado");
+				return;
+			}
+		}
     }
 }
