@@ -1,7 +1,8 @@
-package UI;
+package UI.Controllers;
 
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import UI.ScenesControllers;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -13,12 +14,12 @@ public class AddUserController
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
 
-    @FXML TextField tfEmail;
-    @FXML TextField tfName;
-    @FXML TextField tfPhoneNumber;
-    @FXML TextField tfDrivingLicense;
-    @FXML TextField tfPassword;
-    @FXML TextField tfPasswordConfirmation;
+    @FXML private TextField tfEmail;
+    @FXML private TextField tfName;
+    @FXML private TextField tfPhoneNumber;
+    @FXML private TextField tfDrivingLicense;
+    @FXML private TextField tfPassword;
+    @FXML private TextField tfPasswordConfirmation;
 
     public void set(ScenesControllers scenesControllers)
     {
@@ -30,7 +31,6 @@ public class AddUserController
     @FXML
     public void OnSave(MouseEvent mouseEvent)
     {
-        //TODO verificaçoes
         String email = tfEmail.getText();
         String name = tfName.getText();
         String phoneNumber = tfPhoneNumber.getText();

@@ -1,7 +1,9 @@
-package UI;
+package UI.Controllers;
 
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import UI.ScenesControllers;
+import UI.StartUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

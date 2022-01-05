@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.PasswordField?>
 
-<AnchorPane style="-fx-background-image: url('background.png'); -fx-background-size: 200 200;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.LoginController">
+<AnchorPane style="-fx-background-image: url('Images/background.png'); -fx-background-size: 200 200;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginController">
    <children>
       <ImageView id="logo" fitHeight="173.0" fitWidth="283.0" layoutX="168.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@login.png" />
+            <Image url="@Images/login.png" />
          </image>
       </ImageView>
       <TextField fx:id="tfEmail" layoutX="177.0" layoutY="207.0" prefHeight="24.0" prefWidth="283.0" />

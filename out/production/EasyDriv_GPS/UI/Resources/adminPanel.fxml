@@ -6,36 +6,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.AdminPanelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AdminPanelController">
    <children>
-      <Button id="btnManageUsers" layoutX="87.0" layoutY="39.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Manage Users"  onMouseClicked="#OnManageUsers"/>
-      <Button id="btnManageVehicles" layoutX="87.0" layoutY="115.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Manage Vehicles" />
+      <Button id="btnManageUsers" onMouseClicked="#OnManageUsers" layoutX="87.0" layoutY="39.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Manage Users"/>
+      <Button id="btnManageVehicles" onMouseClicked="#OnManageVehicles" layoutX="87.0" layoutY="115.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Manage Vehicles" />
       <Button id="btnManageBookings" layoutX="87.0" layoutY="192.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Manage Bookings" />
       <Button id="btnEditProfile" layoutX="87.0" layoutY="298.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="196.0" text="Edit my Profile" />
       <Button id="btnLogout" layoutX="323.0" layoutY="298.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="189.0" text="Logout" onMouseClicked="#OnLogout"/>
       <ImageView id="imgManageUsers" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@users.png" />
+            <Image url="@Images/users.png" />
          </image>
       </ImageView>
       <ImageView id="imgManageVehicles" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@car.png" />
+            <Image url="@Images/car.png" />
          </image>
       </ImageView>
       <ImageView id="imgManageBookings" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@booking.png" />
+            <Image url="@Images/booking.png" />
          </image>
       </ImageView>
       <ImageView id="imgEdit" fitHeight="45.0" fitWidth="45.0" layoutX="93.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@edit.png" />
+            <Image url="@Images/edit.png" />
          </image>
       </ImageView>
       <ImageView id="imgLogout" fitHeight="45.0" fitWidth="45.0" layoutX="452.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@logout.png" />
+            <Image url="@Images/logout.png" />
          </image>
       </ImageView>
    </children>

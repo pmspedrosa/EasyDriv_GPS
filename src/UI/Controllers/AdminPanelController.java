@@ -1,7 +1,9 @@
-package UI;
+package UI.Controllers;
 
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import UI.ScenesControllers;
+import UI.StartUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +24,14 @@ public class AdminPanelController
         easyDriv.manageUsers();
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
             scenesControllers.setManageUsersScene();
+
+    }
+
+    @FXML
+    public void OnManageVehicles(MouseEvent mouseEvent) {
+        easyDriv.manageVehicles();
+        if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
+            scenesControllers.setManageVehiclesScene();
 
     }
 

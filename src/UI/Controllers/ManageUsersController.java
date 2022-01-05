@@ -1,9 +1,10 @@
-package UI;
+package UI.Controllers;
 
 import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.Models.UserTableView;
+import UI.ScenesControllers;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,8 +50,8 @@ public class ManageUsersController
         tcEdit.setCellValueFactory(new PropertyValueFactory<>("btnEdit"));
         tcRemove.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
 
-        edit = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("Resources/editUser.png")));
-        remove = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("Resources/remove.png")));
+        edit = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("../Resources/Images/editUser.png")));
+        remove = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("../Resources/Images/remove.png")));
     }
 
     public void updateTableUsers()

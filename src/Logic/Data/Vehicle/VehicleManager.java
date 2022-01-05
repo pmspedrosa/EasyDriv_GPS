@@ -14,10 +14,10 @@ public class VehicleManager {
 	}
 
 	public boolean addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		if(make.isEmpty() || !isRegisterPlateValid(registerPlate) || numOfSeats <= 0 || fuelType.isEmpty() || model.isEmpty()) {
-			Logger.getInstance().error("Add Vehicle: um dos parametros está errado.");
-			return false;
-		}
+//		if(make.isEmpty() || !isRegisterPlateValid(registerPlate) || numOfSeats <= 0 || fuelType.isEmpty() || model.isEmpty()) {
+//			Logger.getInstance().error("Add Vehicle: um dos parametros está errado.");
+//			return false;
+//		}
 
 		Vehicle newVehicle = new Vehicle(make, registerPlate, numOfSeats, fuelType, model, available);
 		vehicles.add(newVehicle);
