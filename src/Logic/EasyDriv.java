@@ -6,9 +6,8 @@ import Logic.Data.Vehicle.Vehicle;
 import Logic.States.IState;
 import Logic.States.Login;
 import Logic.States.SystemState;
-import Utils.JSONManager;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class EasyDriv {

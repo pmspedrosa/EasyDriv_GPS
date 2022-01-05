@@ -2,9 +2,13 @@ package Logic.Data.Booking;
 
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
+import Utils.Constants;
+import Utils.Validator;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class BookingManager {
 
@@ -16,11 +20,16 @@ public class BookingManager {
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
 		ArrayList<Booking> auxBookings = new ArrayList<>();
+		var startTime = startDatatime.getTime();
+		var endTime = endDatatime.getTime();
 
 		for(Booking b:bookings) {
-			//TODO: Operacoes com horas
-			if(b.getDestination().equals(destination)) {
-				auxBookings.add(b);
+			if(b.getStartDatatime().getTime() > startTime - Constants.ONEHOURMILLIS && b.getStartDatatime().getTime() < startTime + Constants.ONEHOURMILLIS){
+				if((b.getEndDatatime().getTime() > endTime - Constants.ONEHOURMILLIS && b.getEndDatatime().getTime() < endTime + Constants.ONEHOURMILLIS)) {
+					if(b.getDestination().equals(destination)) {
+						auxBookings.add(b);
+					}
+				}
 			}
 		}
 

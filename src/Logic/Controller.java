@@ -9,7 +9,7 @@ import Logic.Data.Vehicle.VehicleManager;
 import Utils.EntityType;
 import Utils.JSONManager;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Controller {

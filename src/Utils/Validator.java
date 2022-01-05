@@ -1,6 +1,8 @@
 package Utils;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class Validator {
@@ -104,6 +106,12 @@ public class Validator {
 
     private static boolean fuelTypeValidation(String fuelType) {
         return fuelType.equalsIgnoreCase("GASOLINA") || fuelType.equalsIgnoreCase("GASOLIO");
+    }
+
+    public static Calendar getTimeInMillits(Timestamp timestamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp.getTimestamp().getTime());
+        return calendar;
     }
 
 

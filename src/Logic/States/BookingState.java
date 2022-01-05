@@ -4,7 +4,7 @@ import Logic.Controller;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class BookingState extends StateAdapter {
 

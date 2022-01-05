@@ -4,7 +4,7 @@ import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Utils.Logger;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class Booking {
