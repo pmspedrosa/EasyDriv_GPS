@@ -8,10 +8,6 @@ public class Validator {
     /**metodos de Validação User*/
 
 //    private boolean admin;    todo --
-//    private String name;              --
-//    private String email;             --
-//    private String phoneNumber;   todo --Dani
-//    private String drivingLicense;    todo --Dani
 //    private Booking booking;  todo --
 //    private String password;          --
 
@@ -33,6 +29,18 @@ public class Validator {
         String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}";
         return pass.matches(pattern);
     }
+
+
+    private static boolean phoneNumberValidation(String phoneNumber){
+        String pattern ="(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
+        return phoneNumber.matches(pattern);
+    }
+
+    private static boolean drivingLicenseValidation(String drivingLicense){
+        String pattern ="[0-9]";
+        return drivingLicense.matches(pattern);
+    }
+
    /*
     ^ start of the line
     (?=.*[0-9]) a digit must occur at least once
