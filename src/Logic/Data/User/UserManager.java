@@ -3,7 +3,6 @@ package Logic.Data.User;
 import Utils.Logger;
 import Utils.Validator;
 
-
 import java.util.ArrayList;
 
 public class UserManager {
@@ -12,7 +11,6 @@ public class UserManager {
 
 	public UserManager() {
 		users = new ArrayList<>();
-		//loadUsers();
 	}
 
 	public ArrayList<User> listUsers() {
@@ -23,10 +21,22 @@ public class UserManager {
 		if(!Validator.nameValidation(name) || !Validator.emailValidation(email) || !Validator.phoneNumberValidation(phoneNumber) || !Validator.drivingLicenseValidation(drivingLicense) || !Validator.passwordValidation(password)) {
 			return false;
 		}
+		if(emailAlreadyRegistered(email)) {
+			return false;
+		}
 
 		users.add(new User(false, name, email, phoneNumber, drivingLicense, password));
 		Logger.getInstance().debug("User adicionado");
 		return true;
+	}
+
+	private boolean emailAlreadyRegistered(String email) {
+		for (User u:users) {
+			if(u.getEmail().equals(email)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public User getUser(String email) {
@@ -43,6 +53,11 @@ public class UserManager {
 		if(!Validator.nameValidation(name) || !Validator.emailValidation(email) || !Validator.phoneNumberValidation(phoneNumber) || !Validator.drivingLicenseValidation(drivingLicense) || !Validator.passwordValidation(password)) {
 			return false;
 		}
+
+		if(emailAlreadyRegistered(email)) {
+			return false;
+		}
+
 		for (User u:users) {
 			if(u.getEmail().equals(email)) {
 				u.setName(name);

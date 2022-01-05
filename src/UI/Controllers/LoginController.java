@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -53,9 +54,17 @@ public class LoginController {
 
         switch (easyDriv.getActualState())
         {
-            case LOGIN -> System.out.println("Erro no login");        //TODO Dialog com erro
+            case LOGIN -> loginError();
             case MENU -> loginSucess();
         }
+    }
+
+    private void loginError() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Error");
+        alert.setHeaderText("Wrong login data!");
+        alert.setContentText("Please confirm your e-mail and password");
+        alert.showAndWait();
     }
 
     private void loginSucess()
