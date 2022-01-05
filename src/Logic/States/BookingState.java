@@ -21,7 +21,7 @@ public class BookingState extends StateAdapter {
 	@Override
 	public IState booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle)
 	{
-		getController().addBoking(startDatatime,endDatatime,destination,user,vehicle);
+		getController().addBooking(startDatatime,endDatatime,destination,user,vehicle);
 		return new Menu(getController());
 	}
 

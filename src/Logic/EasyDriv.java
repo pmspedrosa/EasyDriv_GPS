@@ -105,7 +105,7 @@ public class EasyDriv {
 	}
 
 	public void remove(String key) {
-		setState(state.remove(key));
+		setState(state.remove(null, key));
 	}
 
 	public void confirm() {
