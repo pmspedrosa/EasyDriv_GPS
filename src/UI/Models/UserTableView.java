@@ -1,7 +1,8 @@
 package UI.Models;
 
 import Logic.Data.User.User;
-import javafx.scene.image.Image;
+import UI.ScenesControllers;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 public class UserTableView
@@ -9,22 +10,39 @@ public class UserTableView
     private final String email;
     private final String name;
     private final String phoneNumber;
-    private final ImageView imgEdit;
-    private final ImageView imgRemove;
+    private final Button btnEdit;
+    private final Button btnRemove;
 
-    public UserTableView(User user, Image edit, Image remove)
+    private ScenesControllers scenesControllers;
+    private User user;
+
+    public UserTableView(ScenesControllers scenesControllers, User user, ImageView imgEdit, ImageView imgRemove)
     {
+        this.scenesControllers = scenesControllers;
+        this.user = user;
+
         email = user.getEmail();
         name = user.getName();
         phoneNumber = user.getPhoneNumber();
-        imgEdit = new ImageView(edit);
-        imgRemove = new ImageView(remove);
-        
+
         imgEdit.setFitHeight(20);
         imgEdit.setFitWidth(20);
         imgRemove.setFitHeight(20);
         imgRemove.setFitWidth(20);
+
+        btnEdit = new Button("", imgEdit);
+        btnRemove = new Button("", imgRemove);
+
+        btnEdit.setOnMouseClicked(e -> {
+          //  scenesControllers.edit(user);
+            System.out.println("Edit " + user.getEmail());
+        });
+
+        btnRemove.setOnMouseClicked(e -> {
+            scenesControllers.remove(user);
+        });
     }
+
 
     public String getEmail()
     {
@@ -41,13 +59,13 @@ public class UserTableView
         return phoneNumber;
     }
 
-    public ImageView getImgEdit()
+    public Button getBtnEdit()
     {
-        return imgEdit;
+        return btnEdit;
     }
 
-    public ImageView getImgRemove()
+    public Button getBtnRemove()
     {
-        return imgRemove;
+        return btnRemove;
     }
 }

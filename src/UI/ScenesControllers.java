@@ -1,6 +1,8 @@
 package UI;
 
+import Logic.Data.User.User;
 import Logic.EasyDriv;
+import Logic.States.SystemState;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -116,5 +118,19 @@ public class ScenesControllers
     public void setAddUserScene()
     {
         stage.setScene(addUserScene);
+    }
+
+    public void edit()
+    {
+        easyDriv.editUser();
+        if (easyDriv.getActualState() == SystemState.EDIT_USER)
+            ;
+       //     stage.setScene(editUser);
+    }
+
+    public void remove(User user)
+    {
+        easyDriv.remove(user.getEmail());
+        manageUsersController.updateTableUsers();
     }
 }

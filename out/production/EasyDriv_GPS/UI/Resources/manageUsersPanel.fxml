@@ -11,7 +11,7 @@
           <TableColumn fx:id="tcName" prefWidth="129.0" style="-fx-alignment: center" text="Name" />
           <TableColumn fx:id="tcEmail" prefWidth="159.0" style="-fx-alignment: center" text="Email" />
             <TableColumn fx:id="tcPhoneNumber" prefWidth="144.0" style="-fx-alignment: center" text="Phone Number" />
-            <TableColumn fx:id="tcEdit" prefWidth="72.0" style="-fx-alignment: center" text="Edit" />
+            <TableColumn fx:id="tcEdit" prefWidth="72.0" style="-fx-alignment: center" text="Edit"/>
             <TableColumn fx:id="tcRemove" prefWidth="116.0" style="-fx-alignment: center" text="Remove" />
         </columns>
       </TableView>
