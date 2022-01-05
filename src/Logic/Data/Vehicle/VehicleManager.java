@@ -14,34 +14,37 @@ public class VehicleManager {
 	}
 
 	public boolean addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-//		if(make.isEmpty() || !isRegisterPlateValid(registerPlate) || numOfSeats <= 0 || fuelType.isEmpty() || model.isEmpty()) {
-//			Logger.getInstance().error("Add Vehicle: um dos parametros está errado.");
-//			return false;
-//		}
+		if(make.isEmpty() || !isRegisterPlateValid(registerPlate) || numOfSeats <= 0 || fuelType.isEmpty() || model.isEmpty()) {
+		Logger.getInstance().error("Add Vehicle: um dos parametros está errado.");
+			return false;
+		}
+
+		if(registerPlateAlreadyExists(registerPlate)) { return false; }
 
 		Vehicle newVehicle = new Vehicle(make, registerPlate, numOfSeats, fuelType, model, available);
 		vehicles.add(newVehicle);
 		return true;
 	}
 
-	private boolean isRegisterPlateValid(String registerPlate) {
-		return Validator.registerPlatevalidation(registerPlate);
+	private boolean registerPlateAlreadyExists(String registerPlate) {
+		for (Vehicle v:vehicles) {
+			if(v.getRegisterPlate().equals(registerPlate)) { return true; }
+		}
+		return false;
 	}
+
+	private boolean isRegisterPlateValid(String registerPlate) { return Validator.registerPlatevalidation(registerPlate); }
 
 	public Vehicle getVehicle(String registerPlate) {
 		for (Vehicle v:vehicles) {
-			if(v.getRegisterPlate().equals(registerPlate)) {
-				return v;
-			}
+			if(v.getRegisterPlate().equals(registerPlate)) { return v; }
 		}
 		return null;
 	}
 
 	public boolean removeVehicle(String registerPlate) {
 		for (Vehicle v:vehicles) {
-			if(v.getRegisterPlate().equals(registerPlate)) {
-				return vehicles.remove(v);
-			}
+			if(v.getRegisterPlate().equals(registerPlate)) { return vehicles.remove(v); }
 		}
 		return false;
 	}
@@ -49,6 +52,10 @@ public class VehicleManager {
 	public ArrayList<Vehicle> listVehicles() { return vehicles; }
 
     public boolean editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
+		if(registerPlateAlreadyExists(registerPlate)) {
+			return false;
+		}
+
 		for(Vehicle v:vehicles){
 			if(v.getRegisterPlate().equals(registerPlate)){
 				v.setMake(make);

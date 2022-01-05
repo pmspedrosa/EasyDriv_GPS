@@ -163,14 +163,14 @@ public class ScenesControllers
     {
         if(!Validator.emailValidation(email))
         {
-            alertDialog("Incorect email format",
+            alertDialog("Incorrect email format",
                     "Please introduce a valid email",
                     "Email must be valid! example@gmail.com");
             return false;
         }
         if(!Validator.nameValidation(name))
         {
-            alertDialog("Incorect name format",
+            alertDialog("Incorrect name format",
                     "Please introduce a valid name",
                     "Name must contain between 3 and 15 characteres (no special characteres allowed)");
             return false;
@@ -178,7 +178,7 @@ public class ScenesControllers
 
         if (!Validator.phoneNumberValidation(phoneNumber))
         {
-            alertDialog("Incorect phone number format",
+            alertDialog("Incorrect phone number format",
                     "Please introduce a valid phone number",
                     "Phone number must contain 9 digits");
             return false;
@@ -186,16 +186,16 @@ public class ScenesControllers
 
         if (!Validator.drivingLicenseValidation(drivingLicense))
         {
-            alertDialog("Incorect driving license format",
+            alertDialog("Incorrect driving license format",
                     "Please introduce a valid driving license",
-                    "driving license must contain TODO"); //TODO meter <<<- completar fras
+                    "driving license must contain 9 numbers");
             return false;
         }
 
         if (!Validator.passwordValidation(password)){
-            alertDialog("Incorect password format",
+            alertDialog("Incorrect password format",
                     "Please introduce a valid password",
-                    "Password must contain TODO"); //TODO <--- completar frase
+                    "Password must contain at least a number, a capital case, a lower case and a special character");
             return false;
         }
         return true;

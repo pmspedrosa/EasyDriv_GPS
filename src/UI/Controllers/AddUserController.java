@@ -5,6 +5,7 @@ import Logic.States.SystemState;
 import UI.ScenesControllers;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -36,6 +37,20 @@ public class AddUserController
         String phoneNumber = tfPhoneNumber.getText();
         String drivingLicense = tfDrivingLicense.getText();
         String password = tfPassword.getText();
+        String confirmationPassword = tfPasswordConfirmation.getText();
+
+        if(!password.equals(confirmationPassword)) {
+            tfPassword.setStyle("-fx-border-color: red");
+            tfPasswordConfirmation.setStyle("-fx-border-color: red");
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Password Error");
+            alert.setHeaderText("Error on password");
+            alert.setContentText("Password and password confirmation need to be equal.");
+
+            alert.showAndWait();
+            return;
+        }
 
         scenesControllers.addUser(name, email, phoneNumber, drivingLicense, password);
 
