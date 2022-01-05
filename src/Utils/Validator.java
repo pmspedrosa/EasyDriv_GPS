@@ -78,7 +78,7 @@ public class Validator {
         put("Honda",new String[]{"Accord","CR-V","City","Civic","Fit",});
         put("Hyundai",new String[]{"Azera","Equus","HB20","HB20S","HB20X","HR","Santa Fe","Sonata","Tucson","Veloster","Veracruz","i30","i30 CW","iX35",});
         put("Jeep",new String[]{"Cherokee","Grand Cherokee","Wrangler","Jinbei","Jinbei","Topic Furgão","Topic Passageiro",});
-        put("Kia",new String[]{"Bongo","Cadenza","Carens","Carnival","Cerato","Mohave","Optima","Picanto","Sorento","Soul","Sportage",});
+        put("Kia",new String[]{"Bongo","Cadenza","Carens","Carnival","Cerato","Mohave","Optima","Picanto","Rio","Sorento","Soul","Sportage",});
         put("Land Rover",new String[]{"Defender","Discovery 4","Freelander 2","Range Rover Evoque","Range Rover Sport","Range Rover Vogue",});
         put("Mercedes-Benz",new String[]{"CLA","Classe A","Classe B","Classe C","Classe C 250 Turbo Sport","Classe C 63 AMG Touring","Classe CL","Classe CLS 63 AMG","Classe E","Classe G","Classe GL","Classe GLK","Classe M","Classe S","Classe S 400 Hybrid","Classe SLK","Classe SLS AMG",});
         put("Mini",new String[]{"Cooper","Cooper Cabrio","Cooper Countryman","Cooper S Clubman-Hampton","One",});
