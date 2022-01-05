@@ -16,6 +16,7 @@ public class BookingManager {
 	private ArrayList<Booking> bookings;
 
 	public BookingManager() {
+		bookings = new ArrayList<>();
 		loadBookings();
 	}
 
@@ -56,11 +57,19 @@ public class BookingManager {
 		});
 	}
 
+	public boolean removeBooking(String email) {
+		return bookings.removeIf(b -> b.getUserFromBooking(email).equals(email));
+	}
+
 
 	public Booking getBooking(Timestamp startDatatime, String registrationPlate) {
-		for (Booking b:bookings){
-			if(b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(registrationPlate)) {
+		for (Booking b : bookings) {
+			if (b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(registrationPlate)) {
 				return b;
+			}
+		}
+		return null;
+	}
 
 	public Booking getBooking(String registrationPlate) {
 		for (Booking booking : bookings )
@@ -88,8 +97,10 @@ public class BookingManager {
 		Logger.getInstance().debug("Load Bookings");
 		JSONArray listBookingsFromJson = JSONManager.readFromFile(EntityType.BOOKING);
 
-		listBookingsFromJson.forEach(booking -> bookings.add(parseBookingObject( (JSONObject) booking)));
-		Logger.getInstance().debug("Acabei o load vehicles");
+		if(listBookingsFromJson != null) {
+			listBookingsFromJson.forEach(booking -> bookings.add(parseBookingObject((JSONObject) booking)));
+			Logger.getInstance().debug("Acabei o load vehicles");
+		}
 	}
 
 	private Booking parseBookingObject(JSONObject b) {

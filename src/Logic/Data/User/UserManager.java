@@ -13,6 +13,7 @@ public class UserManager {
 	private ArrayList<User> users;
 
 	public UserManager() {
+		users = new ArrayList<>();
 		loadUsers();
 	}
 
@@ -63,8 +64,10 @@ public class UserManager {
 		Logger.getInstance().debug("Load Users");
 		JSONArray listUserFromJson = JSONManager.readFromFile(EntityType.USER);
 
-		listUserFromJson.forEach(user -> users.add(parseUserObject( (JSONObject) user)));
-		Logger.getInstance().debug("Acabei o load users");
+		if(listUserFromJson != null) {
+			listUserFromJson.forEach(user -> users.add(parseUserObject((JSONObject) user)));
+			Logger.getInstance().debug("Acabei o load users");
+		}
 	}
 
 	private User parseUserObject(JSONObject u) {

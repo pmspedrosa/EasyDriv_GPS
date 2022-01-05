@@ -24,6 +24,12 @@ public class Controller {
 	//to get after someone do search
 	private ArrayList<Booking> listOfBookings;
 
+	public Controller() {
+		userManager = new UserManager();
+		bookingManager = new BookingManager();
+		vehicleManager = new VehicleManager();
+	}
+
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
 		userManager.addUser(name,email,phoneNumber,drivingLicense, password);
 	}
@@ -123,6 +129,6 @@ public class Controller {
 
 	public void deliver()
 	{
-		bookingManager.removeBooking(user);
+		bookingManager.removeBooking(null, user.getEmail());
 	}
 }

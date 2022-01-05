@@ -18,6 +18,8 @@ public class EasyDriv {
 	public EasyDriv() {
 		controller = new Controller();
 		setState(new Login(controller));
+
+		addUser("admin", "admin@admin.pt", "91231232", "123454", "12345");
 	}
 
 	private void setState(IState state){

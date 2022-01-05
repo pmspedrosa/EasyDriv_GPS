@@ -1,20 +1,18 @@
 package Utils;
 
+import jdk.jfr.Frequency;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class JSONManager{
     private static FileWriter file;
 
-    public void writeToFile(JSONArray list) {
+    public static void writeToFile(JSONArray list) {
         try {
-            file = new FileWriter(getPath());
+            file = new FileWriter(getPath() + File.separator + getFileName(EntityType.USER));
             file.write(list.toJSONString());
             Logger.getInstance().debug("Ficheiro escrito com sucesso");
 
@@ -38,7 +36,12 @@ public class JSONManager{
         JSONParser jsonParser = new JSONParser();
         JSONArray objectList = new JSONArray();
         try {
-            FileReader reader = new FileReader(getPath());
+            FileReader reader = new FileReader(getPath() + File.separator + getFileName(entity));
+
+            File file = new File(getPath() + File.separator + getFileName(entity));
+            if (file.length() == 0)
+                return null;
+
             Object object = jsonParser.parse(reader);
 
             objectList = (JSONArray)object;
@@ -61,7 +64,7 @@ public class JSONManager{
         return System.getProperty("user.dir");
     }
 
-    public String getFileName(EntityType entity) {
+    public static String getFileName(EntityType entity) {
         return switch (entity) {
             case USER -> Constants.USERFILE;
             case VEHICLE -> Constants.VEHICLEFILE;

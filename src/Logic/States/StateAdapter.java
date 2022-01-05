@@ -40,6 +40,8 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState remove(Timestamp timestamp,String key) { return this; }
 	@Override
+	public IState remove(String key) { return this; }
+	@Override
 	public IState confirm() { return this; }
 	@Override
 	public IState cancel() { return this; }

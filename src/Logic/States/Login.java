@@ -1,6 +1,10 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.User.User;
+import Logic.Data.User.UserManager;
+import jdk.jshell.execution.Util;
+import org.json.simple.JSONArray;
 
 public class Login extends StateAdapter {
 
@@ -14,6 +18,17 @@ public class Login extends StateAdapter {
 		if (loggedIn) return new Menu(getController());
 		else return this;
 	}
+
+	// TESTES
+	@Override
+	public IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		getController().addUser(name, email, phoneNumber, drivingLicense, password);
+		var jsonlist = new JSONArray();
+		jsonlist.add(getController().listUsers());
+		Utils.JSONManager.writeToFile(jsonlist);
+		return this;
+	}
+
 
 	@Override
 	public SystemState getActualState() {

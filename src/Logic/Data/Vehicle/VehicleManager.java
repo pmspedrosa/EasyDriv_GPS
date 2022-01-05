@@ -13,8 +13,7 @@ public class VehicleManager {
 	private ArrayList<Vehicle> vehicles;
 
 	public VehicleManager() {
-		// TODO - implement VehicleManager.VehicleManager
-		throw new UnsupportedOperationException();
+		vehicles = new ArrayList<>();
 	}
 
 	public boolean addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
