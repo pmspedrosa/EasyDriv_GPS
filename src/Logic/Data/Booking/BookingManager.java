@@ -3,12 +3,9 @@ package Logic.Data.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Utils.Constants;
-import Utils.Validator;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class BookingManager {
 
@@ -32,7 +29,6 @@ public class BookingManager {
 				}
 			}
 		}
-
 		return auxBookings;
 	}
 
@@ -76,22 +72,20 @@ public class BookingManager {
 	}
 
 	public Booking getBooking(String registrationPlate) {
-		for (Booking booking : bookings )
-		{
-			if (booking.getVehicle().getRegisterPlate().equals(registrationPlate))
+		for (Booking booking : bookings ) {
+			if (booking.getVehicle().getRegisterPlate().equals(registrationPlate)) {
 				return booking;
+			}
 		}
 		return null;
 	}
 
 	public Booking getBookingByEmail(String email) {
-		for (Booking booking : bookings )
-		{
-			for (User user : booking.getUsers() )
-			{
-				if (user.getEmail().equals(email))
+		for (Booking booking : bookings ) {
+			for (User user : booking.getUsers()) {
+				if (user.getEmail().equals(email)) {
 					return booking;
-
+				}
 			}
 		}
 		return null;
