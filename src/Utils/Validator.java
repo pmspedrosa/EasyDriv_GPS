@@ -14,31 +14,31 @@ public class Validator {
 //    private String password;          --
 
 
-    private static boolean nameValidation(String email) {
+    public static boolean nameValidation(String name) {
         String pattern = "^[a-zA-Z]{3,15}$";
-        return email.matches(pattern);
+        return name.matches(pattern);
     }
     //^[a-zA-Z]{3,15}$    3 a 15 characteres and only lower and upper case
 
-    private static boolean emailValidation(String email) {
+    public static boolean emailValidation(String email) {
         String pattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         return email.matches(pattern);
     }
     /*^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$ restricts the number of characters in top level domain*/
 
 
-    private static boolean passwordValidation(String pass) {
+    public static boolean passwordValidation(String pass) {
         String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}";
         return pass.matches(pattern);
     }
 
 
-    private static boolean phoneNumberValidation(String phoneNumber){
+    public static boolean phoneNumberValidation(String phoneNumber){
         String pattern ="(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
         return phoneNumber.matches(pattern);
     }
 
-    private static boolean drivingLicenseValidation(String drivingLicense){
+    public static boolean drivingLicenseValidation(String drivingLicense){
         String pattern ="[0-9]";
         return drivingLicense.matches(pattern);
     }

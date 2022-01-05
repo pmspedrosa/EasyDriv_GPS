@@ -105,8 +105,13 @@ public class EasyDriv {
 	}
 
 	public void remove(String key) {
-		setState(state.remove(null, key));
+		setState(state.remove(key));
 	}
+
+	public void remove(Timestamp timestamp, String key) {
+		setState(state.remove(timestamp, key));
+	}
+
 
 	public void confirm() {
 		setState(state.confirm());
@@ -159,5 +164,10 @@ public class EasyDriv {
 	public void logout()
 	{
 		setState(state.logout());
+	}
+
+	public User getUser(String email)
+	{
+		return controller.getUser(email);
 	}
 }

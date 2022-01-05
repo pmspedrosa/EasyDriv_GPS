@@ -49,7 +49,9 @@ public class Controller {
 	}
 
 	public void removeUser(String email) {
+		loadUserManager();
 		userManager.removeUser(email);
+		saveUserManager();
 	}
 
 	public ArrayList<User> listUsers() {
@@ -175,4 +177,9 @@ public class Controller {
 		bookingManager.removeBooking(null, user.getEmail());
 		saveBookingManager();
 	}
+
+    public User getUser(String email)
+    {
+		return userManager.getUser(email);
+    }
 }

@@ -10,13 +10,19 @@ import javafx.stage.Stage;
 public class UserPanelController
 {
     private EasyDriv easyDriv;
+    private ScenesControllers scenesControllers;
     Scene loginScene;
     private Stage stage;
 
-    public void set(EasyDriv easyDriv, Stage stage, Scene loginScene) {
-        this.easyDriv = easyDriv;
-        this.stage = stage;
-        this.loginScene = loginScene;
+//    public void set(EasyDriv easyDriv, Stage stage, Scene loginScene) {
+//        this.easyDriv = easyDriv;
+//        this.stage = stage;
+//        this.loginScene = loginScene;
+//    }
+    public void set(ScenesControllers scenesControllers)
+    {
+        this.scenesControllers = scenesControllers;
+        this.easyDriv = scenesControllers.getEasyDriv();
     }
 
     @FXML

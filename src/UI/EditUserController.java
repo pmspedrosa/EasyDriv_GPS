@@ -1,19 +1,20 @@
 package UI;
 
+import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import Utils.Validator;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-public class AddUserController
+public class EditUserController
 {
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
 
-    @FXML TextField tfEmail;
+    @FXML
+    TextField tfEmail;
     @FXML TextField tfName;
     @FXML TextField tfPhoneNumber;
     @FXML TextField tfDrivingLicense;
@@ -30,15 +31,13 @@ public class AddUserController
     @FXML
     public void OnSave(MouseEvent mouseEvent)
     {
-        //TODO verificaçoes
         String email = tfEmail.getText();
         String name = tfName.getText();
         String phoneNumber = tfPhoneNumber.getText();
         String drivingLicense = tfDrivingLicense.getText();
         String password = tfPassword.getText();
 
-        scenesControllers.addUser(name, email, phoneNumber, drivingLicense, password);
-
+        scenesControllers.edit(email, name, phoneNumber, drivingLicense, password);
     }
 
     @FXML
@@ -49,13 +48,13 @@ public class AddUserController
             scenesControllers.setManageUsersScene();
     }
 
-    public void clear()
+    public void prepare(User user)
     {
-        tfEmail.setText("");
-        tfName.setText("");
-        tfPhoneNumber.setText("");
-        tfDrivingLicense.setText("");
-        tfPassword.setText("");
-        tfPasswordConfirmation.setText("");
+        tfEmail.setText(user.getEmail());
+        tfName.setText(user.getName());
+        tfPhoneNumber.setText(user.getPhoneNumber());
+        tfDrivingLicense.setText(user.getDrivingLicense());
+        tfPassword.setText(user.getPassword());
+        tfPasswordConfirmation.setText(user.getPassword());
     }
 }
