@@ -56,10 +56,29 @@ public class BookingManager {
 		});
 	}
 
+
 	public Booking getBooking(Timestamp startDatatime, String registrationPlate) {
 		for (Booking b:bookings){
 			if(b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(registrationPlate)) {
 				return b;
+
+	public Booking getBooking(String registrationPlate) {
+		for (Booking booking : bookings )
+		{
+			if (booking.getVehicle().getRegisterPlate().equals(registrationPlate))
+				return booking;
+		}
+		return null;
+	}
+
+	public Booking getBookingByEmail(String email) {
+		for (Booking booking : bookings )
+		{
+			for (User user : booking.getUsers() )
+			{
+				if (user.getEmail().equals(email))
+					return booking;
+
 			}
 		}
 		return null;

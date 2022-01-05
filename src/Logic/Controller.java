@@ -85,18 +85,12 @@ public class Controller {
 		return vehicleManager.listVehicles();
 	}
 
-	public void setState(IState state) {
-		// TODO - implement Controller.setState
-		throw new UnsupportedOperationException();
-	}
-
 	public Vehicle getSelectedVehicle() {
 		return this.selectedVehicle;
 	}
 
 	public void setSelectedVehicle(String registrationPlate) {
-		// TODO - implement Controller.setSelectedVehicle
-		throw new UnsupportedOperationException();
+		selectedVehicle = vehicleManager.getVehicle(registrationPlate);
 	}
 
 	public Booking getSelectedBooking() {
@@ -104,13 +98,7 @@ public class Controller {
 	}
 
 	public void setSelectedBooking(String registrationPlate) {
-		// TODO - implement Controller.setSelectedBooking
-		throw new UnsupportedOperationException();
-	}
-
-	public SystemState getActualState() {
-		// TODO - implement Controller.getActualState
-		throw new UnsupportedOperationException();
+		selectedBooking = bookingManager.getBooking(registrationPlate);
 	}
 
 	public boolean login(String email, String password)
@@ -135,6 +123,6 @@ public class Controller {
 
 	public void deliver()
 	{
-		//deliver
+		bookingManager.removeBooking(user);
 	}
 }
