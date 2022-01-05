@@ -62,23 +62,43 @@ public class Controller {
 	}
 
 	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+		loadBookingManager();
 		bookingManager.addBooking(startDatatime, endDatatime, destination, user, vehicle);
+		saveBookingManager();
 	}
 
 	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
-		return bookingManager.removeBooking(startDatatime, vehicle);
+		loadBookingManager();
+		boolean result = bookingManager.removeBooking(startDatatime, vehicle);
+		saveBookingManager();
+		return result;
 	}
 
 	public boolean removeBooking(Timestamp startDatatime, String email) {
-		return bookingManager.removeBooking(startDatatime, email);
+		loadBookingManager();
+		boolean result = bookingManager.removeBooking(startDatatime, email);
+		saveBookingManager();
+		return result;
+	}
+
+	private void saveBookingManager() {
+		JSONManager.writeToFile(bookingManager, EntityType.BOOKING);
+	}
+
+	private void loadBookingManager() {
+		bookingManager = (BookingManager) JSONManager.readFromFile(EntityType.BOOKING);
 	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
+		loadVehicleManager();
 		vehicleManager.addVehicle(make,registerPlate,numOfSeats,fuelType,model,available);
+		saveVehicleManager();
 	}
 
 	public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
+		loadVehicleManager();
 		vehicleManager.editVehicle(make, registerPlate, numOfSeats, fuelType, model , available);
+		saveVehicleManager();
 	}
 
 	public Vehicle getVehicle(String registerPlate) {
@@ -86,8 +106,10 @@ public class Controller {
 	}
 
 	public boolean removeVehicle(String registerPlate) {
-		return vehicleManager.removeVehicle(registerPlate);
-
+		loadVehicleManager();
+		boolean result = vehicleManager.removeVehicle(registerPlate);
+		saveVehicleManager();
+		return result;
 	}
 
 	public ArrayList<Vehicle> listVehicles() {
@@ -102,6 +124,14 @@ public class Controller {
 		selectedVehicle = vehicleManager.getVehicle(registrationPlate);
 	}
 
+	private void saveVehicleManager() {
+		JSONManager.writeToFile(vehicleManager, EntityType.VEHICLE);
+	}
+
+	private void loadVehicleManager() {
+		vehicleManager = (VehicleManager) JSONManager.readFromFile(EntityType.VEHICLE);
+	}
+
 	public Booking getSelectedBooking() {
 		return this.selectedBooking;
 	}
@@ -110,18 +140,15 @@ public class Controller {
 		selectedBooking = bookingManager.getBooking(registrationPlate);
 	}
 
-	public boolean login(String email, String password)
-	{
-		if (userManager.login(email, password))
-		 {
+	public boolean login(String email, String password) {
+		if (userManager.login(email, password)) {
 			 user = userManager.getUser(email);
 			 return true;
 		 }
 		 return false;
 	}
 
-	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared)
-	{
+	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
 		listOfBookings = bookingManager.getBookings(startDatatime, endDatatime, destination, shared);
 	}
 
@@ -130,13 +157,15 @@ public class Controller {
 		return listOfBookings;
 	}
 
-	public void editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell)
-	{
+	public void editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) {
+		loadVehicleManager();
 		selectedVehicle.getMaintenance().edit(operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell);
+		saveVehicleManager();
 	}
 
-	public void deliver()
-	{
+	public void deliver() {
+		loadBookingManager();
 		bookingManager.removeBooking(null, user.getEmail());
+		saveBookingManager();
 	}
 }

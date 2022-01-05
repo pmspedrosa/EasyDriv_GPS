@@ -33,11 +33,9 @@ public class UserManager {
 		return null;
 	}
 
-
-
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
 		for (User u:users) {
-			if(u.getEmail() == email) {
+			if(u.getEmail().equals(email)) {
 				u.setEmail(email);
 				u.setName(name);
 				u.setPhoneNumber(phoneNumber);
@@ -48,7 +46,6 @@ public class UserManager {
 			}
 		}
 		Logger.getInstance().error("Erro ao editar user");
-		return;
 	}
 
 	public void removeUser(String email) {

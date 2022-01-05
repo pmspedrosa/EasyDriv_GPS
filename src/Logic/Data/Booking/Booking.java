@@ -64,7 +64,7 @@ public class Booking {
 
 	public User getUserFromBooking(String email) {
 		for (var u:users) {
-			if(u.getEmail() == email) {
+			if(u.getEmail().equals(email)) {
 				return u;
 			}
 		}

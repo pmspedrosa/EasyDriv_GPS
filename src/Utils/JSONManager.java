@@ -1,11 +1,9 @@
 package Utils;
 
+import Logic.Data.Booking.Booking;
 import Logic.Data.User.UserManager;
+import Logic.Data.Vehicle.VehicleManager;
 import com.google.gson.Gson;
-import jdk.jfr.Frequency;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -17,6 +15,7 @@ public class JSONManager{
     public static void writeToFile(Object o, EntityType entityType) {
         Gson gson = new Gson();
         String json = gson.toJson(o);
+
         try {
             file = new FileWriter(getPath() + File.separator + getFileName(entityType));
             file.write(json);
@@ -40,11 +39,24 @@ public class JSONManager{
 
     public static Object readFromFile(EntityType entity){
         Gson gson = new Gson();
+
         try
         {
-            String b = Files.readString(Path.of(getPath() + File.separator + getFileName(entity)));
-            return gson.fromJson(b, UserManager.class);
+            String o = Files.readString(Path.of(getPath() + File.separator + getFileName(entity)));
+            switch (entity) {
+                case USER -> {
+                    return gson.fromJson(o, UserManager.class);
+                }
+                case VEHICLE -> {
+                    return gson.fromJson(o, VehicleManager.class);
+                }
+                case BOOKING -> {
+                    return gson.fromJson(o, Booking.class);
+                }
+            }
+
         } catch (IOException e) {
+            Logger.getInstance().error("Deu cocó a ler do ficheiro");
             e.printStackTrace();
         }
         return null;
