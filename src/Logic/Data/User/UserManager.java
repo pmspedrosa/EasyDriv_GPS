@@ -36,6 +36,8 @@ public class UserManager {
 		return null;
 	}
 
+
+
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
 		for (User u:users) {
 			if(u.getEmail() == email) {

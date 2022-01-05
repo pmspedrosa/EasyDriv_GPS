@@ -16,33 +16,53 @@ public class BookingManager {
 	private ArrayList<Booking> bookings;
 
 	public BookingManager() {
-		// TODO - implement BookingManager.BookingManager
-		throw new UnsupportedOperationException();
+		loadBookings();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		// TODO - implement BookingManager.getBookings
-		throw new UnsupportedOperationException();
+		ArrayList<Booking> auxBookings = new ArrayList<Booking>();
+
+		for(Booking b:bookings) {
+			//TODO: Operacoes com horas
+			if(b.getDestination() == destination) {
+				auxBookings.add(b);
+			}
+		}
+
+		return auxBookings;
 	}
 
-	public void addBoking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		// TODO - implement BookingManager.addBoking
-		throw new UnsupportedOperationException();
+	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+		ArrayList<User> listUsers = new ArrayList<User>();
+		Booking b = new Booking(startDatatime, endDatatime, destination, listUsers, vehicle);
+		bookings.add(b);
 	}
 
-	public boolean removeBooking(Vehicle vehicle) {
-		// TODO - implement BookingManager.removeBooking
-		throw new UnsupportedOperationException();
+	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
+		for (Booking b:bookings) {
+			if(b.getVehicle() == vehicle && b.getStartDatatime() == startDatatime) {
+				return bookings.remove(b);
+			}
+		}
+		return false;
 	}
 
-	public boolean removeBooking(User user) {
-		// TODO - implement BookingManager.removeBooking
-		throw new UnsupportedOperationException();
+	public boolean removeBooking(Timestamp startDatatime, String email) {
+		return bookings.removeIf(b -> {
+			if (b.getStartDatatime().equals(startDatatime)) {
+				b.getUserFromBooking(email);
+			}
+			return false;
+		});
 	}
 
-	public void getBooking(String registrationPlate) {
-		// TODO - implement BookingManager.getBooking
-		throw new UnsupportedOperationException();
+	public Booking getBooking(Timestamp startDatatime, String registrationPlate) {
+		for (Booking b:bookings){
+			if(b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(registrationPlate)) {
+				return b;
+			}
+		}
+		return null;
 	}
 
 	public void loadBookings() {

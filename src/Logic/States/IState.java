@@ -32,6 +32,8 @@ public interface IState {
 
 	IState checkMaintenance();
 
+	IState remove(Timestamp timestamp, String key);
+
 	IState remove(String key);
 
 	IState confirm();

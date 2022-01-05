@@ -24,8 +24,8 @@ public class Controller {
 	//to get after someone do search
 	private ArrayList<Booking> listOfBookings;
 
-	public boolean addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
-		return userManager.addUser(name,email,phoneNumber,drivingLicense, password);
+	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		userManager.addUser(name,email,phoneNumber,drivingLicense, password);
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {
@@ -36,14 +36,12 @@ public class Controller {
 			user = userManager.getUser(email);
 	}
 
-
 	public User getUser(String email) {
 		return this.user;
 	}
 
-
-	public boolean removeUser(String email) {
-		return userManager.removeUser(email);
+	public void removeUser(String email) {
+		userManager.removeUser(email);
 	}
 
 	public ArrayList<User> listUsers() {
@@ -54,21 +52,17 @@ public class Controller {
 		return bookingManager.getBookings(startDatatime,endDatatime,destination,shared);
 	}
 
-	public void addBoking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		bookingManager.addBoking(startDatatime, endDatatime, destination, user, vehicle);
+	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+		bookingManager.addBooking(startDatatime, endDatatime, destination, user, vehicle);
 	}
 
-	public boolean removeBooking(Vehicle vehicle) {
-		return bookingManager.removeBooking(vehicle);
+	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
+		return bookingManager.removeBooking(startDatatime, vehicle);
 	}
 
-	public boolean removeBooking(User user) {
-		return bookingManager.removeBooking(user);
+	public boolean removeBooking(Timestamp startDatatime, String email) {
+		return bookingManager.removeBooking(startDatatime, email);
 	}
-
-//	public boolean removeBooking(String email) {
-//		return bookingManager.
-//	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		vehicleManager.addVehicle(make,registerPlate,numOfSeats,fuelType,model,available);

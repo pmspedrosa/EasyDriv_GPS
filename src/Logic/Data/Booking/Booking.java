@@ -44,21 +44,31 @@ public class Booking {
 
 	public boolean addUser(User user) {
 		if(users.size()>1){
-			shared=true;
+			shared = true;
 		}
+		Logger.getInstance().debug("User adicionado ao booking");
 		return users.add(user);
 	}
 
 	public boolean removeUser(User user) {
 		if(users.size()<=1){
-			shared=false;
+			shared = false;
 		}
+		Logger.getInstance().debug("User removido do booking");
 		return users.remove(user);
-
 	}
 
 	public ArrayList<User> getUsers() {
 		return users;
+	}
+
+	public User getUserFromBooking(String email) {
+		for (var u:users) {
+			if(u.getEmail() == email) {
+				return u;
+			}
+		}
+		return null;
 	}
 
 	public Vehicle getVehicle() {
