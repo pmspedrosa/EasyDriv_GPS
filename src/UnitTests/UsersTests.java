@@ -11,15 +11,13 @@ public class UsersTests {
 
     private UserManager userManager;
 
-    public UsersTests(UserManager userManager) {
-        this.userManager = userManager;
-
+    public UsersTests() {
+        userManager = new UserManager();
     }
 
     // ADD USER
     @Test
     void addUser(){
-        userManager = new UserManager();
         userManager.addUser("João", "user2@isec.pt", "123456789", "555555", "12345");
         Assertions.assertEquals(1, userManager.listUsers().size());
     }

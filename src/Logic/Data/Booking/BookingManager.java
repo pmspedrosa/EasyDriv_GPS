@@ -4,15 +4,18 @@ import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Utils.Constants;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class BookingManager {
 
 	private ArrayList<Booking> bookings;
+	ArrayList<User> listUsers;
 
 	public BookingManager() {
 		bookings = new ArrayList<>();
+		listUsers = new ArrayList<>();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
@@ -32,11 +35,90 @@ public class BookingManager {
 		return auxBookings;
 	}
 
-	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		ArrayList<User> listUsers = new ArrayList<>();
+	public ArrayList<Vehicle> getVehiclesAvailable(Timestamp startDatatime, Timestamp endDatatime){
+		var vehicles = new ArrayList<Vehicle>();
+
+		for (var booking: bookings) {
+			vehicles.add(booking.getVehicle());
+		}
+
+		for (var booking: bookings) {
+			if(endDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
+				// Booking indisponivel porque o endDataTime está no meio
+				System.out.println("Booking indisponivel porque o endDataTime está no meio");
+				vehicles.remove(booking.getVehicle());
+			}
+			else if(startDatatime.getTime() <= booking.getEndDatatime().getTime() && startDatatime.getTime() >= booking.getStartDatatime().getTime()){
+				// Booking indisponivel porque o startDataTime está no meio
+				System.out.println("Booking indisponivel porque o startDataTime está no meio");
+				vehicles.remove(booking.getVehicle());
+			}
+			else if(startDatatime.getTime() <= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
+				// Booking indisponivel porque o startDataTime e endDataTime está no meio
+				System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
+				vehicles.remove(booking.getVehicle());
+			}
+			else if(startDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
+				// Booking indisponivel porque o startDataTime e endDataTime está no meio
+				System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
+				vehicles.remove(booking.getVehicle());
+			}
+		}
+
+		if(vehicles.size() == 0)
+			return null;
+
+		return vehicles;
+	}
+
+	public boolean addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+
+		for (var booking: bookings){
+			var curVehicle = booking.getVehicle();
+			if(curVehicle.equals(vehicle)){
+				if(endDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
+					// Booking indisponivel porque o endDataTime está no meio
+					System.out.println("Booking indisponivel porque o endDataTime está no meio");
+					return false;
+				}
+				else if(startDatatime.getTime() <= booking.getEndDatatime().getTime() && startDatatime.getTime() >= booking.getStartDatatime().getTime()){
+					// Booking indisponivel porque o startDataTime está no meio
+					System.out.println("Booking indisponivel porque o startDataTime está no meio");
+					return false;
+				}
+				else if(startDatatime.getTime() <= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
+					// Booking indisponivel porque o startDataTime e endDataTime está no meio
+					System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
+					return false;
+				}
+				else if(startDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
+					// Booking indisponivel porque o startDataTime e endDataTime está no meio
+					System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
+					return false;
+				}
+			}
+		}
+
 		listUsers.add(user);
 		Booking b = new Booking(startDatatime, endDatatime, destination, listUsers, vehicle);
 		bookings.add(b);
+		return true;
+	}
+
+	public boolean addUserToBooking(User user, Booking booking)
+	{
+		for (var book: bookings){
+			if(book.equals(booking)){
+				var curVehicle = booking.getVehicle();
+
+				if(curVehicle.getNumOfSeats() > listUsers.size()){
+					listUsers.add(user);
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
@@ -89,5 +171,15 @@ public class BookingManager {
 			}
 		}
 		return null;
+	}
+
+	public boolean deliver(Booking selectedBooking) {
+		for (Booking b : bookings ) {
+			if(b.equals(selectedBooking)) {
+				b.getVehicle().setAvaliable(true);
+				return true;
+			}
+		}
+		return false;
 	}
 }

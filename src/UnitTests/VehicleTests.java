@@ -30,15 +30,25 @@ public class VehicleTests {
     @Test
     public void editVehicleSuccess(){
         Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
-
         Assertions.assertTrue(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(), 3, vehicle.getFuelType(), vehicle.getModel(), vehicle.getAvaliable()));
     }
 
     @Test
     public void editVehicleFail(){
-
         Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
-
         Assertions.assertFalse(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(),10, vehicle.getFuelType(), vehicle.getModel(), vehicle.getAvaliable()));
     }
+
+    @Test
+    public void deliverVehicle(){
+        Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
+        Assertions.assertTrue(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(),vehicle.getNumOfSeats(), vehicle.getFuelType(), vehicle.getModel(), true));
+    }
+
+    @Test
+    public void removeVehicle(){
+        Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
+        Assertions.assertTrue(vehicleManager.removeVehicle(vehicle.getRegisterPlate()));
+    }
+
 }
