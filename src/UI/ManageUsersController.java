@@ -68,8 +68,9 @@ public class ManageUsersController
     public void OnAddUser(MouseEvent mouseEvent) {
         easyDriv.addUser();
         if (easyDriv.getActualState() == SystemState.ADD_USER)
-            scenesControllers.setAddUserScene();
+            scenesControllers.addUser();
     }
+
 
     @FXML
     public void OnCancel(MouseEvent mouseEvent)

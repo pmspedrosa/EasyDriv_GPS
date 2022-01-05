@@ -165,4 +165,9 @@ public class EasyDriv {
 	{
 		setState(state.logout());
 	}
+
+	public User getUser(String email)
+	{
+		return controller.getUser(email);
+	}
 }
