@@ -1,6 +1,8 @@
 package Utils;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class Validator {
@@ -93,7 +95,7 @@ public class Validator {
     }};
 
 
-    private static boolean registerPlatevalidation(String rp) {
+    public static boolean registerPlatevalidation(String rp) {
         String pattern = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";	//AA-00-00,00-AA-00,00-00-AA,AA-00-AA, com hífen a separar
         return rp.matches(pattern);
     }
@@ -104,6 +106,12 @@ public class Validator {
 
     private static boolean fuelTypeValidation(String fuelType) {
         return fuelType.equalsIgnoreCase("GASOLINA") || fuelType.equalsIgnoreCase("GASOLIO");
+    }
+
+    public static Calendar getTimeInMillits(Timestamp timestamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp.getTimestamp().getTime());
+        return calendar;
     }
 
 

@@ -6,13 +6,10 @@ import Logic.Data.User.User;
 import Logic.Data.User.UserManager;
 import Logic.Data.Vehicle.Vehicle;
 import Logic.Data.Vehicle.VehicleManager;
-import Logic.States.IState;
-import Logic.States.SystemState;
 import Utils.EntityType;
 import Utils.JSONManager;
-import com.google.gson.Gson;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Controller {
@@ -34,7 +31,9 @@ public class Controller {
 	}
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		loadUserManager();
 		userManager.addUser(name,email,phoneNumber,drivingLicense, password);
+		saveUserManager();
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {
@@ -55,6 +54,14 @@ public class Controller {
 
 	public ArrayList<User> listUsers() {
 		return userManager.listUsers();
+	}
+
+	private void saveUserManager() {
+		JSONManager.writeToFile(userManager, EntityType.USER);
+	}
+
+	private void loadUserManager() {
+		userManager = (UserManager) JSONManager.readFromFile(EntityType.USER);
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {

@@ -4,7 +4,7 @@ import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Utils.Logger;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class Booking {
@@ -30,9 +30,7 @@ public class Booking {
 		return this.startDatatime;
 	}
 
-	public Timestamp getEndDatatime() {
-		return this.endDatatime;
-	}
+	public Timestamp getEndDatatime() { return this.endDatatime; }
 
 	public String getDestination() {
 		return this.destination;

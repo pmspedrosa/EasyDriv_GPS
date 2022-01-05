@@ -2,7 +2,7 @@ package Logic.States;
 
 import Logic.Controller;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class ManageBookings extends StateAdapter {
 
