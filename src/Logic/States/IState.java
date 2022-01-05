@@ -10,6 +10,8 @@ public interface IState {
 
 	IState login(String email, String password);
 
+	IState logout();
+
 	IState manageUsers();
 
 	IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password);

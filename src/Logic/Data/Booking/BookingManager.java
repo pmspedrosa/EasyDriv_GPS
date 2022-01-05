@@ -17,7 +17,7 @@ public class BookingManager {
 
 	public BookingManager() {
 		bookings = new ArrayList<>();
-		loadBookings();
+	//	loadBookings();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
@@ -93,15 +93,15 @@ public class BookingManager {
 		return null;
 	}
 
-	public void loadBookings() {
+/*	public void loadBookings() {
 		Logger.getInstance().debug("Load Bookings");
-		JSONArray listBookingsFromJson = JSONManager.readFromFile(EntityType.BOOKING);
+		//JSONArray listBookingsFromJson = JSONManager.readFromFile(EntityType.BOOKING);
 
 		if(listBookingsFromJson != null) {
 			listBookingsFromJson.forEach(booking -> bookings.add(parseBookingObject((JSONObject) booking)));
 			Logger.getInstance().debug("Acabei o load vehicles");
 		}
-	}
+	}*/
 
 	private Booking parseBookingObject(JSONObject b) {
 		JSONObject bookingObject = (JSONObject) b.get("booking");

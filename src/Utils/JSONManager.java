@@ -1,19 +1,25 @@
 package Utils;
 
+import Logic.Data.User.UserManager;
+import com.google.gson.Gson;
 import jdk.jfr.Frequency;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class JSONManager{
     private static FileWriter file;
 
-    public static void writeToFile(JSONArray list) {
+    public static void writeToFile(Object o, EntityType entityType) {
+        Gson gson = new Gson();
+        String json = gson.toJson(o);
         try {
-            file = new FileWriter(getPath() + File.separator + getFileName(EntityType.USER));
-            file.write(list.toJSONString());
+            file = new FileWriter(getPath() + File.separator + getFileName(entityType));
+            file.write(json);
             Logger.getInstance().debug("Ficheiro escrito com sucesso");
 
         } catch (IOException e) {
@@ -32,32 +38,16 @@ public class JSONManager{
         }
     }
 
-    public static JSONArray readFromFile(EntityType entity){
-        JSONParser jsonParser = new JSONParser();
-        JSONArray objectList = new JSONArray();
-        try {
-            FileReader reader = new FileReader(getPath() + File.separator + getFileName(entity));
-
-            File file = new File(getPath() + File.separator + getFileName(entity));
-            if (file.length() == 0)
-                return null;
-
-            Object object = jsonParser.parse(reader);
-
-            objectList = (JSONArray)object;
-
-        } catch (FileNotFoundException e) {
-            Logger.getInstance().error("Ficheiro não encontrado");
-            e.printStackTrace();
+    public static Object readFromFile(EntityType entity){
+        Gson gson = new Gson();
+        try
+        {
+            String b = Files.readString(Path.of(getPath() + File.separator + getFileName(entity)));
+            return gson.fromJson(b, UserManager.class);
         } catch (IOException e) {
-            Logger.getInstance().error("Erro não sei bem onde");
-            e.printStackTrace();
-        } catch (ParseException e) {
-            Logger.getInstance().error("Erro no parse");
             e.printStackTrace();
         }
-
-        return objectList;
+        return null;
     }
 
     private static String getPath() {

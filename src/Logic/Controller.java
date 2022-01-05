@@ -8,6 +8,9 @@ import Logic.Data.Vehicle.Vehicle;
 import Logic.Data.Vehicle.VehicleManager;
 import Logic.States.IState;
 import Logic.States.SystemState;
+import Utils.EntityType;
+import Utils.JSONManager;
+import com.google.gson.Gson;
 
 import java.security.Timestamp;
 import java.util.ArrayList;
@@ -25,9 +28,9 @@ public class Controller {
 	private ArrayList<Booking> listOfBookings;
 
 	public Controller() {
-		userManager = new UserManager();
-		bookingManager = new BookingManager();
-		vehicleManager = new VehicleManager();
+		userManager = (UserManager) JSONManager.readFromFile(EntityType.USER);
+		bookingManager = (BookingManager) JSONManager.readFromFile(EntityType.BOOKING);
+		vehicleManager = (VehicleManager) JSONManager.readFromFile(EntityType.VEHICLE);
 	}
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
@@ -42,7 +45,7 @@ public class Controller {
 			user = userManager.getUser(email);
 	}
 
-	public User getUser(String email) {
+	public User getUser() {
 		return this.user;
 	}
 
@@ -109,7 +112,12 @@ public class Controller {
 
 	public boolean login(String email, String password)
 	{
-		return userManager.login(email, password);
+		if (userManager.login(email, password))
+		 {
+			 user = userManager.getUser(email);
+			 return true;
+		 }
+		 return false;
 	}
 
 	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared)

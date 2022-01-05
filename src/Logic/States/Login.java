@@ -19,17 +19,6 @@ public class Login extends StateAdapter {
 		else return this;
 	}
 
-	// TESTES
-	@Override
-	public IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
-		getController().addUser(name, email, phoneNumber, drivingLicense, password);
-		var jsonlist = new JSONArray();
-		jsonlist.add(getController().listUsers());
-		Utils.JSONManager.writeToFile(jsonlist);
-		return this;
-	}
-
-
 	@Override
 	public SystemState getActualState() {
 		return SystemState.LOGIN;

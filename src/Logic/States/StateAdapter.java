@@ -16,6 +16,8 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState login(String email, String password) { return this; }
 	@Override
+	public IState logout() { return this; }
+	@Override
 	public IState manageUsers() { return this; }
 	@Override
 	public IState addUser(String name, String email, String phoneNumber, String drivingLicense, String password) { return this; }

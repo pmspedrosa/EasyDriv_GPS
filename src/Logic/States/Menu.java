@@ -20,6 +20,8 @@ public class Menu extends StateAdapter {
 	@Override
 	public IState editUser() { return new ManageProfile(getController()); }
 	@Override
+	public IState logout() { return new Login(getController()); }
+	@Override
 	public IState deliver() { return new Deliver(getController()); }
 	@Override
 	public IState manageUsers() { return new ManageUsers(getController()); }

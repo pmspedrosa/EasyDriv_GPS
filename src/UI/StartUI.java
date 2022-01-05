@@ -1,6 +1,7 @@
 package UI;
 
 import Logic.EasyDriv;
+import Utils.JSONManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -18,26 +19,24 @@ import static UI.Resources.Constants.WINDOW_WIDTH;
 public class StartUI extends Application {
 
     private EasyDriv easyDriv;
-    Stage stage;
+    private Stage stage;
 
     //Parents
     private Parent loginRoot;
 
-    LoginController loginController;
+    private LoginController loginController;
+    private Scene loginScene;
+
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
         easyDriv = new EasyDriv();
-
         stage = primaryStage;
 
         initializeRootsAndControllers();
-
-        Scene scene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
-
         //Image icone = new Image(Objects.requireNonNull(StartUI.class.getResourceAsStream("Resources/icone.png")));
-        primaryStage.setScene(scene);
+        primaryStage.setScene(loginScene);
 
         primaryStage.setResizable(false);
         primaryStage.setTitle("EasyDriv");
@@ -56,7 +55,8 @@ public class StartUI extends Application {
         FXMLLoader loader = loaderFXML("login");
         loginRoot = loader.load();
         loginController = loader.getController();
-        loginController.setEasyDriv(easyDriv);
+        loginScene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+        loginController.set(easyDriv, stage, loginScene);
     }
 
     private FXMLLoader loaderFXML(String fxml) {

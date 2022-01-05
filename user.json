@@ -1,1 +1,1 @@
-[[Logic.Data.User.User@15c5f5d1]]
+{"users":[{"admin":true,"name":"admin","email":"admin@admin.pt","phoneNumber":"91231232","drivingLicense":"91231232","password":"12345"},{"admin":false,"name":"Jacobe","email":"kulhon@brincalhon.ole","phoneNumber":"123456789","drivingLicense":"123456789","password":"hehe"}]}

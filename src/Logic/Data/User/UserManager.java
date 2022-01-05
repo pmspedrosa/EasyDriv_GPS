@@ -1,10 +1,7 @@
 package Logic.Data.User;
 
-import Utils.EntityType;
-import Utils.JSONManager;
 import Utils.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
 
 import java.util.ArrayList;
 
@@ -14,7 +11,7 @@ public class UserManager {
 
 	public UserManager() {
 		users = new ArrayList<>();
-		loadUsers();
+		//loadUsers();
 	}
 
 	public ArrayList<User> listUsers() {
@@ -28,9 +25,8 @@ public class UserManager {
 
 	public User getUser(String email) {
 		// return users.stream().filter(user -> user.getEmail().equals(email)).toList().get(0);
-
 		for (User u:users) {
-			if(u.getEmail() == email) {
+			if(u.getEmail().equals(email)) {
 				return u;
 			}
 		}
@@ -60,32 +56,9 @@ public class UserManager {
 		Logger.getInstance().debug("User removido");
 	}
 
-	public void loadUsers() {
-		Logger.getInstance().debug("Load Users");
-		JSONArray listUserFromJson = JSONManager.readFromFile(EntityType.USER);
-
-		if(listUserFromJson != null) {
-			listUserFromJson.forEach(user -> users.add(parseUserObject((JSONObject) user)));
-			Logger.getInstance().debug("Acabei o load users");
-		}
-	}
-
-	private User parseUserObject(JSONObject u) {
-		JSONObject userObject = (JSONObject) u.get("user");
-		boolean admin = (boolean) userObject.get("admin");
-		String name = (String) userObject.get("name");
-		String email = (String) userObject.get("email");
-		String phoneNumber = (String) userObject.get("phoneNumber");
-		String drivingLicense = (String) userObject.get("drivingLicense");
-		String password = (String) userObject.get("password");
-
-		Logger.getInstance().debug("User parsed");
-		return new User(admin, name, email, phoneNumber, drivingLicense, password);
-	}
-
 	public boolean login(String email, String password) {
 		for (User u:users) {
-			if(u.getEmail() == email && u.getPassword() == password) {
+			if(u.getEmail().equals(email) && u.getPassword().equals(password)) {
 				Logger.getInstance().debug("Login com sucesso");
 				return true;
 			}
