@@ -22,7 +22,7 @@ public class User {
 		Logger.getInstance().debug("User criado");
 	}
 
-	public boolean getAdmin() {
+	public boolean isAdmin() {
 		return this.admin;
 	}
 

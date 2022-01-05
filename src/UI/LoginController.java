@@ -3,17 +3,51 @@ package UI;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static UI.Resources.Constants.WINDOW_HEIGHT;
+import static UI.Resources.Constants.WINDOW_WIDTH;
 
 public class LoginController {
-
-    EasyDriv easyDriv;
+    private EasyDriv easyDriv;
+    private Stage stage;
+    private Scene adminScene;
+    private Scene userScene;
+    private Parent adminPanelRoot;
+    private Parent userPanelRoot;
+    private AdminPanelController adminPanelController;
+    private UserPanelController userPanelController;
 
     @FXML TextField tfEmail;
     @FXML TextField tfPassword;
 
-    public void setEasyDriv(EasyDriv easyDriv) { this.easyDriv = easyDriv;}
+    public LoginController() throws IOException
+    {
+        FXMLLoader loader = loaderFXML("adminPanel");
+        adminPanelRoot = loader.load();
+        adminPanelController = loader.getController();
+        adminScene = new Scene(adminPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+
+        loader = loaderFXML("userPanel");
+        userPanelRoot = loader.load();
+        userPanelController = loader.getController();
+        userScene = new Scene(userPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+    }
+
+    public void set(EasyDriv easyDriv, Stage stage, Scene loginScene) {
+        this.easyDriv = easyDriv;
+        this.stage = stage;
+        adminPanelController.set(easyDriv, stage, loginScene);
+        userPanelController.set(easyDriv, stage, loginScene);
+    }
 
     @FXML
     public void OnLogin(MouseEvent mouseEvent) {
@@ -36,14 +70,22 @@ public class LoginController {
 
         easyDriv.login(email, pass);
 
-        //TODO Dialog com erro ou passar para outra window
-        if(easyDriv.getActualState() == SystemState.LOGIN)
+        switch (easyDriv.getActualState())
         {
-            System.out.println("Erro no login");
-        }else {
-
-            System.out.println("Login com success");
+            case LOGIN -> System.out.println("Erro no login");        //TODO Dialog com erro
+            case MENU -> loginSucess();
         }
+    }
 
+    private void loginSucess()
+    {
+        if (easyDriv.getUser().isAdmin())
+            stage.setScene(adminScene);
+        else
+            stage.setScene(userScene);
+    }
+
+    private FXMLLoader loaderFXML(String fxml) {
+        return new FXMLLoader(StartUI.class.getResource("Resources/" + fxml + ".fxml"));
     }
 }

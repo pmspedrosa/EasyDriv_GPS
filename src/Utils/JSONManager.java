@@ -14,13 +14,11 @@ import java.nio.file.Path;
 public class JSONManager{
     private static FileWriter file;
 
-    public static void writeToFile(Object o) {
+    public static void writeToFile(Object o, EntityType entityType) {
         Gson gson = new Gson();
-
         String json = gson.toJson(o);
-
         try {
-            file = new FileWriter(getPath() + File.separator + getFileName(EntityType.USER));
+            file = new FileWriter(getPath() + File.separator + getFileName(entityType));
             file.write(json);
             Logger.getInstance().debug("Ficheiro escrito com sucesso");
 
@@ -42,14 +40,10 @@ public class JSONManager{
 
     public static Object readFromFile(EntityType entity){
         Gson gson = new Gson();
-
-        try {
-            //TODO: Prego
+        try
+        {
             String b = Files.readString(Path.of(getPath() + File.separator + getFileName(entity)));
-            UserManager a = gson.fromJson(b, UserManager.class);
-            return a;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return gson.fromJson(b, UserManager.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

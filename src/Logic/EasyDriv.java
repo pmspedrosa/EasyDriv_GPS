@@ -19,8 +19,6 @@ public class EasyDriv {
 	public EasyDriv() {
 		controller = new Controller();
 		setState(new Login(controller));
-
-		addUser("admin", "admin@admin.pt", "91231232", "123454", "12345");
 	}
 
 	private void setState(IState state){
@@ -123,8 +121,8 @@ public class EasyDriv {
 		//exit, no need state call
 	}
 
-	public User getUser(String email) {
-		return controller.getUser(email);
+	public User getUser() {
+		return controller.getUser();
 	}
 
 	public ArrayList<User> listUsers() {
@@ -159,4 +157,8 @@ public class EasyDriv {
 		return controller.getSelectedBooking();
 	}
 
+	public void logout()
+	{
+		setState(state.logout());
+	}
 }
