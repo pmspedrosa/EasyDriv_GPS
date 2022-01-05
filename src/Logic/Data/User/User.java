@@ -16,7 +16,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.drivingLicense = phoneNumber;
+		this.drivingLicense = drivingLicense;
 		this.password = password;
 
 		Logger.getInstance().debug("User criado");
