@@ -2,11 +2,6 @@ package Logic.Data.Booking;
 
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
-import Utils.EntityType;
-import Utils.JSONManager;
-import Utils.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import java.security.Timestamp;
 import java.util.ArrayList;
@@ -17,15 +12,14 @@ public class BookingManager {
 
 	public BookingManager() {
 		bookings = new ArrayList<>();
-	//	loadBookings();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		ArrayList<Booking> auxBookings = new ArrayList<Booking>();
+		ArrayList<Booking> auxBookings = new ArrayList<>();
 
 		for(Booking b:bookings) {
 			//TODO: Operacoes com horas
-			if(b.getDestination() == destination) {
+			if(b.getDestination().equals(destination)) {
 				auxBookings.add(b);
 			}
 		}
@@ -34,7 +28,8 @@ public class BookingManager {
 	}
 
 	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		ArrayList<User> listUsers = new ArrayList<User>();
+		ArrayList<User> listUsers = new ArrayList<>();
+		listUsers.add(user);
 		Booking b = new Booking(startDatatime, endDatatime, destination, listUsers, vehicle);
 		bookings.add(b);
 	}
@@ -58,7 +53,7 @@ public class BookingManager {
 	}
 
 	public boolean removeBooking(String email) {
-		return bookings.removeIf(b -> b.getUserFromBooking(email).equals(email));
+		return bookings.removeIf(b -> b.getUserFromBooking(email).getEmail().equals(email));
 	}
 
 
@@ -91,28 +86,5 @@ public class BookingManager {
 			}
 		}
 		return null;
-	}
-
-/*	public void loadBookings() {
-		Logger.getInstance().debug("Load Bookings");
-		//JSONArray listBookingsFromJson = JSONManager.readFromFile(EntityType.BOOKING);
-
-		if(listBookingsFromJson != null) {
-			listBookingsFromJson.forEach(booking -> bookings.add(parseBookingObject((JSONObject) booking)));
-			Logger.getInstance().debug("Acabei o load vehicles");
-		}
-	}*/
-
-	private Booking parseBookingObject(JSONObject b) {
-		JSONObject bookingObject = (JSONObject) b.get("booking");
-
-		Timestamp startDatatime = (Timestamp) bookingObject.get("startDatatime");
-		Timestamp endDatatime = (Timestamp) bookingObject.get("endDatatime");
-		String destination = (String) bookingObject.get("destination");
-		ArrayList<User> users = (ArrayList<User>) bookingObject.get("users"); //TODO: não sei se isto funciona
-		Vehicle vehicle = (Vehicle) bookingObject.get("vehicle");
-
-		Logger.getInstance().debug("Booking parsed");
-		return new Booking(startDatatime, endDatatime, destination, users, vehicle);
 	}
 }

@@ -25,9 +25,7 @@ public class Vehicle {
 		Logger.getInstance().debug("Vehicle criado");
 	}
 
-	public String getMake() {
-		return this.make;
-	}
+	public String getMake() { return this.make; }
 
 	public String getRegisterPlate() {
 		return this.registerPlate;

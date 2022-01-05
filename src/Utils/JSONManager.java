@@ -4,10 +4,6 @@ import Logic.Data.Booking.Booking;
 import Logic.Data.User.UserManager;
 import Logic.Data.Vehicle.VehicleManager;
 import com.google.gson.Gson;
-import jdk.jfr.Frequency;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.nio.file.Files;
