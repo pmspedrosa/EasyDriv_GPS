@@ -4,7 +4,6 @@ import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Utils.Constants;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -182,4 +181,9 @@ public class BookingManager {
 		}
 		return false;
 	}
+
+    public ArrayList<Booking> listBookings()
+    {
+		return bookings;
+    }
 }

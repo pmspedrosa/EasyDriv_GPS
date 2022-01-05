@@ -11,6 +11,7 @@ import Utils.JSONManager;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Controller {
 
@@ -28,6 +29,24 @@ public class Controller {
 		loadUserManager();
 		loadBookingManager();
 		loadVehicleManager();
+
+
+		User user;
+		Vehicle vehicle;
+		Calendar calAtual;
+		Calendar cal;
+
+
+		user = new User(false, "Renato", "renato@isec.pt", "912312343", "1", "Renas1!");
+		vehicle = new Vehicle("Fiat", "AA-01-AA", 5, "Dielsel", "Punto", true);
+
+		calAtual = Calendar.getInstance();
+
+		cal = calAtual;
+		cal.setTime(cal.getTime());
+		cal.add(Calendar.HOUR, 1);
+
+		bookingManager.addBooking(new Timestamp(calAtual.getTime().getTime()), new Timestamp(cal.getTime().getTime()), "Coimbra", user, vehicle);
 	}
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
@@ -185,4 +204,9 @@ public class Controller {
     {
 		return userManager.getUser(email);
     }
+
+	public ArrayList<Booking> listBookings()
+	{
+		return bookingManager.listBookings();
+	}
 }
