@@ -170,4 +170,9 @@ public class EasyDriv {
 	{
 		return controller.getUser(email);
 	}
+
+    public ArrayList<Booking> listBooking()
+    {
+		return controller.listBookings();
+    }
 }

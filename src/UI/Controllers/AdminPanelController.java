@@ -36,6 +36,14 @@ public class AdminPanelController
     }
 
     @FXML
+    public void OnManageBookings(MouseEvent mouseEvent) {
+        easyDriv.manageBookings();
+        if (easyDriv.getActualState() == SystemState.MANAGE_BOOKINGS)
+            scenesControllers.setManageBookingsScene();
+
+    }
+
+    @FXML
     public void OnLogout(MouseEvent mouseEvent)
     {
         easyDriv.logout();

@@ -37,14 +37,14 @@ public class VehicleTableView
         btnMaintenance = new Button("", imgMaintenance);
         btnRemove = new Button("", imgRemove);
 
-//        btnEdit.setOnMouseClicked(e -> {
-//            scenesControllers.edit(user.getEmail());
-//
-//        });
-//
-//        btnRemove.setOnMouseClicked(e -> {
-//            scenesControllers.remove(user);
-//        });
+        btnEdit.setOnMouseClicked(e -> {
+            scenesControllers.edit(vehicle);
+
+        });
+
+        btnRemove.setOnMouseClicked(e -> {
+            scenesControllers.remove(vehicle);
+        });
     }
 
 
