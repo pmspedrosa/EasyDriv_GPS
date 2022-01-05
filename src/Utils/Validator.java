@@ -8,13 +8,9 @@ public class Validator {
 
     /**metodos de Validação User*/
 
-//    private boolean admin;    todo --
-//    private Booking booking;  todo --
-//    private String password;          --
-
 
     public static boolean nameValidation(String name) {
-        String pattern = "^[a-zA-Z]{3,15}$";
+        String pattern = "^[a-zA-Z ]+$";
         return name.matches(pattern);
     }
     //^[a-zA-Z]{3,15}$    3 a 15 characteres and only lower and upper case
@@ -30,19 +26,7 @@ public class Validator {
         String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}";
         return pass.matches(pattern);
     }
-
-
-    public static boolean phoneNumberValidation(String phoneNumber){
-        String pattern ="(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
-        return phoneNumber.matches(pattern);
-    }
-
-    public static boolean drivingLicenseValidation(String drivingLicense){
-        String pattern ="[0-9]";
-        return drivingLicense.matches(pattern);
-    }
-
-   /*
+    /*
     ^ start of the line
     (?=.*[0-9]) a digit must occur at least once
 	(?=.*[a-z]) a lower case letter must occur at least once
@@ -51,19 +35,20 @@ public class Validator {
 	.{6,} at least 6 characters*/
 
 
+    public static boolean phoneNumberValidation(String phoneNumber){
+        String pattern ="(9[1236][0-9]) ?([0-9]{3}) ?([0-9]{3})";
+        return phoneNumber.matches(pattern);
+    }
+
+    public static boolean drivingLicenseValidation(String drivingLicense){
+        String pattern ="[0-9]{9}";
+        return drivingLicense.matches(pattern);
+    }
+
 
 
     /**metodos de Validação Vehicle*/
 
-
-    /*private String make;--
-	private String registerPlate;--
-	private int numOfSeats;--
-	private String fuelType;--
-	private String model;--
-	todo private boolean avaliable;     --não sei
-	todo private Maintenance maintenance;     --não sei
-	*/
 
 
     public static final HashMap<String,String[]> vehicleList = new HashMap<>(){{
@@ -113,17 +98,6 @@ public class Validator {
         calendar.setTimeInMillis(timestamp.getTimestamp().getTime());
         return calendar;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

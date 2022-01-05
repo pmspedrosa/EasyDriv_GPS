@@ -22,8 +22,8 @@ public class LoginController {
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
 
-    @FXML TextField tfEmail;
-    @FXML TextField tfPassword;
+    @FXML private TextField tfEmail;
+    @FXML private TextField tfPassword;
 
     public void set(ScenesControllers scenesControllers)
     {
@@ -73,10 +73,6 @@ public class LoginController {
             scenesControllers.setAdminScene();
         else
             scenesControllers.setUserScene();
-    }
-
-    private FXMLLoader loaderFXML(String fxml) {
-        return new FXMLLoader(StartUI.class.getResource("Resources/" + fxml + ".fxml"));
     }
 
     public void clearPassword()
