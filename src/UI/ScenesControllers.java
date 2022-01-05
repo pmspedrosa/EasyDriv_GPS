@@ -3,9 +3,12 @@ package UI;
 import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import Utils.Validator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,18 +28,21 @@ public class ScenesControllers
     private Parent manageUsersRoot;
     private Parent addUserRoot;
     private Parent userPanelRoot;
+    private Parent editUserRoot;
 
     private LoginController loginController;
     private AdminPanelController adminPanelController;
     private ManageUsersController manageUsersController;
     private AddUserController addUserController;
     private UserPanelController userPanelController;
+    private EditUserController editUserController;
 
     private Scene loginScene;
     private Scene adminScene;
     private Scene manageUsersScene;
     private Scene addUserScene;
     private Scene userScene;
+    private Scene editUserScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -55,6 +61,11 @@ public class ScenesControllers
             addUserRoot = loader.load();
             addUserController = loader.getController();
             addUserScene = new Scene(addUserRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
+
+            loader = loaderFXML("editUser");
+            editUserRoot = loader.load();
+            editUserController = loader.getController();
+            editUserScene = new Scene(editUserRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
             loader = loaderFXML("adminPanel");
             adminPanelRoot = loader.load();
@@ -81,6 +92,7 @@ public class ScenesControllers
         manageUsersController.set(this);
         addUserController.set(this);
         userPanelController.set(this);
+        editUserController.set(this);
 
     }
 
@@ -120,17 +132,95 @@ public class ScenesControllers
         stage.setScene(addUserScene);
     }
 
-    public void edit()
+    public void edit(String email, String name, String phoneNumber, String drivingLicense, String password)
     {
-        easyDriv.editUser();
-        if (easyDriv.getActualState() == SystemState.EDIT_USER)
-            ;
-       //     stage.setScene(editUser);
+        if (easyDriv.getActualState() != SystemState.EDIT_USER) return;
+        if (!validate(email, name, phoneNumber, drivingLicense, password)) return;
+        easyDriv.editUser(email, name, phoneNumber, drivingLicense, password);
+        setManageUsersScene();
+    }
+
+    private boolean validate(String email, String name, String phoneNumber, String drivingLicense, String password)
+    {
+        if(!Validator.emailValidation(email))
+        {
+            alertDialog("Incorect email format",
+                    "Please introduce a valid email",
+                    "Email must be valid! example@gmail.com");
+            return false;
+        }
+        if(!Validator.nameValidation(name))
+        {
+            alertDialog("Incorect name format",
+                    "Please introduce a valid name",
+                    "Name must contain between 3 and 15 characteres (no special characteres allowed)");
+            return false;
+        }
+
+        if (!Validator.phoneNumberValidation(phoneNumber))
+        {
+            alertDialog("Incorect phone number format",
+                    "Please introduce a valid phone number",
+                    "Phone number must contain 9 digits");
+            return false;
+        }
+
+        if (!Validator.drivingLicenseValidation(drivingLicense))
+        {
+            alertDialog("Incorect driving license format",
+                    "Please introduce a valid driving license",
+                    "driving license must contain TODO");
+            return false;
+        }
+
+        if (!Validator.passwordValidation(password)){
+            alertDialog("Incorect password format",
+                    "Please introduce a valid password",
+                    "Password must contain TODO");
+            return false;
+        }
+        return true;
+    }
+
+    private void alertDialog(String title, String header, String description)
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(description);
+
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(stage);
+
+        alert.showAndWait();
     }
 
     public void remove(User user)
     {
         easyDriv.remove(user.getEmail());
         manageUsersController.updateTableUsers();
+    }
+
+    public void addUser()
+    {
+        addUserController.clear();
+        setAddUserScene();
+    }
+
+    public void edit(String email)
+    {
+        if (easyDriv.getActualState() != SystemState.MANAGE_USERS) return;
+        easyDriv.editUser();
+        editUserController.prepare(easyDriv.getUser(email));
+        stage.setScene(editUserScene);
+    }
+
+    public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password)
+    {
+        if(easyDriv.getActualState() != SystemState.ADD_USER) return;
+        if (!validate(email, name, phoneNumber, drivingLicense, password)) return;
+        easyDriv.addUser(name, email, phoneNumber, drivingLicense, password);
+        if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
+            setManageUsersScene();
     }
 }

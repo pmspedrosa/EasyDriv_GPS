@@ -177,4 +177,9 @@ public class Controller {
 		bookingManager.removeBooking(null, user.getEmail());
 		saveBookingManager();
 	}
+
+    public User getUser(String email)
+    {
+		return userManager.getUser(email);
+    }
 }

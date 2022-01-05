@@ -34,8 +34,8 @@ public class UserTableView
         btnRemove = new Button("", imgRemove);
 
         btnEdit.setOnMouseClicked(e -> {
-          //  scenesControllers.edit(user);
-            System.out.println("Edit " + user.getEmail());
+          scenesControllers.edit(user.getEmail());
+
         });
 
         btnRemove.setOnMouseClicked(e -> {
