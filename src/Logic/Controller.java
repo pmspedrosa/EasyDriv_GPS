@@ -31,7 +31,9 @@ public class Controller {
 	}
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
+		loadUserManager();
 		userManager.addUser(name,email,phoneNumber,drivingLicense, password);
+		saveUserManager();
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {
@@ -52,6 +54,14 @@ public class Controller {
 
 	public ArrayList<User> listUsers() {
 		return userManager.listUsers();
+	}
+
+	private void saveUserManager() {
+		JSONManager.writeToFile(userManager, EntityType.USER);
+	}
+
+	private void loadUserManager() {
+		userManager = (UserManager) JSONManager.readFromFile(EntityType.USER);
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {

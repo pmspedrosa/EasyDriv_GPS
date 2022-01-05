@@ -30,9 +30,7 @@ public class Booking {
 		return this.startDatatime;
 	}
 
-	public Timestamp getEndDatatime() {
-		return this.endDatatime;
-	}
+	public Timestamp getEndDatatime() { return this.endDatatime; }
 
 	public String getDestination() {
 		return this.destination;
