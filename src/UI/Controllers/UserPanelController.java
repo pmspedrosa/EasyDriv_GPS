@@ -1,7 +1,8 @@
-package UI;
+package UI.Controllers;
 
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import UI.ScenesControllers;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;

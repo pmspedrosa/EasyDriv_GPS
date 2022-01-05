@@ -67,7 +67,7 @@ public class Validator {
 	*/
 
 
-    private static final HashMap<String,String[]> vehicleList = new HashMap<>(){{
+    public static final HashMap<String,String[]> vehicleList = new HashMap<>(){{
         put("Aston Martin",new String[] {"DB9 Volante", "DBS Coupe", "DBS Volante", "Rapide", "V12 Vantage Coupe", "V8 Vantage Coupe", "V8 Vantage Roadster", "Virage",});
         put("Audi",new String[] {"A1", "A3", "A3 Sedan", "A4 Avant", "A4 Sedã", "A5", "A7", "A8", "Q5", "Q7", "R8", "R8 GT", "RS 3 Sportback", "RS 5", "RS6 Avant", "TT Coupé", "TT Roadster",});
         put("BMW",new String[] {"Série 1", "Série 1 Cabrio", "Série 1 Coupé", "Série 1 M", "Série 3 Cabrio", "Série 3 M3 Coupé", "Série 3 M3 Sedã", "Série 3 Sedã", "Série 5 Gran Turismo", "Série 5 Sedã", "Série 7 Sedã", "X1", "X3", "X5", "X6", "Z4 Roadster",});
@@ -78,7 +78,7 @@ public class Validator {
         put("Honda",new String[]{"Accord","CR-V","City","Civic","Fit",});
         put("Hyundai",new String[]{"Azera","Equus","HB20","HB20S","HB20X","HR","Santa Fe","Sonata","Tucson","Veloster","Veracruz","i30","i30 CW","iX35",});
         put("Jeep",new String[]{"Cherokee","Grand Cherokee","Wrangler","Jinbei","Jinbei","Topic Furgão","Topic Passageiro",});
-        put("Kia",new String[]{"Bongo","Cadenza","Carens","Carnival","Cerato","Mohave","Optima","Picanto","Sorento","Soul","Sportage",});
+        put("Kia",new String[]{"Bongo","Cadenza","Carens","Carnival","Cerato","Mohave","Optima","Picanto","Rio","Sorento","Soul","Sportage",});
         put("Land Rover",new String[]{"Defender","Discovery 4","Freelander 2","Range Rover Evoque","Range Rover Sport","Range Rover Vogue",});
         put("Mercedes-Benz",new String[]{"CLA","Classe A","Classe B","Classe C","Classe C 250 Turbo Sport","Classe C 63 AMG Touring","Classe CL","Classe CLS 63 AMG","Classe E","Classe G","Classe GL","Classe GLK","Classe M","Classe S","Classe S 400 Hybrid","Classe SLK","Classe SLS AMG",});
         put("Mini",new String[]{"Cooper","Cooper Cabrio","Cooper Countryman","Cooper S Clubman-Hampton","One",});
@@ -95,6 +95,7 @@ public class Validator {
     }};
 
 
+    //TODO : acho que nao esta bom, testar este validator....
     public static boolean registerPlatevalidation(String rp) {
         String pattern = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";	//AA-00-00,00-AA-00,00-00-AA,AA-00-AA, com hífen a separar
         return rp.matches(pattern);

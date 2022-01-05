@@ -25,9 +25,9 @@ public class Controller {
 	private ArrayList<Booking> listOfBookings;
 
 	public Controller() {
-		userManager = (UserManager) JSONManager.readFromFile(EntityType.USER);
-		bookingManager = (BookingManager) JSONManager.readFromFile(EntityType.BOOKING);
-		vehicleManager = (VehicleManager) JSONManager.readFromFile(EntityType.VEHICLE);
+		loadUserManager();
+		loadBookingManager();
+		loadVehicleManager();
 	}
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
@@ -64,6 +64,7 @@ public class Controller {
 
 	private void loadUserManager() {
 		userManager = (UserManager) JSONManager.readFromFile(EntityType.USER);
+		if (userManager == null) userManager = new UserManager();
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
@@ -96,6 +97,7 @@ public class Controller {
 
 	private void loadBookingManager() {
 		bookingManager = (BookingManager) JSONManager.readFromFile(EntityType.BOOKING);
+		if (bookingManager == null) bookingManager = new BookingManager();
 	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
@@ -139,6 +141,7 @@ public class Controller {
 
 	private void loadVehicleManager() {
 		vehicleManager = (VehicleManager) JSONManager.readFromFile(EntityType.VEHICLE);
+		if (vehicleManager == null) vehicleManager = new VehicleManager();
 	}
 
 	public Booking getSelectedBooking() {

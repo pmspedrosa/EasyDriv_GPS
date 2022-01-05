@@ -3,6 +3,7 @@ package UI;
 import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import UI.Controllers.*;
 import Utils.Validator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +30,8 @@ public class ScenesControllers
     private Parent addUserRoot;
     private Parent userPanelRoot;
     private Parent editUserRoot;
+    private Parent addVehicleRoot;
+    private Parent manageVehiclesRoot;
 
     private LoginController loginController;
     private AdminPanelController adminPanelController;
@@ -36,6 +39,8 @@ public class ScenesControllers
     private AddUserController addUserController;
     private UserPanelController userPanelController;
     private EditUserController editUserController;
+    private AddVehicleController addVehicleController;
+    private ManageVehiclesController manageVehiclesController;
 
     private Scene loginScene;
     private Scene adminScene;
@@ -43,6 +48,8 @@ public class ScenesControllers
     private Scene addUserScene;
     private Scene userScene;
     private Scene editUserScene;
+    private Scene addVehicleScene;
+    private Scene manageVehiclesScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -57,12 +64,22 @@ public class ScenesControllers
             loginScene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 
-            loader = loaderFXML("addUser");
+            loader = loaderFXML("ManageUsers/addUser");
             addUserRoot = loader.load();
             addUserController = loader.getController();
             addUserScene = new Scene(addUserRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
-            loader = loaderFXML("editUser");
+            loader = loaderFXML("ManageVehicles/addVehicle");
+            addVehicleRoot = loader.load();
+            addVehicleController = loader.getController();
+            addVehicleScene = new Scene(addVehicleRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
+
+            loader = loaderFXML("ManageVehicles/manageVehiclesPanel");
+            manageVehiclesRoot = loader.load();
+            manageVehiclesController = loader.getController();
+            manageVehiclesScene = new Scene(manageVehiclesRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+            loader = loaderFXML("ManageUsers/editUser");
             editUserRoot = loader.load();
             editUserController = loader.getController();
             editUserScene = new Scene(editUserRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
@@ -78,7 +95,7 @@ public class ScenesControllers
             userPanelController = loader.getController();
             userScene = new Scene(userPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-            loader = loaderFXML("manageUsersPanel");
+            loader = loaderFXML("ManageUsers/manageUsersPanel");
             manageUsersRoot = loader.load();
             manageUsersController = loader.getController();
             manageUsersScene = new Scene(manageUsersRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -93,6 +110,8 @@ public class ScenesControllers
         addUserController.set(this);
         userPanelController.set(this);
         editUserController.set(this);
+        addVehicleController.set(this);
+        manageVehiclesController.set(this);
 
     }
 
@@ -169,14 +188,14 @@ public class ScenesControllers
         {
             alertDialog("Incorect driving license format",
                     "Please introduce a valid driving license",
-                    "driving license must contain TODO");
+                    "driving license must contain TODO"); //TODO meter <<<- completar fras
             return false;
         }
 
         if (!Validator.passwordValidation(password)){
             alertDialog("Incorect password format",
                     "Please introduce a valid password",
-                    "Password must contain TODO");
+                    "Password must contain TODO"); //TODO <--- completar frase
             return false;
         }
         return true;
@@ -222,5 +241,31 @@ public class ScenesControllers
         easyDriv.addUser(name, email, phoneNumber, drivingLicense, password);
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
             setManageUsersScene();
+    }
+
+    public void addVehicle()
+    {
+        addVehicleController.clear();
+        stage.setScene(addVehicleScene);
+    }
+
+    public void setManageVehiclesScene()
+    {
+        manageVehiclesController.updateTableVehicles();
+        stage.setScene(manageVehiclesScene);
+    }
+
+    public void addVehicle(String make, String model, String registrationPlate, String fuelType, int numOfSeats)
+    {
+        if(easyDriv.getActualState() != SystemState.ADD_VEHICLE) return;
+//        if (!Validator.registerPlatevalidation(registrationPlate)){
+//            alertDialog("Incorect registration plate format",
+//                    "Please introduce a valid registration plate",
+//                    "Registration plate must contain TODO"); //TODO <--- completar frase e testar validator
+//            return;
+//        }
+        easyDriv.addVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);
+        if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
+            setManageVehiclesScene();
     }
 }

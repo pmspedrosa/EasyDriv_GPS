@@ -1,8 +1,9 @@
-package UI;
+package UI.Controllers;
 
 import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
+import UI.ScenesControllers;
 import Utils.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -13,8 +14,7 @@ public class EditUserController
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
 
-    @FXML
-    TextField tfEmail;
+    @FXML TextField tfEmail;
     @FXML TextField tfName;
     @FXML TextField tfPhoneNumber;
     @FXML TextField tfDrivingLicense;
@@ -57,4 +57,5 @@ public class EditUserController
         tfPassword.setText(user.getPassword());
         tfPasswordConfirmation.setText(user.getPassword());
     }
+
 }
