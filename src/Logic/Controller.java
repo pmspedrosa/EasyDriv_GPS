@@ -56,14 +56,18 @@ public class Controller {
 	}
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password, boolean mySelf) {
+		loadUserManager();
 		userManager.editUser(email, name, phoneNumber, drivingLicense, password);
 
 		//when edited from manageProfile, need to get new reference.
 		if (mySelf)
 			user = userManager.getUser(email);
+		saveUserManager();
 	}
 
 	public User getUser() {
+		loadUserManager();
+		user = userManager.getUser(user.getEmail());
 		return this.user;
 	}
 
@@ -74,6 +78,7 @@ public class Controller {
 	}
 
 	public ArrayList<User> listUsers() {
+		loadUserManager();
 		return userManager.listUsers();
 	}
 
@@ -87,6 +92,7 @@ public class Controller {
 	}
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
+		loadBookingManager();
 		return bookingManager.getBookings(startDatatime,endDatatime,destination,shared);
 	}
 
@@ -132,6 +138,7 @@ public class Controller {
 	}
 
 	public Vehicle getVehicle(String registerPlate) {
+		loadVehicleManager();
 		return vehicleManager.getVehicle(registerPlate);
 	}
 
@@ -143,12 +150,11 @@ public class Controller {
 	}
 
 	public ArrayList<Vehicle> listVehicles() {
+		loadVehicleManager();
 		return vehicleManager.listVehicles();
 	}
 
-	public Vehicle getSelectedVehicle() {
-		return this.selectedVehicle;
-	}
+	public Vehicle getSelectedVehicle() { return this.selectedVehicle; }
 
 	public void setSelectedVehicle(String registrationPlate) {
 		selectedVehicle = vehicleManager.getVehicle(registrationPlate);
@@ -180,6 +186,7 @@ public class Controller {
 	}
 
 	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
+		loadBookingManager();
 		listOfBookings = bookingManager.getBookings(startDatatime, endDatatime, destination, shared);
 	}
 
@@ -200,13 +207,13 @@ public class Controller {
 		saveBookingManager();
 	}
 
-    public User getUser(String email)
-    {
-		return userManager.getUser(email);
+    public User getUser(String email) {
+		loadUserManager();
+    	return userManager.getUser(email);
     }
 
-	public ArrayList<Booking> listBookings()
-	{
+	public ArrayList<Booking> listBookings() {
+		loadBookingManager();
 		return bookingManager.listBookings();
 	}
 }

@@ -19,5 +19,4 @@ public class ManageProfile extends StateAdapter {
 
 	@Override
 	public SystemState getActualState() { return SystemState.MANAGE_PROFILE; }
-
 }

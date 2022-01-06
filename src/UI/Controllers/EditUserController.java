@@ -36,8 +36,9 @@ public class EditUserController
         String phoneNumber = tfPhoneNumber.getText();
         String drivingLicense = tfDrivingLicense.getText();
         String password = tfPassword.getText();
+        String confirmationPassword = tfPasswordConfirmation.getText();
 
-        scenesControllers.edit(email, name, phoneNumber, drivingLicense, password);
+        scenesControllers.edit(email, name, phoneNumber, drivingLicense, password, confirmationPassword);
     }
 
     @FXML

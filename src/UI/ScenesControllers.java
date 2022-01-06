@@ -35,6 +35,7 @@ public class ScenesControllers
     private Parent manageVehiclesRoot;
     private Parent editVehicleRoot;
     private Parent manageBookingsRoot;
+    private Parent manageProfileRoot;
 
     private LoginController loginController;
     private AdminPanelController adminPanelController;
@@ -46,6 +47,7 @@ public class ScenesControllers
     private ManageVehiclesController manageVehiclesController;
     private EditVehicleController editVehicleController;
     private ManageBookingsController manageBookingsController;
+    private ManageProfileController manageProfileController;
 
     private Scene loginScene;
     private Scene adminScene;
@@ -57,6 +59,7 @@ public class ScenesControllers
     private Scene manageVehiclesScene;
     private Scene editVehicleScene;
     private Scene manageBookingsScene;
+    private Scene manageProfileScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -117,6 +120,11 @@ public class ScenesControllers
             manageBookingsController = loader.getController();
             manageBookingsScene = new Scene(manageBookingsRoot,650, 600); //TODO : passar para constante
 
+            loader = loaderFXML("manageProfile");
+            manageProfileRoot = loader.load();
+            manageProfileController = loader.getController();
+            manageProfileScene = new Scene(manageProfileRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
+
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -132,6 +140,7 @@ public class ScenesControllers
         manageVehiclesController.set(this);
         editVehicleController.set(this);
         manageBookingsController.set(this);
+        manageProfileController.set(this);
 
     }
 
@@ -171,15 +180,28 @@ public class ScenesControllers
         stage.setScene(addUserScene);
     }
 
-    public void edit(String email, String name, String phoneNumber, String drivingLicense, String password)
+    public void edit(String email, String name, String phoneNumber, String drivingLicense, String password, String passwordConfirmation)
     {
-        if (easyDriv.getActualState() != SystemState.EDIT_USER) return;
-        if (!validate(email, name, phoneNumber, drivingLicense, password)) return;
-        easyDriv.editUser(email, name, phoneNumber, drivingLicense, password);
-        setManageUsersScene();
+        if (easyDriv.getActualState() == SystemState.EDIT_USER || easyDriv.getActualState() == SystemState.MANAGE_PROFILE) {
+            if (!validate(email, name, phoneNumber, drivingLicense, password, passwordConfirmation)) return;
+
+            easyDriv.editUser(email, name, phoneNumber, drivingLicense, password);
+
+            switch (easyDriv.getActualState()) {
+                case MENU -> {
+                    if(easyDriv.getUser().isAdmin()) {
+                        setAdminScene();
+                    } else {
+                        setUserScene();
+                    }
+                }
+                case MANAGE_USERS -> setManageUsersScene();
+            }
+        }
+        return;
     }
 
-    private boolean validate(String email, String name, String phoneNumber, String drivingLicense, String password)
+    private boolean validate(String email, String name, String phoneNumber, String drivingLicense, String password, String confirmationPassword)
     {
         if(!Validator.emailValidation(email))
         {
@@ -218,6 +240,13 @@ public class ScenesControllers
                     "Password must contain at least a number, a capital case, a lower case and a special character");
             return false;
         }
+        if(!password.equals(confirmationPassword)) {
+            alertDialog("Password Error",
+                    "Error on password",
+                    "Password and password confirmation need to be equal.");
+            return false;
+        }
+
         return true;
     }
 
@@ -269,10 +298,10 @@ public class ScenesControllers
         stage.setScene(editVehicleScene);
     }
 
-    public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password)
+    public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password, String confirmationPassword)
     {
         if(easyDriv.getActualState() != SystemState.ADD_USER) return;
-        if (!validate(email, name, phoneNumber, drivingLicense, password)) return;
+        if (!validate(email, name, phoneNumber, drivingLicense, password, confirmationPassword)) return;
         easyDriv.addUser(name, email, phoneNumber, drivingLicense, password);
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
             setManageUsersScene();
@@ -338,5 +367,13 @@ public class ScenesControllers
     {
         manageBookingsController.updateTableBookings();
         stage.setScene(manageBookingsScene);
+    }
+
+    public void setManageProfileScene() {
+        if (easyDriv.getActualState() != SystemState.MENU) return;
+        easyDriv.editUser();
+        if(easyDriv.getActualState() != SystemState.MANAGE_PROFILE) return;
+        manageProfileController.prepare(easyDriv.getUser());
+        stage.setScene(manageProfileScene);
     }
 }
