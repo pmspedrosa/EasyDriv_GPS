@@ -222,7 +222,7 @@ public class ScenesControllers
         {
             alertDialog("Incorrect phone number format",
                     "Please introduce a valid phone number",
-                    "Phone number must contain 9 digits");
+                    "Phone number must contain 9 digits and start with 91/92/93 or 96");
             return false;
         }
 
