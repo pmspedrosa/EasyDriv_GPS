@@ -355,7 +355,7 @@ public class ScenesControllers
         if (!Validator.registerPlatevalidation(registrationPlate)){
             alertDialog("Incorect registration plate format",
                     "Please introduce a valid registration plate",
-                    "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA"); //TODO <--- completar frase e testar validator
+                    "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA");
             return;
         }
         easyDriv.editVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);
