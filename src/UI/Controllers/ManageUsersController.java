@@ -1,22 +1,17 @@
 package UI.Controllers;
 
-import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.Models.UserTableView;
 import UI.ScenesControllers;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -58,15 +53,18 @@ public class ManageUsersController
     {
         tvUsers.getItems().clear();
 
+        var usersWithoutMe = easyDriv.listUsers();
+        usersWithoutMe.removeIf(user -> user.getEmail().equals(easyDriv.getUser().getEmail()));
+
         var users = new ArrayList<UserTableView>();
-        for (var user : easyDriv.listUsers())
+        for (var user : usersWithoutMe)
             users.add(new UserTableView(scenesControllers, user, new ImageView(edit), new ImageView(remove)));
 
         tvUsers.setItems(FXCollections.observableList(users));
     }
 
     @FXML
-    public void OnAddUser(MouseEvent mouseEvent) {
+    public void OnAddUser() {
         easyDriv.addUser();
         if (easyDriv.getActualState() == SystemState.ADD_USER)
             scenesControllers.addUser();
@@ -74,7 +72,7 @@ public class ManageUsersController
 
 
     @FXML
-    public void OnCancel(MouseEvent mouseEvent)
+    public void OnCancel()
     {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MENU)

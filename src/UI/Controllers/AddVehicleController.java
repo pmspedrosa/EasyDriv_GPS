@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AddVehicleController
 {
@@ -67,14 +68,24 @@ public class AddVehicleController
     }
 
     @FXML
-    public void OnCancel(MouseEvent mouseEvent)
+    public void OnCancel()
     {
         easyDriv.cancel();
-        if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
+        if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
             scenesControllers.setManageVehiclesScene();
     }
 
     public void clear()
     {
+        tfRegistrationPlate.setText("");
+        if(cbMake.getValue() != null) {
+            cbMake.getSelectionModel().clearSelection();
+        }
+        if(cbModel.getValue() != null) {
+            cbModel.getSelectionModel().clearSelection();
+        }
+
+        cbNumberOfSeats.getSelectionModel().clearSelection();
+        cbFuelType.getSelectionModel().clearSelection();
     }
 }

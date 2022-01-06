@@ -79,7 +79,8 @@ public class EditVehicleController
         tfRegistrationPlate.setText(vehicle.getRegisterPlate());
         cbMake.getSelectionModel().select(vehicle.getMake());
         cbModel.getSelectionModel().select(vehicle.getModel());
-        cbNumberOfSeats.getSelectionModel().select(vehicle.getNumOfSeats());
+        cbNumberOfSeats.getSelectionModel().select(new Integer(vehicle.getNumOfSeats()));
         cbFuelType.getSelectionModel().select(vehicle.getFuelType());
+        cbModel.setItems(FXCollections.observableList(Arrays.stream(Validator.vehicleList.get(cbMake.getValue())).toList()));
     }
 }

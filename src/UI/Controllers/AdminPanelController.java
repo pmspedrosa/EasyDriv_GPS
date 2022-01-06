@@ -54,4 +54,9 @@ public class AdminPanelController
     private FXMLLoader loaderFXML(String fxml) {
         return new FXMLLoader(StartUI.class.getResource("Resources/" + fxml + ".fxml"));
     }
+
+    public void OnEditProfile(MouseEvent mouseEvent) {
+        if (easyDriv.getActualState() == SystemState.MENU)
+            scenesControllers.setManageProfileScene();
+    }
 }

@@ -31,6 +31,11 @@ public class UserPanelController
     {
         easyDriv.logout();
         if (easyDriv.getActualState() == SystemState.LOGIN)
-            stage.setScene(loginScene);
+            scenesControllers.setLoginStage();
+    }
+
+    public void OnManageProfile(MouseEvent mouseEvent) {
+        if (easyDriv.getActualState() == SystemState.MENU)
+            scenesControllers.setManageProfileScene();
     }
 }

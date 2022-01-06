@@ -54,10 +54,6 @@ public class UserManager {
 			return false;
 		}
 
-		if(emailAlreadyRegistered(email)) {
-			return false;
-		}
-
 		for (User u:users) {
 			if(u.getEmail().equals(email)) {
 				u.setName(name);

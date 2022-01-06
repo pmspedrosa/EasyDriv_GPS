@@ -56,7 +56,6 @@ public class EasyDriv {
 
 	public void editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
 		setState(state.editUser(email, name, phoneNumber, drivingLicense, password));
-
 	}
 
 	public void manageBookings() {

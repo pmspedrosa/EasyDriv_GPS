@@ -6,14 +6,15 @@
 <?import javafx.scene.text.Text?>
 
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AddUserController">
    <children>
       <TextField fx:id="tfEmail" layoutX="122.0" layoutY="39.0" AnchorPane.topAnchor="39.0" />
       <TextField fx:id="tfName" layoutX="122.0" layoutY="78.0" />
       <TextField fx:id="tfPhoneNumber" layoutX="122.0" layoutY="111.0" />
       <TextField fx:id="tfDrivingLicense" layoutX="122.0" layoutY="147.0" prefHeight="24.0" prefWidth="170.0" />
-      <TextField fx:id="tfPassword" layoutX="122.0" layoutY="194.0" />
-      <TextField fx:id="tfPasswordConfirmation" layoutX="122.0" layoutY="227.0" />
+      <PasswordField fx:id="tfPassword" layoutX="122.0" layoutY="194.0" />
+      <PasswordField fx:id="tfPasswordConfirmation" layoutX="122.0" layoutY="227.0" />
       <Text layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="58.3294677734375" />
       <Text layoutX="14.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="58.3294677734375" />
       <Text layoutX="10.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" wrappingWidth="111.92950248718262" />

@@ -1,26 +1,24 @@
 package UI.Controllers;
 
+import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-public class AddUserController
+public class ManageProfileController
 {
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
 
-    @FXML private TextField tfEmail;
-    @FXML private TextField tfName;
-    @FXML private TextField tfPhoneNumber;
-    @FXML private TextField tfDrivingLicense;
-    @FXML private TextField tfPassword;
-    @FXML private TextField tfPasswordConfirmation;
+    @FXML TextField tfEmail;
+    @FXML TextField tfName;
+    @FXML TextField tfPhoneNumber;
+    @FXML TextField tfDrivingLicense;
+    @FXML TextField tfPassword;
+    @FXML TextField tfPasswordConfirmation;
 
     public void set(ScenesControllers scenesControllers)
     {
@@ -39,24 +37,30 @@ public class AddUserController
         String password = tfPassword.getText();
         String confirmationPassword = tfPasswordConfirmation.getText();
 
-        scenesControllers.addUser(name, email, phoneNumber, drivingLicense, password, confirmationPassword);
+        scenesControllers.edit(email, name, phoneNumber, drivingLicense, password, confirmationPassword);
     }
 
     @FXML
     public void OnCancel(MouseEvent mouseEvent)
     {
         easyDriv.cancel();
-        if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
-            scenesControllers.setManageUsersScene();
+        if (easyDriv.getActualState() == SystemState.MENU) {
+            if(easyDriv.getUser().isAdmin()){
+                scenesControllers.setAdminScene();
+            } else {
+                scenesControllers.setUserScene();
+            }
+        }
     }
 
-    public void clear()
+    public void prepare(User user)
     {
-        tfEmail.setText("");
-        tfName.setText("");
-        tfPhoneNumber.setText("");
-        tfDrivingLicense.setText("");
-        tfPassword.setText("");
-        tfPasswordConfirmation.setText("");
+        tfEmail.setText(user.getEmail());
+        tfName.setText(user.getName());
+        tfPhoneNumber.setText(user.getPhoneNumber());
+        tfDrivingLicense.setText(user.getDrivingLicense());
+        tfPassword.setText(user.getPassword());
+        tfPasswordConfirmation.setText(user.getPassword());
     }
+
 }
