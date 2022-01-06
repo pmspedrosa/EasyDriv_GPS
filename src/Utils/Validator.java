@@ -1,6 +1,7 @@
 package Utils;
 
 import java.security.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -45,11 +46,7 @@ public class Validator {
         return drivingLicense.matches(pattern);
     }
 
-
-
     /**metodos de Validação Vehicle*/
-
-
 
     public static final HashMap<String,String[]> vehicleList = new HashMap<>(){{
         put("Aston Martin",new String[] {"DB9 Volante", "DBS Coupe", "DBS Volante", "Rapide", "V12 Vantage Coupe", "V8 Vantage Coupe", "V8 Vantage Roadster", "Virage",});
@@ -78,8 +75,6 @@ public class Validator {
         put("Volvo",new String[]{"C30","S60","V40","XC60","XC90",});
     }};
 
-
-    //TODO : acho que nao esta bom, testar este validator....
     public static boolean registerPlatevalidation(String rp) {
         String pattern = "^(([A-Z]{2}-\\d{2}-(\\d{2}|[A-Z]{2}))|(\\d{2}-(\\d{2}-[A-Z]{2}|[A-Z]{2}-\\d{2})))$";	//AA-00-00,00-AA-00,00-00-AA,AA-00-AA, com hífen a separar
         return rp.matches(pattern);
@@ -99,5 +94,40 @@ public class Validator {
         return calendar;
     }
 
+    public static final ArrayList<String> cities = new ArrayList<>() {
+        {
+            add("Abrantes"); add("Agualva-Cacém"); add("Águeda"); add("Albergaria-a-Velha"); add("Albufeira");
+            add("Alcácer do Sal"); add("Alcobaça"); add("Alfena"); add("Almada"); add("Almeirim");
+            add("Alverca do Ribatejo"); add("Amadora"); add("Amarante"); add("Amora"); add("Anadia");
+            add("Angra do Heroísmo"); add("Aveiro"); add("Barcelos"); add("Barreiro"); add("Beja"); add("Borba");
+            add("Braga"); add("Bragança"); add("Caldas da Rainha"); add("Câmara de Lobos"); add("Caniço");
+            add("Cantanhede"); add("Cartaxo"); add("Castelo Branco"); add("Chaves"); add("Coimbra");
+            add("Costa da Caparica"); add("Covilhã"); add("Elvas"); add("Entroncamento"); add("Ermesinde");
+            add("Esmoriz"); add("Espinho"); add("Esposende"); add("Estarreja"); add("Estremoz"); add("Évora");
+            add("Fafe"); add("Faro"); add("Fátima"); add("Felgueiras");add("Figueira da Foz"); add("Fiães");
+            add("Freamunde"); add("Funchal"); add("Gafanha da Nazaré"); add("Gandra"); add("Gondomar"); add("Gouveia");
+            add("Guarda"); add("Guimarães"); add("Horta"); add("Ílhavo"); add("Lagoa"); add("Lagos"); add("Lamego");
+            add("Leiria"); add("Lisboa"); add("Lixa"); add("Lordelo"); add("Loulé"); add("Loures"); add("Lourosa");
+            add("Macedo de Cavaleiros"); add("Machico"); add("Maia"); add("Mangualde"); add("Marco de Canaveses");
+            add("Marinha Grande"); add("Matosinhos"); add("Mealhada"); add("Mêda"); add("Miranda do Douro");
+            add("Mirandela"); add("Montemor-o-Novo"); add("Montijo"); add("Moura"); add("Odivelas"); add("Olhão");
+            add("Oliveira de Azeméis"); add("Oliveira do Bairro"); add("Oliveira do Hospital"); add("Ourém");
+            add("Ovar"); add("Paços de Ferreira"); add("Paredes"); add("Penafiel"); add("Peniche");
+            add("Peso da Régua"); add("Pinhel"); add("Pombal"); add("Ponta Delgada"); add("Ponte de Sor");
+            add("Portalegre"); add("Portimão"); add("Porto"); add("Póvoa de Santa Iria"); add("Póvoa de Varzim");
+            add("Praia da Vitória"); add("Quarteira"); add("Queluz"); add("Rebordosa"); add("Reguengos de Monsaraz");
+            add("Ribeira Grande"); add("Rio Maior"); add("Rio Tinto"); add("Sabugal"); add("Sacavém");
+            add("Samora Correia"); add("Santa Comba Dão"); add("Santa Cruz"); add("Santa Maria da Feira");
+            add("Santana"); add("Santarém"); add("Santiago do Cacém"); add("Santo Tirso"); add("São João da Madeira");
+            add("São Mamede de Infesta"); add("São Pedro do Sul"); add("Seia"); add("Seixal");add("Senhora da Hora");
+            add("Serpa"); add("Setúbal"); add("Silves"); add("Sines"); add("Tarouca"); add("Tavira"); add("Tomar");
+            add("Tondela"); add("Torres Novas"); add("Torres Vedras"); add("Trancoso"); add("Trofa"); add("Valbom");
+            add("Vale de Cambra"); add("Valença"); add("Valongo"); add("Valpaços"); add("Vendas Novas");
+            add("Viana do Castelo"); add("Vila Baleira"); add("Vila do Conde"); add("Vila Franca de Xira");
+            add("Vila Nova de Famalicão"); add("Vila Nova de Foz Côa"); add("Vila Nova de Gaia");
+            add("Vila Nova de Santo André"); add("Vila Real"); add("Vila Real de Santo António"); add("Viseu");
+            add("Vizela");
+        }
+    };
 
 }
