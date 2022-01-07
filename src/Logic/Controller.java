@@ -211,7 +211,7 @@ public class Controller {
 
 	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate) {
 		loadBookingManager();
-		
+
 			var allBookings = bookingManager.listBookings();
 
 			if (destination != null)
