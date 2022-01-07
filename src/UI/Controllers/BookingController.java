@@ -9,6 +9,7 @@ import UI.ScenesControllers;
 import Utils.Validator;
 import com.dlsc.gemsfx.TimePicker;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -73,16 +74,22 @@ public class BookingController
             nrSeats.add(i);
         cbNumSeats.setItems(FXCollections.observableList(nrSeats));
 
-        ArrayList<Integer> hours = new ArrayList<>();
-        for (int i = 0; i <= 24; i++)
-            hours.add(i);
+        ArrayList<String> hours = new ArrayList<>();
+        for (int i = 0; i <=9; i++)
+            hours.add("0" + i);
+        for (int i = 10; i <= 24; i++)
+            hours.add("" + i);
+
         cbStartH.setItems(FXCollections.observableList(hours));
         cbEndH.setItems(FXCollections.observableList(hours));
 
 
-        ArrayList<Integer> minutes = new ArrayList<>();
-        for (int i = 0; i <= 59; i++)
-            minutes.add(i);
+        ArrayList<String> minutes = new ArrayList<>();
+        for (int i = 0; i <=9; i++)
+            minutes.add("0" + i);
+        for (int i = 10; i <= 59; i++)
+            minutes.add(""+i);
+
         cbStartM.setItems(FXCollections.observableList(minutes));
         cbEndM.setItems(FXCollections.observableList(minutes));
 
@@ -120,16 +127,23 @@ public class BookingController
     @FXML
     public void OnRefresh()
     {
-        Integer startH = (Integer) cbStartH.getValue();
-        Integer startM = (Integer) cbStartM.getValue();
-        Integer endH = (Integer) cbEndH.getValue();
-        Integer endM = (Integer) cbEndM.getValue();
+        String startHstring = (String) cbStartH.getValue();
+        String startMstring = (String) cbStartM.getValue();
+        String endHstring = (String) cbEndH.getValue();
+        String endMstring = (String) cbEndM.getValue();
 
-        if (dpEndData.getValue() == null || dpStartData.getValue() == null || startH == null || startM == null || endH == null || endM == null)
+
+        if (dpEndData.getValue() == null || dpStartData.getValue() == null || startHstring == null || startMstring == null || endHstring == null || endMstring == null)
         {
             scenesControllers.pickerEmpty();
             return;
         }
+
+        Integer startH = Integer.parseInt(startHstring);
+        Integer startM = Integer.parseInt(startMstring);
+        Integer endH = Integer.parseInt(endHstring);
+        Integer endM = Integer.parseInt(endHstring);
+
         LocalDate startDate = dpStartData.getValue();
         LocalDate endDate = dpEndData.getValue();
 
@@ -147,5 +161,15 @@ public class BookingController
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MENU)
             scenesControllers.setUserScene();
+    }
+
+    public void OnStartH(ActionEvent actionEvent)
+    {
+        cbStartM.getSelectionModel().select(0);
+    }
+
+    public void OnEndH(ActionEvent actionEvent)
+    {
+        cbEndM.getSelectionModel().select(0);
     }
 }

@@ -39,12 +39,12 @@
       <Text layoutX="258.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Data" />
       <Text layoutX="258.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Data" />
       <Text layoutX="466.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
-      <ComboBox fx:id="cbStartH" layoutX="503.0" layoutY="20.0" prefHeight="24.0" prefWidth="67.0" />
+      <ComboBox fx:id="cbStartH" onAction="#OnStartH" layoutX="503.0" layoutY="20.0" prefHeight="24.0" prefWidth="67.0" />
       <Text layoutX="572.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="h" />
       <ComboBox fx:id="cbStartM" layoutX="580.0" layoutY="20.0" prefHeight="24.0" prefWidth="67.0" />
       <Text layoutX="647.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="m" />
       <Text layoutX="468.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
-      <ComboBox fx:id="cbEndH" layoutX="505.0" layoutY="56.0" prefHeight="24.0" prefWidth="67.0" />
+      <ComboBox fx:id="cbEndH" onAction="#OnEndH" layoutX="505.0" layoutY="56.0" prefHeight="24.0" prefWidth="67.0" />
       <Text layoutX="572.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="h" />
       <ComboBox fx:id="cbEndM" layoutX="580.0" layoutY="56.0" prefHeight="24.0" prefWidth="67.0" />
       <Text layoutX="647.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="m" />
