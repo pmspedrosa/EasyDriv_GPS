@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Logic.Data.Booking.Booking;
 import Logic.EasyDriv;
+import Logic.States.SystemState;
 import UI.Models.BookingTableView;
 import UI.Models.VehicleTableView;
 import UI.ScenesControllers;
@@ -135,5 +136,13 @@ public class BookingController
         Integer nrSeats = (Integer) cbNumSeats.getValue();
 
         scenesControllers.onRefreshBookings(startDateTime,endDateTime,destination,nrSeats);
+    }
+
+    @FXML
+    public void OnCancel()
+    {
+        easyDriv.cancel();
+        if (easyDriv.getActualState() == SystemState.MENU)
+            scenesControllers.setUserScene();
     }
 }

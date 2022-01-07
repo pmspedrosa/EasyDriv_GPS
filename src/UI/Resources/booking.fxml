@@ -23,7 +23,7 @@
             <TableColumn fx:id="tcBook" minWidth="0.0" prefWidth="51.2000732421875" text="Book" />
         </columns>
       </TableView>
-      <Button id="btnCancel" layoutX="305.0" layoutY="474.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="189.0" text="Cancel" AnchorPane.rightAnchor="305.4" />
+      <Button id="btnCancel" onMouseClicked="#OnCancel" layoutX="305.0" layoutY="474.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="189.0" text="Cancel" AnchorPane.rightAnchor="305.4" />
       <ImageView id="imgCancel" fitHeight="45.0" fitWidth="45.0" layoutX="319.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/logout.png" />
