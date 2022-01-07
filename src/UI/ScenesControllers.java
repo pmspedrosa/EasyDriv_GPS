@@ -6,7 +6,6 @@ import Logic.Data.Vehicle.Vehicle;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.Controllers.*;
-import UI.Resources.Constants;
 import Utils.Validator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,24 +22,9 @@ import static UI.Resources.Constants.ADD_USER_WINDOW_HEIGHT;
 
 public class ScenesControllers
 {
-    private FXMLLoader loader;
 
-    private EasyDriv easyDriv;
-    private Stage stage;
-
-    private Parent loginRoot;
-    private Parent adminPanelRoot;
-    private Parent manageUsersRoot;
-    private Parent addUserRoot;
-    private Parent userPanelRoot;
-    private Parent editUserRoot;
-    private Parent addVehicleRoot;
-    private Parent manageVehiclesRoot;
-    private Parent editVehicleRoot;
-    private Parent manageBookingsRoot;
-    private Parent manageProfileRoot;
-    private Parent bookingRoot;
-    private Parent deliverRoot;
+    private final EasyDriv easyDriv;
+    private final Stage stage;
 
     private LoginController loginController;
     private AdminPanelController adminPanelController;
@@ -50,11 +34,13 @@ public class ScenesControllers
     private EditUserController editUserController;
     private AddVehicleController addVehicleController;
     private ManageVehiclesController manageVehiclesController;
+    private EditBookingController editBookingController;
     private EditVehicleController editVehicleController;
     private ManageBookingsController manageBookingsController;
     private ManageProfileController manageProfileController;
     private BookingController bookingController;
     private DeliverController deliverController;
+    private MaintenanceController maintenanceController;
 
     private Scene loginScene;
     private Scene adminScene;
@@ -66,9 +52,11 @@ public class ScenesControllers
     private Scene manageVehiclesScene;
     private Scene editVehicleScene;
     private Scene manageBookingsScene;
+    private Scene editBookingScene;
     private Scene manageProfileScene;
     private Scene bookingScene;
     private Scene deliverScene;
+    private Scene maintenanceScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -77,70 +65,80 @@ public class ScenesControllers
 
         try
         {
-            loader = loaderFXML("login");
-            loginRoot = loader.load();
+            FXMLLoader loader = loaderFXML("login");
+            Parent loginRoot = loader.load();
             loginController = loader.getController();
             loginScene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageUsers/addUser");
-            addUserRoot = loader.load();
+            Parent addUserRoot = loader.load();
             addUserController = loader.getController();
             addUserScene = new Scene(addUserRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageVehicles/addVehicle");
-            addVehicleRoot = loader.load();
+            Parent addVehicleRoot = loader.load();
             addVehicleController = loader.getController();
             addVehicleScene = new Scene(addVehicleRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageVehicles/manageVehiclesPanel");
-            manageVehiclesRoot = loader.load();
+            Parent manageVehiclesRoot = loader.load();
             manageVehiclesController = loader.getController();
-            manageVehiclesScene = new Scene(manageVehiclesRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+            manageVehiclesScene = new Scene(manageVehiclesRoot, MANAGE_VEHICLES_WINDOW_WIDTH, WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageUsers/editUser");
-            editUserRoot = loader.load();
+            Parent editUserRoot = loader.load();
             editUserController = loader.getController();
             editUserScene = new Scene(editUserRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
             loader = loaderFXML("adminPanel");
-            adminPanelRoot = loader.load();
+            Parent adminPanelRoot = loader.load();
             adminPanelController = loader.getController();
             adminScene = new Scene(adminPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
 
             loader = loaderFXML("userPanel");
-            userPanelRoot = loader.load();
+            Parent userPanelRoot = loader.load();
             userPanelController = loader.getController();
             userScene = new Scene(userPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageUsers/manageUsersPanel");
-            manageUsersRoot = loader.load();
+            Parent manageUsersRoot = loader.load();
             manageUsersController = loader.getController();
-            manageUsersScene = new Scene(manageUsersRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
+            manageUsersScene = new Scene(manageUsersRoot, MANAGE_USERS_WINDOW_WIDTH, WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageVehicles/editVehicle");
-            editVehicleRoot = loader.load();
+            Parent editVehicleRoot = loader.load();
             editVehicleController = loader.getController();
             editVehicleScene = new Scene(editVehicleRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageBookings/manageBookingsAdmin");
-            manageBookingsRoot = loader.load();
+            Parent manageBookingsRoot = loader.load();
             manageBookingsController = loader.getController();
             manageBookingsScene = new Scene(manageBookingsRoot,MANAGE_BOOKINGS_WINDOW_WIDTH,MANAGE_BOOKINGS_WINDOW_HEIGHT );
 
+            loader = loaderFXML("ManageBookings/editBooking");
+            Parent editBookingRoot = loader.load();
+            editBookingController = loader.getController();
+            editBookingScene = new Scene(editBookingRoot, EDIT_BOOKING_WINDOW_WIDTH, EDIT_BOOKING_WINDOW_HEIGHT);
+
             loader = loaderFXML("manageProfile");
-            manageProfileRoot = loader.load();
+            Parent manageProfileRoot = loader.load();
             manageProfileController = loader.getController();
             manageProfileScene = new Scene(manageProfileRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
             loader = loaderFXML("booking");
-            bookingRoot = loader.load();
+            Parent bookingRoot = loader.load();
             bookingController = loader.getController();
             bookingScene = new Scene(bookingRoot, BOOKINGS_WINDOW_WIDTH, BOOKINGS_WINDOW_HEIGHT);
 
             loader = loaderFXML("deliver");
-            deliverRoot = loader.load();
+            Parent deliverRoot = loader.load();
             deliverController = loader.getController();
             deliverScene = new Scene(deliverRoot, DELIVER_WINDOW_WIDTH, DELIVER_WINDOW_HEIGHT);
+
+            loader = loaderFXML("maintenance");
+            Parent maintenanceRoot = loader.load();
+            maintenanceController = loader.getController();
+            maintenanceScene = new Scene(maintenanceRoot, MAINTENANCE_WINDOW_WIDTH, MAINTENANCE_WINDOW_HEIGHT);
 
         } catch (IOException e)
         {
@@ -157,9 +155,11 @@ public class ScenesControllers
         manageVehiclesController.set(this);
         editVehicleController.set(this);
         manageBookingsController.set(this);
+        editBookingController.set(this);
         manageProfileController.set(this);
         bookingController.set(this);
         deliverController.set(this);
+        maintenanceController.set(this);
     }
 
     private FXMLLoader loaderFXML(String fxml) {
@@ -216,7 +216,6 @@ public class ScenesControllers
                 case MANAGE_USERS -> setManageUsersScene();
             }
         }
-        return;
     }
 
     private boolean validate(String email, String name, String phoneNumber, String drivingLicense, String password, String confirmationPassword)
@@ -403,7 +402,7 @@ public class ScenesControllers
 
     public void setManageBookingsScene()
     {
-        manageBookingsController.updateTableBookings();
+        manageBookingsController.updateLastList();
         stage.setScene(manageBookingsScene);
     }
 
@@ -467,4 +466,41 @@ public class ScenesControllers
                 "Complete all fields to continue");
     }
 
+    public void remove(Booking booking) {
+        easyDriv.remove(booking.getStartDatatime(),booking.getVehicle().getRegisterPlate());
+        manageBookingsController.listAllBookings();
+    }
+
+    public void edit(Booking booking) {
+        if (easyDriv.getActualState() != SystemState.MANAGE_BOOKINGS) return;
+        easyDriv.editBooking();
+        editBookingController.prepare(booking);
+        stage.setScene(editBookingScene);
+    }
+
+    public void editBookingAndRefresh(Booking booking) {
+        easyDriv.editBooking(booking);
+        manageBookingsController.updateLastList();
+        stage.setScene(manageBookingsScene);
+    }
+
+    public void fillMaintenenceBeforeDeliver(Booking booking) {
+        if(easyDriv.getActualState() != SystemState.DELIVER) {
+            return;
+        }
+        maintenanceController.setBooking(booking);
+        stage.setScene(maintenanceScene);
+    }
+
+    public void deliver(Booking booking) {
+        if(easyDriv.getActualState() != SystemState.DELIVER) {
+            return;
+        }
+        easyDriv.deliver(booking);
+
+        if(easyDriv.getActualState() != SystemState.MENU) {
+            return;
+        }
+        stage.setScene(userScene);
+    }
 }

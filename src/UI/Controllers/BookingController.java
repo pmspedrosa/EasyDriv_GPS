@@ -142,7 +142,7 @@ public class BookingController
         Integer startH = Integer.parseInt(startHstring);
         Integer startM = Integer.parseInt(startMstring);
         Integer endH = Integer.parseInt(endHstring);
-        Integer endM = Integer.parseInt(endHstring);
+        Integer endM = Integer.parseInt(endMstring);
 
         LocalDate startDate = dpStartData.getValue();
         LocalDate endDate = dpEndData.getValue();

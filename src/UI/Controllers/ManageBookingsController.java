@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Logic.Data.Booking.Booking;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.Models.AdminBookingTableView;
@@ -23,6 +24,9 @@ public class ManageBookingsController
     private ScenesControllers scenesControllers;
     private Image edit, remove, refresh;
     private boolean first = true;
+    private boolean lastListAllList = true;
+
+    private ArrayList<AdminBookingTableView> lastList;
 
     @FXML private ComboBox cbUser;
     @FXML private ComboBox cbDestination;
@@ -63,11 +67,12 @@ public class ManageBookingsController
         cbRegPlate.setItems(FXCollections.observableList(vehiclesRegPlates));
 
         configTableBookings();
+        listAllBookings();
     }
 
     private void configTableBookings() {
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tcDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
         tcRegPlate.setCellValueFactory(new PropertyValueFactory<>("regPlate"));
         tcStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         tcEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
@@ -82,23 +87,20 @@ public class ManageBookingsController
 
     public void updateTableBookings() {
         tvBookings.getItems().clear();
-        var bookings = new ArrayList<AdminBookingTableView>();
 
         if(easyDriv.getListOfSearchedBookings() == null) {
             if(first) {
                 first = false;
-                for (var booking : easyDriv.listBooking())
-                    bookings.add(new AdminBookingTableView(scenesControllers, booking, new ImageView(edit), new ImageView(remove)));
-
+                listAllBookings();
             }
-            tvBookings.setItems(FXCollections.observableList(bookings));
             return;
         }
-
+        lastListAllList = false;
+        lastList = new ArrayList<AdminBookingTableView>();
         for (var booking : easyDriv.getListOfSearchedBookings())
-            bookings.add(new AdminBookingTableView(scenesControllers, booking, new ImageView(edit), new ImageView(remove)));
+            lastList.add(new AdminBookingTableView(scenesControllers, booking, new ImageView(edit), new ImageView(remove)));
 
-        tvBookings.setItems(FXCollections.observableList(bookings));
+        tvBookings.setItems(FXCollections.observableList(lastList));
     }
 
     public void OnCancel() {
@@ -132,6 +134,16 @@ public class ManageBookingsController
 
     public void OnListAllBookings() {
         clear();
+        listAllBookings();
+    }
+
+    public void listAllBookings(){
+        lastListAllList = true;
+        lastList = new ArrayList<AdminBookingTableView>();
+        for (var booking : easyDriv.listBooking())
+            lastList.add(new AdminBookingTableView(scenesControllers, booking, new ImageView(edit), new ImageView(remove)));
+
+        tvBookings.setItems(FXCollections.observableList(lastList));
     }
 
     public void clear() {
@@ -146,6 +158,16 @@ public class ManageBookingsController
         if(cbRegPlate.getValue() != null) {
             cbRegPlate.getSelectionModel().clearSelection();
         }
+
+        dpStartData.getEditor().clear();
+        dpEndData.getEditor().clear();
     }
 
+    public void updateLastList(){
+        if(lastListAllList) {
+            listAllBookings();
+        } else {
+            updateTableBookings();
+        }
+    }
 }

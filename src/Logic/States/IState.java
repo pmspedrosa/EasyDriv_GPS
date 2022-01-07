@@ -60,4 +60,8 @@ public interface IState {
 	IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell);
 
 	Controller getController();
+
+	IState editBooking();
+
+	IState editBooking(Booking booking);
 }

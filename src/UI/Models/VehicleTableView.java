@@ -39,7 +39,6 @@ public class VehicleTableView
 
         btnEdit.setOnMouseClicked(e -> {
             scenesControllers.edit(vehicle);
-
         });
 
         btnRemove.setOnMouseClicked(e -> {

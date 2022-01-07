@@ -145,13 +145,9 @@ public class BookingManager {
 		return false;
 	}
 
-	public boolean removeBooking(Timestamp startDatatime, String email) {
-		return bookings.removeIf(b -> {
-			if (b.getStartDatatime().equals(startDatatime)) {
-				b.getUserFromBooking(email);
-			}
-			return false;
-		});
+	public boolean removeBooking(Timestamp startDatatime, String regPlate) {
+		return bookings.removeIf(b ->
+			b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(regPlate));
 	}
 
 	public boolean removeBooking(String email) {
@@ -314,5 +310,22 @@ public class BookingManager {
 		return destinationFilteredBookings;
 	}
 
+    public void editBooking(Booking booking) {
+		for(int i=0; i<bookings.size(); i++){
+			var b = bookings.get(i);
 
+			var regPlate = b.getVehicle().getRegisterPlate();
+			var newRegPlate = booking.getVehicle().getRegisterPlate();
+
+			var destination = b.getDestination();
+			var newDestination = booking.getDestination();
+
+			var newUsers = booking.getUsers();
+
+			if(regPlate.equals(newRegPlate) && destination.equals(newDestination) && b.sameUsers(newUsers)) {
+				bookings.set(i, booking);
+				return;
+			}
+		}
+    }
 }

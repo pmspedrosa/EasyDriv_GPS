@@ -186,4 +186,10 @@ public class EasyDriv {
 	public boolean nameAlreadyExists(String name) {
 		return controller.nameAlreadyExists(name);
 	}
+
+	public void editBooking() {
+		setState(state.editBooking());
+	}
+
+	public void editBooking(Booking booking) { setState(state.editBooking(booking)); }
 }

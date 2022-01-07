@@ -90,9 +90,9 @@ public class Controller {
 		return result;
 	}
 
-	public boolean removeBooking(Timestamp startDatatime, String email) {
+	public boolean removeBooking(Timestamp startDatatime, String regPlate) {
 		loadBookingManager();
-		boolean result = bookingManager.removeBooking(startDatatime, email);
+		boolean result = bookingManager.removeBooking(startDatatime, regPlate);
 		saveBookingManager();
 		return result;
 	}
@@ -266,5 +266,11 @@ public class Controller {
 
 	public boolean nameAlreadyExists(String name) {
 		return userManager.nameAlreadyExists(name);
+	}
+
+	public void editBooking(Booking booking) {
+		loadBookingManager();
+		bookingManager.editBooking(booking);
+		saveBookingManager();
 	}
 }

@@ -63,5 +63,9 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) { return this; }
 	@Override
+	public IState editBooking(){ return this; }
+	@Override
+	public IState editBooking(Booking booking){ return this; }
+	@Override
 	public Controller getController() { return controller; }
 }

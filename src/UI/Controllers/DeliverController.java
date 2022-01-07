@@ -52,12 +52,13 @@ public class DeliverController
 
     }
 
-    public void updateTableBookings()
-    {
+    public void updateTableBookings() {
         tvBookings.getItems().clear();
+        var myBookings = easyDriv.listBooking();
+        myBookings.removeIf(b -> !b.getOwner().getEmail().equals(easyDriv.getUser().getEmail()));
 
         var bookings = new ArrayList<DeliverBookingTableView>();
-        for (var booking : easyDriv.listBooking())
+        for (var booking : myBookings)
             bookings.add(new DeliverBookingTableView(scenesControllers, booking, new ImageView(deliver)));
 
         tvBookings.setItems(FXCollections.observableList(bookings));

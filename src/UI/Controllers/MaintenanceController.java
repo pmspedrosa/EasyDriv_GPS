@@ -1,24 +1,29 @@
 package UI.Controllers;
 
+import Logic.Data.Booking.Booking;
+import Logic.Data.Maintenance.Maintenance;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 
 public class MaintenanceController {
 
-    @FXML private TextField tfOther;
-    @FXML private CheckBox cbOperational;
-    @FXML private CheckBox cbNotOperational;
+    @FXML private TextArea taOther;
+    @FXML private RadioButton rbOperational;
+    @FXML private RadioButton rbInoperational;
     @FXML private CheckBox cbTireLowPressure;
     @FXML private CheckBox cbLightsOnBoard;
     @FXML private CheckBox cbAccdentHappened;
     @FXML private CheckBox cbNeedCleaning;
     @FXML private CheckBox cbOther;
     @FXML private CheckBox cbAllWentWell;
+
+    private Booking booking;
 
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
@@ -28,54 +33,65 @@ public class MaintenanceController {
         this.scenesControllers = scenesControllers;
         this.easyDriv = scenesControllers.getEasyDriv();
 
-        cbOperational.setSelected(true);
-        tfOther.setDisable(true);
+        rbOperational.setSelected(true);
+        taOther.setDisable(true);
         cbAllWentWell.setSelected(true);
     }
 
 
     @FXML
-    private void OperationalAction()
+    private void OnOperationalAction()
     {
-        if(cbOperational.isSelected()) {
-            cbNotOperational.setSelected(false);
+        /*if(rbOperational.isSelected()) {
+            rbNotOperational.setSelected(false);
             cbAllWentWell.setSelected(true);
         } else
-            cbNotOperational.setSelected(true);
-        if(cbNotOperational.isSelected()) {
-            cbOperational.setSelected(false);
+            rbNotOperational.setSelected(true);
+        if(rbNotOperational.isSelected()) {
+            rbOperational.setSelected(false);
             cbAllWentWell.setSelected(false);
         } else
-            cbOperational.setSelected(true);
+            rbOperational.setSelected(true);*/
+
+        rbInoperational.setSelected(false);
+    }
+
+    @FXML
+    private void OnInoperationalAction(){
+        rbOperational.setSelected(false);
+        cbAllWentWell.setSelected(false);
+        cbAllWentWell.setDisable(true);
     }
 
     @FXML
     private void otherAction()
-    {
-        if(cbOther.isSelected())
-            tfOther.setDisable(false);
-        tfOther.setDisable(true);
+    {   taOther.setText("");
+        taOther.setDisable(!cbOther.isSelected());
+      /*  if(cbOther.isSelected())
+            taOther.setDisable(false);
+        taOther.setDisable(true);*/
     }
 
     @FXML
-    public void OnOk(MouseEvent mouseEvent) {
+    public void OnSave(MouseEvent mouseEvent) {
+        boolean operational = rbOperational.isSelected();
+        boolean lowPressureTires = cbTireLowPressure.isSelected();
+        boolean lightsOnBoard = cbLightsOnBoard.isSelected();
+        boolean accident = cbAccdentHappened.isSelected();
+        boolean cleaning = cbNeedCleaning.isSelected();
+        String other = taOther.getText();
+        boolean allWentWell = cbAllWentWell.isSelected();
 
-        //email -> idk se é necessário
+        if(other == null)
+            other = new String("");
 
-        Boolean operational;
-        if (cbOperational.isSelected()){
-            operational = true;
-        }else{
-            operational = false;
-        }
-        Boolean lowPressureTires = cbTireLowPressure.isSelected();
-        Boolean lightsOnBoard = cbLightsOnBoard.isSelected();
-        Boolean accident = cbAccdentHappened.isSelected();
-        Boolean cleaning = cbNeedCleaning.isSelected();
-        String other = tfOther.getText();
-        Boolean allWentWell = cbAllWentWell.isSelected();
+        var vehicle = booking.getVehicle();
 
-        //scenesControllers.editMaintenance(email, operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell);
+        var maintenance = new Maintenance(operational,lowPressureTires,lightsOnBoard, accident, cleaning, other, allWentWell);
+        vehicle.setMaintenance(maintenance);
+        booking.setVehicle(vehicle);
+
+        scenesControllers.deliver(booking);
     }
 
     @FXML
@@ -84,5 +100,9 @@ public class MaintenanceController {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.DELIVER)
             scenesControllers.setUserScene();
+    }
+
+    public void setBooking(Booking booking){
+        this.booking = booking;
     }
 }

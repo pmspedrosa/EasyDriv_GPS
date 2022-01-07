@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AdminBookingTableView
 {
     private String name;
-    private String email;
+    private String destination;
     private String regPlate;
     private String startDate;
     private String endDate;
@@ -36,7 +36,7 @@ public class AdminBookingTableView
         else return;
 
         this.name = user.getName();
-        this.email = user.getEmail();
+        this.destination = booking.getDestination();
         this.regPlate = vehicle.getRegisterPlate();
         this.startDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getStartDatatime());
         this.endDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getEndDatatime());
@@ -52,6 +52,14 @@ public class AdminBookingTableView
 
         btnEdit = new Button("", imgEdit);
         btnRemove = new Button("", imgRemove);
+
+        btnRemove.setOnAction(e -> {
+            scenesControllers.remove(booking);
+        });
+
+        btnEdit.setOnAction(e -> {
+            scenesControllers.edit(booking);
+        });
     }
 
     public String getName()
@@ -59,9 +67,9 @@ public class AdminBookingTableView
         return name;
     }
 
-    public String getEmail()
+    public String getDestination()
     {
-        return email;
+        return destination;
     }
 
     public String getRegPlate()

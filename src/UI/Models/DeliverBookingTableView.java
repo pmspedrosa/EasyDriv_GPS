@@ -35,7 +35,7 @@ public class DeliverBookingTableView
 
         btnDeliver = new Button("", imgDeliver);
         btnDeliver.setOnMouseClicked(e -> {
-            scenesControllers.book(booking);
+            scenesControllers.fillMaintenenceBeforeDeliver(booking);
         });
     }
 
