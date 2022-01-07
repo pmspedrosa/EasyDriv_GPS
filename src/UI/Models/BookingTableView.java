@@ -10,7 +10,8 @@ public class BookingTableView
     private String make;
     private String model;
     private String regPlate;
-    private String date;
+    private String startDate;
+    private String deliverDate;
     private ImageView shared;
     private Button btnBook;
 
@@ -25,7 +26,8 @@ public class BookingTableView
         this.make = booking.getVehicle().getMake();
         this.model = booking.getVehicle().getModel();
         this.regPlate = booking.getVehicle().getRegisterPlate();
-        this.date = booking.getStartDatatime().toString();
+        this.startDate = booking.getStartDatatime().toString();
+        this.deliverDate = booking.getEndDatatime().toString();
 
         imgShared.setFitHeight(20);
         imgShared.setFitWidth(20);
@@ -56,10 +58,9 @@ public class BookingTableView
         return regPlate;
     }
 
-    public String getDate()
-    {
-        return date;
-    }
+    public String getStartDate() { return startDate; }
+
+    public String getDeliverDate() { return deliverDate; }
 
     public ImageView getShared()
     {

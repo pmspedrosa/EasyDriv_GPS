@@ -422,6 +422,11 @@ public class ScenesControllers
         bookingController.updateTableBookings();
     }
 
+    public void onRefreshBookings(Timestamp startTime, Timestamp endTime, String destination, String user, String regPlate){
+        easyDriv.search(startTime, endTime, destination, user, regPlate);
+        manageBookingsController.updateTableBookings();
+    }
+
     public void pickerEmpty()
     {
         alertDialog("Uncompleted fields",

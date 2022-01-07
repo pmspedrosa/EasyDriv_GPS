@@ -18,12 +18,12 @@
           <TableColumn fx:id="tcModel" prefWidth="119.199951171875" text="Model" />
             <TableColumn fx:id="tcRegistrationPlate" prefWidth="145.60003662109375" text="Registration Plate" />
             <TableColumn fx:id="tcDate" minWidth="0.0" prefWidth="195.199951171875" text="Start Date" />
-            <TableColumn id="tcDeliverDate" prefWidth="123.20001220703125" text="Deliver Date" />
+            <TableColumn fx:id="tcDeliverDate" prefWidth="123.20001220703125" text="Deliver Date" />
             <TableColumn fx:id="tcShare" minWidth="0.0" prefWidth="62.39996337890625" text="Shared" />
             <TableColumn fx:id="tcBook" minWidth="0.0" prefWidth="51.2000732421875" text="Book" />
         </columns>
       </TableView>
-      <Button id="btnCancel" layoutX="305.0" layoutY="474.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="189.0" text="Cancel" AnchorPane.rightAnchor="305.4" />
+      <Button id="btnCancel" onMouseClicked="#OnCancel" layoutX="305.0" layoutY="474.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="189.0" text="Cancel" AnchorPane.rightAnchor="305.4" />
       <ImageView id="imgCancel" fitHeight="45.0" fitWidth="45.0" layoutX="319.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/logout.png" />

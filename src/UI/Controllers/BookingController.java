@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Logic.Data.Booking.Booking;
 import Logic.EasyDriv;
+import Logic.States.SystemState;
 import UI.Models.BookingTableView;
 import UI.Models.VehicleTableView;
 import UI.ScenesControllers;
@@ -38,6 +39,8 @@ public class BookingController
     private TableColumn<BookingTableView, String> tcRegistrationPlate;
     @FXML
     private TableColumn<BookingTableView, String> tcDate;
+    @FXML
+    private TableColumn<BookingTableView, String> tcDeliverDate;
     @FXML
     private TableColumn<BookingTableView, ImageView> tcShare;
     @FXML
@@ -93,7 +96,8 @@ public class BookingController
         tcMake.setCellValueFactory(new PropertyValueFactory<>("make"));
         tcModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         tcRegistrationPlate.setCellValueFactory(new PropertyValueFactory<>("regPlate"));
-        tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tcDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tcDeliverDate.setCellValueFactory(new PropertyValueFactory<>("deliverDate"));
         tcShare.setCellValueFactory(new PropertyValueFactory<>("shared"));
         tcBook.setCellValueFactory(new PropertyValueFactory<>("btnBook"));
 
@@ -135,5 +139,13 @@ public class BookingController
         Integer nrSeats = (Integer) cbNumSeats.getValue();
 
         scenesControllers.onRefreshBookings(startDateTime,endDateTime,destination,nrSeats);
+    }
+
+    @FXML
+    public void OnCancel()
+    {
+        easyDriv.cancel();
+        if (easyDriv.getActualState() == SystemState.MENU)
+            scenesControllers.setUserScene();
     }
 }

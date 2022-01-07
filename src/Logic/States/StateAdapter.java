@@ -29,6 +29,8 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats) { return this; }
 	@Override
+	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate) { return this; }
+	@Override
 	public IState booking(Booking booking) {	return this; }
 	@Override
 	public IState deliver() { return this; }

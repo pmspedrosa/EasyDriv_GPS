@@ -50,6 +50,10 @@ public class EasyDriv {
 		setState(state.search(startDatatime,endDatatime,destination, nrOfSeats));
 	}
 
+	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate) {
+		setState(state.search(startDatatime,endDatatime,destination, user, regPlate));
+	}
+
 	public ArrayList<Booking> getListOfSearchedBookings()
 	{
 		return controller.getListOfBookings();
@@ -77,17 +81,14 @@ public class EasyDriv {
 
 	public void manageVehicles() {
 		setState(state.manageVehicles());
-
 	}
 
 	public void addVehicle() {
 		setState(state.addVehicle());
-
 	}
 
 	public void addVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		setState(state.addVehicle(make, registerPlate, numOfSeats, fuelType, model, available));
-
 	}
 
 	public void editVehicle() {
@@ -96,7 +97,6 @@ public class EasyDriv {
 
 	public void editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
 		setState(state.editVehicle(make, registerPlate, numOfSeats, fuelType, model, available));
-
 	}
 
 	public void checkMaintenance() {

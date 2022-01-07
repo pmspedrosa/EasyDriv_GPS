@@ -21,13 +21,22 @@ public class UserManager {
 		if(!Validator.nameValidation(name) || !Validator.emailValidation(email) || !Validator.phoneNumberValidation(phoneNumber) || !Validator.drivingLicenseValidation(drivingLicense) || !Validator.passwordValidation(password)) {
 			return false;
 		}
-		if(emailAlreadyRegistered(email)) {
+		if(emailAlreadyRegistered(email) || nameAlreadyInUse(name)) {
 			return false;
 		}
 
 		users.add(new User(false, name, email, phoneNumber, drivingLicense, password));
 		Logger.getInstance().debug("User adicionado");
 		return true;
+	}
+
+	private boolean nameAlreadyInUse(String name) {
+		for (User u:users) {
+			if(u.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private boolean emailAlreadyRegistered(String email) {
