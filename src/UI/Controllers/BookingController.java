@@ -78,7 +78,7 @@ public class BookingController
 
 
         ArrayList<Integer> minutes = new ArrayList<>();
-        for (int i = 0; i <= 60; i++)
+        for (int i = 0; i <= 59; i++)
             minutes.add(i);
         cbStartM.setItems(FXCollections.observableList(minutes));
         cbEndM.setItems(FXCollections.observableList(minutes));

@@ -3,10 +3,7 @@ package UI.Controllers;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
-import UI.StartUI;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 
 public class AdminPanelController
 {
@@ -20,7 +17,7 @@ public class AdminPanelController
     }
 
     @FXML
-    public void OnManageUsers(MouseEvent mouseEvent) {
+    public void OnManageUsers() {
         easyDriv.manageUsers();
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
             scenesControllers.setManageUsersScene();
@@ -28,7 +25,7 @@ public class AdminPanelController
     }
 
     @FXML
-    public void OnManageVehicles(MouseEvent mouseEvent) {
+    public void OnManageVehicles() {
         easyDriv.manageVehicles();
         if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
             scenesControllers.setManageVehiclesScene();
@@ -36,7 +33,7 @@ public class AdminPanelController
     }
 
     @FXML
-    public void OnManageBookings(MouseEvent mouseEvent) {
+    public void OnManageBookings() {
         easyDriv.manageBookings();
         if (easyDriv.getActualState() == SystemState.MANAGE_BOOKINGS)
             scenesControllers.setManageBookingsScene();
@@ -44,18 +41,15 @@ public class AdminPanelController
     }
 
     @FXML
-    public void OnLogout(MouseEvent mouseEvent)
+    public void OnLogout()
     {
         easyDriv.logout();
         if (easyDriv.getActualState() == SystemState.LOGIN)
             scenesControllers.setLoginStage();
     }
 
-    private FXMLLoader loaderFXML(String fxml) {
-        return new FXMLLoader(StartUI.class.getResource("Resources/" + fxml + ".fxml"));
-    }
 
-    public void OnEditProfile(MouseEvent mouseEvent) {
+    public void OnEditProfile() {
         if (easyDriv.getActualState() == SystemState.MENU)
             scenesControllers.setManageProfileScene();
     }

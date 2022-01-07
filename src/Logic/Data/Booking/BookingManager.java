@@ -278,6 +278,10 @@ public class BookingManager {
 				nonAvailableVehicles.add(vehicle);
 				continue;
 			}
+			if(bookingStartTime.compareTo(startDatatime) == 0 || bookingEndTime.compareTo(endDatatime) == 0) {
+				nonAvailableVehicles.add(vehicle);
+				continue;
+			}
 			if (isBetweed(bookingStartTime, startDatatime, bookingEndTime))
 			{
 				nonAvailableVehicles.add(vehicle);

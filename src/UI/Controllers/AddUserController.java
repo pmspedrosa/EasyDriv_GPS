@@ -4,11 +4,8 @@ import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 public class AddUserController
 {
@@ -30,7 +27,7 @@ public class AddUserController
 
 
     @FXML
-    public void OnSave(MouseEvent mouseEvent)
+    public void OnSave()
     {
         String email = tfEmail.getText();
         String name = tfName.getText();
@@ -43,7 +40,7 @@ public class AddUserController
     }
 
     @FXML
-    public void OnCancel(MouseEvent mouseEvent)
+    public void OnCancel()
     {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
