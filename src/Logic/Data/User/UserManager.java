@@ -21,7 +21,7 @@ public class UserManager {
 		if(!Validator.nameValidation(name) || !Validator.emailValidation(email) || !Validator.phoneNumberValidation(phoneNumber) || !Validator.drivingLicenseValidation(drivingLicense) || !Validator.passwordValidation(password)) {
 			return false;
 		}
-		if(emailAlreadyRegistered(email) || nameAlreadyInUse(name)) {
+		if(emailAlreadyRegistered(email) || nameAlreadyExists(name)) {
 			return false;
 		}
 
@@ -30,7 +30,7 @@ public class UserManager {
 		return true;
 	}
 
-	private boolean nameAlreadyInUse(String name) {
+	public boolean nameAlreadyExists(String name) {
 		for (User u:users) {
 			if(u.getName().equals(name)) {
 				return true;
@@ -39,7 +39,7 @@ public class UserManager {
 		return false;
 	}
 
-	private boolean emailAlreadyRegistered(String email) {
+	public boolean emailAlreadyRegistered(String email) {
 		for (User u:users) {
 			if(u.getEmail().equals(email)) {
 				return true;
