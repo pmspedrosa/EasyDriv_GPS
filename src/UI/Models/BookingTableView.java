@@ -5,13 +5,15 @@ import UI.ScenesControllers;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
+import java.text.SimpleDateFormat;
+
 public class BookingTableView
 {
     private String make;
     private String model;
     private String regPlate;
     private String startDate;
-    private String deliverDate;
+    private String endDate;
     private ImageView shared;
     private Button btnBook;
 
@@ -26,8 +28,8 @@ public class BookingTableView
         this.make = booking.getVehicle().getMake();
         this.model = booking.getVehicle().getModel();
         this.regPlate = booking.getVehicle().getRegisterPlate();
-        this.startDate = booking.getStartDatatime().toString();
-        this.deliverDate = booking.getEndDatatime().toString();
+        this.startDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getStartDatatime());
+        this.endDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getEndDatatime());
 
         imgShared.setFitHeight(20);
         imgShared.setFitWidth(20);
@@ -60,7 +62,7 @@ public class BookingTableView
 
     public String getStartDate() { return startDate; }
 
-    public String getDeliverDate() { return deliverDate; }
+    public String getEndDate() { return endDate; }
 
     public ImageView getShared()
     {

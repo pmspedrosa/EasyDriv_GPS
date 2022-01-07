@@ -69,7 +69,8 @@ public class ManageBookingsController
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tcRegPlate.setCellValueFactory(new PropertyValueFactory<>("regPlate"));
-        tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tcStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tcEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         tcEdit.setCellValueFactory(new PropertyValueFactory<>("btnEdit"));
         tcRemove.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
 
@@ -128,4 +129,23 @@ public class ManageBookingsController
 
         scenesControllers.onRefreshBookings(startDateTime, endDateTime, destination, user, regPlate);
     }
+
+    public void OnListAllBookings() {
+        clear();
+    }
+
+    public void clear() {
+        if(cbUser.getValue() != null) {
+            cbUser.getSelectionModel().clearSelection();
+        }
+
+        if(cbDestination.getValue() != null) {
+            cbDestination.getSelectionModel().clearSelection();
+        }
+
+        if(cbRegPlate.getValue() != null) {
+            cbRegPlate.getSelectionModel().clearSelection();
+        }
+    }
+
 }

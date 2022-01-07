@@ -259,4 +259,12 @@ public class Controller {
 		loadBookingManager();
 		return bookingManager.listBookings();
 	}
+
+	public boolean emailAlreadyRegistered(String email) {
+		return userManager.emailAlreadyRegistered(email);
+	}
+
+	public boolean nameAlreadyExists(String name) {
+		return userManager.nameAlreadyExists(name);
+	}
 }

@@ -17,8 +17,8 @@
           <TableColumn fx:id="tcMake" maxWidth="600.0" prefWidth="104.0" text="Make" style="-fx-alignment: center;"/>
           <TableColumn fx:id="tcModel" prefWidth="119.199951171875" text="Model" style="-fx-alignment: center;"/>
             <TableColumn fx:id="tcRegistrationPlate" prefWidth="145.60003662109375" text="Registration Plate" style="-fx-alignment: center;"/>
-            <TableColumn fx:id="tcDate" minWidth="0.0" prefWidth="195.199951171875" text="Start Date" style="-fx-alignment: center;"/>
-            <TableColumn id="tcDeliverDate" prefWidth="123.20001220703125" text="Deliver Date" style="-fx-alignment: center;"/>
+            <TableColumn fx:id="tcStartDate" minWidth="0.0" prefWidth="195.199951171875" text="Start Date" style="-fx-alignment: center;"/>
+            <TableColumn fx:id="tcEndDate" prefWidth="123.20001220703125" text="End Date" style="-fx-alignment: center;"/>
             <TableColumn fx:id="tcShare" minWidth="0.0" prefWidth="62.39996337890625" text="Shared" style="-fx-alignment: center;"/>
             <TableColumn fx:id="tcBook" minWidth="0.0" prefWidth="51.2000732421875" text="Book" style="-fx-alignment: center;"/>
         </columns>

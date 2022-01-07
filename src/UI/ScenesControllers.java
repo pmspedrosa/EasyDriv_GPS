@@ -320,6 +320,21 @@ public class ScenesControllers
     {
         if(easyDriv.getActualState() != SystemState.ADD_USER) return;
         if (!validate(email, name, phoneNumber, drivingLicense, password, confirmationPassword)) return;
+
+        if(easyDriv.emailAlreadyRegistered(email)) {
+            alertDialog("E-mail already Registered",
+                    "Please use another e-mail",
+                    "You can't register the same e-mail.");
+            return;
+        }
+
+        if(easyDriv.nameAlreadyExists(name)) {
+            alertDialog("Name already in use",
+                    "Please use another name",
+                    "You can't register the same name.");
+            return;
+        }
+
         easyDriv.addUser(name, email, phoneNumber, drivingLicense, password);
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)
             setManageUsersScene();

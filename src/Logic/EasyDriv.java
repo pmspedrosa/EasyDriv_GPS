@@ -178,4 +178,12 @@ public class EasyDriv {
     {
 		return controller.listBookings();
     }
+
+	public boolean emailAlreadyRegistered(String email) {
+		return controller.emailAlreadyRegistered(email);
+	}
+
+	public boolean nameAlreadyExists(String name) {
+		return controller.nameAlreadyExists(name);
+	}
 }
