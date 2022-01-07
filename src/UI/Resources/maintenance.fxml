@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<?import javafx.scene.control.Button?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.MaintenanceController">
+   <children>
+      <Separator layoutX="3.0" layoutY="82.0" prefHeight="1.0" prefWidth="291.0" />
+      <RadioButton fx:id="rbOperational" layoutX="87.0" layoutY="14.0" mnemonicParsing="false" text="Operacional" />
+      <RadioButton fx:id="rbInoperational" layoutX="87.0" layoutY="46.0" mnemonicParsing="false" text="Not Operational" />
+      <CheckBox fx:id="chbTires" layoutX="47.0" layoutY="106.0" mnemonicParsing="false" text="Tires low pressure" />
+      <CheckBox fx:id="chbLight" layoutX="47.0" layoutY="140.0" mnemonicParsing="false" text="Lights in board" />
+      <CheckBox fx:id="chbAccident" layoutX="47.0" layoutY="172.0" mnemonicParsing="false" text="Accident happened" />
+      <CheckBox fx:id="chbCleaning" layoutX="47.0" layoutY="206.0" mnemonicParsing="false" text="Need Cleaning" />
+      <CheckBox fx:id="chbOther" layoutX="47.0" layoutY="236.0" mnemonicParsing="false" text="Other" />
+      <TextArea fx:id="taOther" layoutX="10.0" layoutY="267.0" prefHeight="119.0" prefWidth="277.0" />
+      <Button id="btnSave" layoutX="26.0" layoutY="278.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" text="Save" AnchorPane.leftAnchor="30.0" onMouseClicked="#OnOk"/>
+      <Button id="btnCancel" layoutX="172.0" layoutY="278.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" text="Cancel" AnchorPane.rightAnchor="30.0" onMouseClicked="#OnCancel"/>
+   </children>
+</AnchorPane>

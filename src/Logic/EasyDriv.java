@@ -75,8 +75,8 @@ public class EasyDriv {
 		setState(state.booking(booking));
 	}
 
-	public void deliver() {
-		setState(state.deliver());
+	public void deliver(Booking booking) {
+		setState(state.deliver(booking));
 	}
 
 	public void manageVehicles() {

@@ -1,6 +1,7 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.Booking.Booking;
 
 public class Deliver extends StateAdapter {
 
@@ -9,8 +10,8 @@ public class Deliver extends StateAdapter {
 	}
 
 	@Override
-	public IState confirm() {
-		getController().deliver();
+	public IState deliver(Booking booking) {
+		getController().deliver(booking);
 		return new Menu(getController());
 	}
 

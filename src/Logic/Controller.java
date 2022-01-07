@@ -244,7 +244,7 @@ public class Controller {
 		saveVehicleManager();
 	}
 
-	public void deliver() {
+	public void deliver(Booking booking) {
 		loadBookingManager();
 		bookingManager.removeBooking(null, user.getEmail());
 		saveBookingManager();

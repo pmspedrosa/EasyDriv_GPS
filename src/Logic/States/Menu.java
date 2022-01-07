@@ -22,7 +22,7 @@ public class Menu extends StateAdapter {
 	@Override
 	public IState logout() { return new Login(getController()); }
 	@Override
-	public IState deliver() { return new Deliver(getController()); }
+	public IState deliver(Booking booking) { return new Deliver(getController()); }
 	@Override
 	public IState manageUsers() { return new ManageUsers(getController()); }
 	@Override
