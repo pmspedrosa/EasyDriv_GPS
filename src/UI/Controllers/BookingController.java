@@ -40,6 +40,8 @@ public class BookingController
     @FXML
     private TableColumn<BookingTableView, String> tcDate;
     @FXML
+    private TableColumn<BookingTableView, String> tcDeliverDate;
+    @FXML
     private TableColumn<BookingTableView, ImageView> tcShare;
     @FXML
     private TableColumn<BookingTableView, Button> tcBook;
@@ -85,7 +87,7 @@ public class BookingController
         cbEndM.setItems(FXCollections.observableList(minutes));
 
 
-        cbDestination.setItems(FXCollections.observableArrayList(Validator.cityes));
+        cbDestination.setItems(FXCollections.observableArrayList(Validator.cities));
         configTableBookings();
     }
 
@@ -94,7 +96,8 @@ public class BookingController
         tcMake.setCellValueFactory(new PropertyValueFactory<>("make"));
         tcModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         tcRegistrationPlate.setCellValueFactory(new PropertyValueFactory<>("regPlate"));
-        tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tcDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tcDeliverDate.setCellValueFactory(new PropertyValueFactory<>("deliverDate"));
         tcShare.setCellValueFactory(new PropertyValueFactory<>("shared"));
         tcBook.setCellValueFactory(new PropertyValueFactory<>("btnBook"));
 

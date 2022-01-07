@@ -18,7 +18,7 @@
           <TableColumn fx:id="tcModel" prefWidth="119.199951171875" text="Model" />
             <TableColumn fx:id="tcRegistrationPlate" prefWidth="145.60003662109375" text="Registration Plate" />
             <TableColumn fx:id="tcDate" minWidth="0.0" prefWidth="195.199951171875" text="Start Date" />
-            <TableColumn id="tcDeliverDate" prefWidth="123.20001220703125" text="Deliver Date" />
+            <TableColumn fx:id="tcDeliverDate" prefWidth="123.20001220703125" text="Deliver Date" />
             <TableColumn fx:id="tcShare" minWidth="0.0" prefWidth="62.39996337890625" text="Shared" />
             <TableColumn fx:id="tcBook" minWidth="0.0" prefWidth="51.2000732421875" text="Book" />
         </columns>
