@@ -52,10 +52,6 @@ public class VehicleManager {
 	public ArrayList<Vehicle> listVehicles() { return vehicles; }
 
     public boolean editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		if(registerPlateAlreadyExists(registerPlate)) {
-			return false;
-		}
-
 		for(Vehicle v:vehicles){
 			if(v.getRegisterPlate().equals(registerPlate)){
 				v.setMake(make);
