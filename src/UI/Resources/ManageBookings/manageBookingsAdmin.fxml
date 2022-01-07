@@ -40,6 +40,6 @@
       <Text layoutX="17.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reg. Plate" />
       <Text layoutX="349.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Data" />
       <Text layoutX="349.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Data" />
-      <Button id="btnListAllBookings" layoutX="349.0" layoutY="112.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="List All Bookings" />
+      <Button fx:id="btnListAllBookings" onMouseClicked="#OnListAllBookings" layoutX="349.0" layoutY="112.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0" text="List All Bookings" />
    </children>
 </AnchorPane>

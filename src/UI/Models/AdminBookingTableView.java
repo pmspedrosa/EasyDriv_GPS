@@ -7,6 +7,7 @@ import UI.ScenesControllers;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class AdminBookingTableView
@@ -37,8 +38,8 @@ public class AdminBookingTableView
         this.name = user.getName();
         this.email = user.getEmail();
         this.regPlate = vehicle.getRegisterPlate();
-        this.startDate = booking.getStartDatatime().toString();
-        this.endDate = booking.getEndDatatime().toString();
+        this.startDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getStartDatatime());
+        this.endDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getEndDatatime());
 
         if(imgEdit != null) {
             imgEdit.setFitHeight(20);

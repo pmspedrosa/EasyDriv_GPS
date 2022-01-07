@@ -27,8 +27,8 @@ public class DeliverBookingTableView
         this.make = booking.getVehicle().getMake();
         this.model = booking.getVehicle().getModel();
         this.regPlate = booking.getVehicle().getRegisterPlate();
-        this.startDate = String.format("%1$TD %1$TT", booking.getStartDatatime());
-        this.endDate = String.format("%1$TD %1$TT", booking.getEndDatatime());
+        this.startDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getStartDatatime());
+        this.endDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getEndDatatime());
 
         imgDeliver.setFitHeight(20);
         imgDeliver.setFitWidth(20);

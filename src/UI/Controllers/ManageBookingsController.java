@@ -129,4 +129,23 @@ public class ManageBookingsController
 
         scenesControllers.onRefreshBookings(startDateTime, endDateTime, destination, user, regPlate);
     }
+
+    public void OnListAllBookings() {
+        clear();
+    }
+
+    public void clear() {
+        if(cbUser.getValue() != null) {
+            cbUser.getSelectionModel().clearSelection();
+        }
+
+        if(cbDestination.getValue() != null) {
+            cbDestination.getSelectionModel().clearSelection();
+        }
+
+        if(cbRegPlate.getValue() != null) {
+            cbRegPlate.getSelectionModel().clearSelection();
+        }
+    }
+
 }
