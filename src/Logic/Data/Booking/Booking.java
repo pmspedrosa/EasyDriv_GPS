@@ -4,7 +4,6 @@ import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Utils.Logger;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -109,4 +108,16 @@ public class Booking {
 		this.endDatatime = newEndTime; }
 
 	public void setVehicle(Vehicle v) { this.vehicle = v; }
+
+	@Override
+	public boolean equals(Object obj) {
+		Booking receivedBooking = (Booking) obj;
+		if (startDatatime.compareTo(receivedBooking.startDatatime) == 0)
+			if (endDatatime.compareTo(receivedBooking.endDatatime) == 0)
+				if (destination.equals(receivedBooking.destination))
+					if (shared == receivedBooking.shared)
+						if (this.sameUsers(receivedBooking.users))
+							return vehicle.getRegisterPlate().equals(receivedBooking.getVehicle().getRegisterPlate());
+		return false;
+	}
 }

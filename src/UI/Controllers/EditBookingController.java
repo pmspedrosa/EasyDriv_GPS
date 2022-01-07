@@ -1,13 +1,10 @@
 package UI.Controllers;
 
 import Logic.Data.Booking.Booking;
-import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
-import Utils.Validator;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -17,8 +14,9 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+
+@SuppressWarnings({"rawtypes", "deprecation"})
 public class EditBookingController
 {
     private EasyDriv easyDriv;
@@ -65,10 +63,10 @@ public class EditBookingController
             return;
         }
 
-        Integer startH = Integer.parseInt(startHstring);
-        Integer startM = Integer.parseInt(startMstring);
-        Integer endH = Integer.parseInt(endHstring);
-        Integer endM = Integer.parseInt(endMstring);
+        int startH = Integer.parseInt(startHstring);
+        int startM = Integer.parseInt(startMstring);
+        int endH = Integer.parseInt(endHstring);
+        int endM = Integer.parseInt(endMstring);
 
         LocalDate startDate = dpNewStartDate.getValue();
         LocalDate endDate = dpNewEndDate.getValue();
@@ -108,8 +106,8 @@ public class EditBookingController
         tfActualStartDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getStartDatatime()));
         tfActualEndDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(booking.getEndDatatime()));
 
-        dpNewStartDate.getEditor().setText(new SimpleDateFormat("dd/MM/yyyy").format(booking.getStartDatatime()));
-        dpNewEndDate.getEditor().setText(new SimpleDateFormat("dd/MM/yyyy").format(booking.getEndDatatime()));
+        dpNewStartDate.setValue(booking.getStartDatatime().toLocalDateTime().toLocalDate());
+        dpNewEndDate.setValue(booking.getEndDatatime().toLocalDateTime().toLocalDate());
 
         fillCBHours();
         fillCBMinutes();
@@ -120,9 +118,9 @@ public class EditBookingController
         cbEndM.getSelectionModel().select(booking.getEndDatatime().getMinutes());
     }
 
-    public void OnStartH(ActionEvent actionEvent) { cbStartM.getSelectionModel().select(0); }
+    public void OnStartH() { cbStartM.getSelectionModel().select(0); }
 
-    public void OnEndH(ActionEvent actionEvent) { cbEndM.getSelectionModel().select(0); }
+    public void OnEndH() { cbEndM.getSelectionModel().select(0); }
 
     public void fillCBHours(){
         ArrayList<String> hours = new ArrayList<>();

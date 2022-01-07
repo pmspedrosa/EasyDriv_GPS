@@ -10,7 +10,7 @@ public class Vehicle {
 	private int numOfSeats;
 	private String fuelType;
 	private String model;
-	private boolean avaliable;
+	private boolean available;
 	private Maintenance maintenance;
 
 
@@ -20,7 +20,8 @@ public class Vehicle {
 		this.numOfSeats = numOfSeats;
 		this.fuelType = fuelType;
 		this.model = model;
-		this.avaliable = available;
+		this.available = available;
+		this.maintenance = new Maintenance();
 
 		Logger.getInstance().debug("Vehicle criado");
 	}
@@ -43,45 +44,42 @@ public class Vehicle {
 		return this.model;
 	}
 
-	public boolean isAvaliable() {
-		return this.avaliable;
+	public boolean isAvailable() {
+		return this.available;
 	}
 
 	public Maintenance getMaintenance() {
 		return this.maintenance;
 	}
 
-
-	public void setAvaliable(boolean avaliable) {
-		this.avaliable = avaliable;
-	}
-
-
 	public void setMake(String make) { this.make = make; }
 
-	public void setRegisterPlate(String RegisterPlate) { this.registerPlate = registerPlate;}
+	public void setRegisterPlate(String registerPlate) { this.registerPlate = registerPlate;}
 
-	public void setNumOfSeats(int NumOfSeats){ this.numOfSeats = numOfSeats;}
+	public void setNumOfSeats(int numOfSeats){ this.numOfSeats = numOfSeats;}
 
 	public void setModel(String model) {this.model = model; }
 
 	public void setFuelType(String fuelType){this.fuelType = fuelType;}
 
-	public void setMaintenance(Maintenance maintenance){this.maintenance = maintenance;}
+	public void setMaintenance(Maintenance maintenance){
+		this.maintenance = maintenance;
+		available = maintenance.getOperational();
+	}
 
-	public void edit(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
+	public void edit(String make, int numOfSeats, String fuelType, String model, boolean available) {
 		this.make = make;
-		this.registerPlate = registerPlate;
 		this.numOfSeats = numOfSeats;
 		this.fuelType = fuelType;
 		this.model = model;
-		this.avaliable = available;
+		this.available = available;
 		Logger.getInstance().debug("Vehicle editado");
 	}
 
+	public void setAvailable(boolean available) { this.available = available; }
+
 	@Override
-	public boolean equals(Object obj)
-	{
+	public boolean equals(Object obj) {
 		Vehicle receivedVehicle = (Vehicle) obj;
 		return this.registerPlate.equals(receivedVehicle.getRegisterPlate());
 	}

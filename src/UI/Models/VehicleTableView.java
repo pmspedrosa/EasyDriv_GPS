@@ -14,13 +14,8 @@ public class VehicleTableView
     private final Button btnMaintenance;
     private final Button btnRemove;
 
-    private ScenesControllers scenesControllers;
-    private Vehicle vehicle;
-
     public VehicleTableView(ScenesControllers scenesControllers, Vehicle vehicle, ImageView imgEdit, ImageView imgMaintenance, ImageView imgRemove)
     {
-        this.scenesControllers = scenesControllers;
-        this.vehicle = vehicle;
 
         make = vehicle.getMake();
         model = vehicle.getModel();
@@ -37,13 +32,11 @@ public class VehicleTableView
         btnMaintenance = new Button("", imgMaintenance);
         btnRemove = new Button("", imgRemove);
 
-        btnEdit.setOnMouseClicked(e -> {
-            scenesControllers.edit(vehicle);
-        });
+        btnEdit.setOnMouseClicked(e -> scenesControllers.edit(vehicle));
 
-        btnRemove.setOnMouseClicked(e -> {
-            scenesControllers.remove(vehicle);
-        });
+        btnMaintenance.setOnMouseClicked(e -> scenesControllers.checkMaintenance(vehicle));
+
+        btnRemove.setOnMouseClicked(e -> scenesControllers.remove(vehicle));
     }
 
 

@@ -62,11 +62,25 @@ public class VehicleManager {
 				v.setNumOfSeats(numOfSeats);
 				v.setFuelType(fuelType);
 				v.setModel(model);
-				v.setAvaliable(available);
+				v.setAvailable(available);
 				Logger.getInstance().debug("Veículo editado");
 				return true;
 			}
 		}
 		return false;
+    }
+
+    public void editMaintenance(Vehicle receivedVehicle) {
+		for (int i = 0; i < vehicles.size(); i++)
+		{
+			var vehicle = vehicles.get(i);
+			if (vehicle.getRegisterPlate().equals(receivedVehicle.getRegisterPlate()))
+			{
+				vehicle.setMaintenance(receivedVehicle.getMaintenance());
+				vehicles.set(i, vehicle);
+				return;
+			}
+		}
+
     }
 }

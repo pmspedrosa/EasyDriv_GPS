@@ -16,7 +16,7 @@
       <CheckBox fx:id="cbLight" layoutX="47.0" layoutY="140.0" mnemonicParsing="false" text="Lights in board" />
       <CheckBox fx:id="cbAccident" layoutX="47.0" layoutY="172.0" mnemonicParsing="false" text="Accident happened" />
       <CheckBox fx:id="cbCleaning" layoutX="47.0" layoutY="206.0" mnemonicParsing="false" text="Need Cleaning" />
-      <CheckBox fx:id="cbOther" layoutX="47.0" layoutY="236.0" mnemonicParsing="false" text="Other" />
+      <CheckBox fx:id="cbOther" layoutX="47.0" layoutY="236.0" mnemonicParsing="false" text="Other" onAction="#OnOtherAction" />
       <TextArea fx:id="taOther" layoutX="10.0" layoutY="267.0" prefHeight="119.0" prefWidth="277.0" />
       <CheckBox fx:id="cbAllWentWell" layoutX="47.0" layoutY="398.0" mnemonicParsing="false" text="Everything went well" />
       <Button id="btnSave" layoutX="29.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#OnSave" prefHeight="40.0" prefWidth="112.0" text="Save" AnchorPane.leftAnchor="29.0" />

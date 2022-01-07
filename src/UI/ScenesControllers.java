@@ -41,6 +41,7 @@ public class ScenesControllers
     private BookingController bookingController;
     private DeliverController deliverController;
     private MaintenanceController maintenanceController;
+    private EditMaintenanceController editMaintenanceController;
 
     private Scene loginScene;
     private Scene adminScene;
@@ -57,6 +58,7 @@ public class ScenesControllers
     private Scene bookingScene;
     private Scene deliverScene;
     private Scene maintenanceScene;
+    private Scene editMaintenanceScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -140,6 +142,11 @@ public class ScenesControllers
             maintenanceController = loader.getController();
             maintenanceScene = new Scene(maintenanceRoot, MAINTENANCE_WINDOW_WIDTH, MAINTENANCE_WINDOW_HEIGHT);
 
+            loader = loaderFXML("ManageVehicles/maintenance");
+            Parent editMaintenanceRoot = loader.load();
+            editMaintenanceController = loader.getController();
+            editMaintenanceScene = new Scene(editMaintenanceRoot, MAINTENANCE_WINDOW_WIDTH, MAINTENANCE_WINDOW_HEIGHT);
+
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -160,6 +167,7 @@ public class ScenesControllers
         bookingController.set(this);
         deliverController.set(this);
         maintenanceController.set(this);
+        editMaintenanceController.set(this);
     }
 
     private FXMLLoader loaderFXML(String fxml) {
@@ -263,7 +271,6 @@ public class ScenesControllers
                     "Password and password confirmation need to be equal.");
             return false;
         }
-
         return true;
     }
 
@@ -305,7 +312,6 @@ public class ScenesControllers
         editUserController.prepare(easyDriv.getUser(email));
         stage.setScene(editUserScene);
     }
-
 
     public void edit(Vehicle vehicle)
     {
@@ -395,11 +401,6 @@ public class ScenesControllers
             setManageVehiclesScene();
     }
 
-    public void editMaintenance(String email, Boolean operational, Boolean lowPressureTires, Boolean lightsOnBoard, Boolean accident, Boolean cleaning, String other, Boolean allWentWell)
-    {
-
-    }
-
     public void setManageBookingsScene()
     {
         manageBookingsController.updateLastList();
@@ -466,6 +467,12 @@ public class ScenesControllers
                 "Complete all fields to continue");
     }
 
+    public void deliverCheckboxesNotFilled() {
+        alertDialog("Please fill the information",
+                "This deliver needs more information",
+                "If there is none information to report, please select 'All went well'");
+    }
+
     public void remove(Booking booking) {
         easyDriv.remove(booking.getStartDatatime(),booking.getVehicle().getRegisterPlate());
         manageBookingsController.listAllBookings();
@@ -502,5 +509,35 @@ public class ScenesControllers
             return;
         }
         stage.setScene(userScene);
+    }
+
+    public void checkMaintenance(Vehicle vehicle) {
+        if(easyDriv.getActualState() != SystemState.MANAGE_VEHICLE) {
+            return;
+        }
+        easyDriv.checkMaintenance();
+        if(easyDriv.getActualState() != SystemState.CHECK_MAINTENANCE) {
+            return;
+        }
+
+        editMaintenanceController.prepare(vehicle);
+        stage.setScene(editMaintenanceScene);
+    }
+
+    public void editMaintenance(Vehicle vehicle) {
+        if(easyDriv.getActualState() != SystemState.CHECK_MAINTENANCE) {
+            return;
+        }
+        easyDriv.editMaintenance(vehicle);
+        if(easyDriv.getActualState() != SystemState.MANAGE_VEHICLE) {
+            return;
+        }
+        stage.setScene(manageVehiclesScene);
+    }
+
+    public void askForJustification() {
+        alertDialog("Vehicle not operational",
+                "Fill in the information",
+                "If vehicle is not operational we need to know why. (Min 15 characters)");
     }
 }

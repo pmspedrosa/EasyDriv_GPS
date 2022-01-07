@@ -30,49 +30,11 @@ public class BookingManager {
 				}
 			}
 		}
-
 		return auxBookings;
 	}
 
-//	public ArrayList<Vehicle> getVehiclesAvailable(Timestamp startDatatime, Timestamp endDatatime){
-//		var vehicles = new ArrayList<Vehicle>();
-//
-//		for (var booking: bookings) {
-//			vehicles.add(booking.getVehicle());
-//		}
-//
-//		for (var booking: bookings) {
-//			if(endDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
-//				// Booking indisponivel porque o endDataTime está no meio
-//				System.out.println("Booking indisponivel porque o endDataTime está no meio");
-//				vehicles.remove(booking.getVehicle());
-//			}
-//			else if(startDatatime.getTime() <= booking.getEndDatatime().getTime() && startDatatime.getTime() >= booking.getStartDatatime().getTime()){
-//				// Booking indisponivel porque o startDataTime está no meio
-//				System.out.println("Booking indisponivel porque o startDataTime está no meio");
-//				vehicles.remove(booking.getVehicle());
-//			}
-//			else if(startDatatime.getTime() <= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
-//				// Booking indisponivel porque o startDataTime e endDataTime está no meio
-//				System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
-//				vehicles.remove(booking.getVehicle());
-//			}
-//			else if(startDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
-//				// Booking indisponivel porque o startDataTime e endDataTime está no meio
-//				System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
-//				vehicles.remove(booking.getVehicle());
-//			}
-//		}
-//
-//		if(vehicles.size() == 0)
-//			return null;
-//
-//		return vehicles;
-//	}
-
 	public boolean addBooking(Booking booking, User user) {
-		if (booking.isShared())
-		{
+		if (booking.isShared()) {
 			for (var existingBooking : bookings)
 				if (existingBooking.getVehicle().getRegisterPlate().equals(booking.getVehicle().getRegisterPlate()))
 					existingBooking.addUser(user);
@@ -80,78 +42,17 @@ public class BookingManager {
 		}
 
 		int numSeats = booking.getNumSeats();
-		while (numSeats > 0)
-		{
+		while (numSeats > 0) {
 			booking.addUser(user);
 			numSeats--;
 		}
 		bookings.add(booking);
 		return true;
-//
-//		for (var booking: bookings){
-//			var curVehicle = booking.getVehicle();
-//			if(curVehicle.equals(vehicle)){
-//				if(endDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
-//					// Booking indisponivel porque o endDataTime está no meio
-//					System.out.println("Booking indisponivel porque o endDataTime está no meio");
-//					return false;
-//				}
-//				else if(startDatatime.getTime() <= booking.getEndDatatime().getTime() && startDatatime.getTime() >= booking.getStartDatatime().getTime()){
-//					// Booking indisponivel porque o startDataTime está no meio
-//					System.out.println("Booking indisponivel porque o startDataTime está no meio");
-//					return false;
-//				}
-//				else if(startDatatime.getTime() <= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
-//					// Booking indisponivel porque o startDataTime e endDataTime está no meio
-//					System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
-//					return false;
-//				}
-//				else if(startDatatime.getTime() >= booking.getStartDatatime().getTime() && endDatatime.getTime() <= booking.getEndDatatime().getTime()){
-//					// Booking indisponivel porque o startDataTime e endDataTime está no meio
-//					System.out.println("Booking indisponivel porque o startDataTime e endDataTime está no meio");
-//					return false;
-//				}
-//			}
-//		}
-//
-//		listUsers.add(user);
-//		Booking b = new Booking(startDatatime, endDatatime, destination, listUsers, vehicle);
-//		bookings.add(b);
-//		return true;
-	}
-
-//	public boolean addUserToBooking(User user, Booking booking)
-//	{
-//		for (var book: bookings){
-//			if(book.equals(booking)){
-//				var curVehicle = booking.getVehicle();
-//
-//				if(curVehicle.getNumOfSeats() > book.ge){
-//					listUsers.add(user);
-//					return true;
-//				}
-//			}
-//		}
-//
-//		return false;
-//	}
-
-	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
-		for (Booking b:bookings) {
-			if(b.getVehicle() == vehicle && b.getStartDatatime() == startDatatime) {
-				return bookings.remove(b);
-			}
-		}
-		return false;
 	}
 
 	public boolean removeBooking(Timestamp startDatatime, String regPlate) {
 		return bookings.removeIf(b ->
-			b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(regPlate));
-	}
-
-	public boolean removeBooking(String email) {
-		return bookings.removeIf(b -> b.getUserFromBooking(email).getEmail().equals(email));
+			b.getStartDatatime().compareTo(startDatatime) == 0 && b.getVehicle().getRegisterPlate().equals(regPlate));
 	}
 
 	public Booking getBooking(Timestamp startDatatime, String registrationPlate) {
@@ -172,23 +73,10 @@ public class BookingManager {
 		return null;
 	}
 
-	public ArrayList<Booking> getBookingsByEmail(String email) {
-		var bookingByEmail = new ArrayList<Booking>();
-		for (Booking booking : bookings ) {
-			for (User user : booking.getUsers()) {
-				if (user.getEmail().equals(email)) {
-					bookingByEmail.add(booking);
-					continue;
-				}
-			}
-		}
-		return null;
-	}
-
 	public boolean deliver(Booking selectedBooking) {
 		for (Booking b : bookings ) {
 			if(b.equals(selectedBooking)) {
-				b.getVehicle().setAvaliable(true);
+				b.getVehicle().setAvailable(true);
 				return true;
 			}
 		}
@@ -229,36 +117,9 @@ public class BookingManager {
 		return sharedBookings;
 	}
 
-	private boolean isBetweed(Timestamp initial , Timestamp middle, Timestamp end)
-	{
+	private boolean isBetweed(Timestamp initial , Timestamp middle, Timestamp end) {
 		return middle.after(initial) && middle.before(end);
 	}
-
-//	public ArrayList<Vehicle> getAllBookedVehicles(Timestamp pretendedStartTime, Timestamp pretendedEndTime)
-//	{
-//		var bookedVehicles = new ArrayList<Vehicle>();
-//		for (var booking : bookings)
-//		{
-//			var bookingStartTime = booking.getStartDatatime();
-//			var bookingEndTime = booking.getEndDatatime();
-//			if (pretendedTimeIsEqualOrAfterBookingTime(pretendedStartTime,bookingStartTime))
-//				if(pretendedTimeIsEqualOrBeforeBookingTime(pretendedEndTime, bookingEndTime))
-//					bookedVehicles.add(booking.getVehicle());
-//		}
-//		return bookedVehicles;
-//	}
-
-//	private boolean pretendedTimeIsEqualOrAfterBookingTime(Timestamp pretendedTime, Timestamp bookingTime)
-//	{
-//		//true if pretendedTime is at same time          or      after then bookingTime
-//		return pretendedTime.compareTo(bookingTime) == 0 || pretendedTime.compareTo(bookingTime) > 0;
-//	}
-//
-//	private boolean pretendedTimeIsEqualOrBeforeBookingTime(Timestamp pretendedTime, Timestamp bookingTime)
-//	{
-//		//true if pretendedTime is at same time          or         before bookingTime
-//		return pretendedTime.compareTo(bookingTime) == 0 || pretendedTime.compareTo(bookingTime) < 0;
-//	}
 
 	public ArrayList<Vehicle> getNonAvailableVehicles(Timestamp startDatatime, Timestamp endDatatime, int nrOfSeats)
 	{
@@ -290,26 +151,6 @@ public class BookingManager {
 		return nonAvailableVehicles;
 	}
 
-	public ArrayList<Booking> getBookingsByDates(Timestamp startDatatime, Timestamp endDatatime) {
-		var timeFilteredBookings = new ArrayList<Booking>();
-		for (var booking : bookings){
-			if(isBetweed(startDatatime, booking.getStartDatatime(), endDatatime) || isBetweed(startDatatime, booking.getEndDatatime(), endDatatime)){
-				timeFilteredBookings.add(booking);
-			}
-		}
-		return timeFilteredBookings;
-	}
-
-	public ArrayList<Booking> getBookingsByDestination(String destination) {
-		var destinationFilteredBookings = new ArrayList<Booking>();
-		for (var booking : bookings){
-			if(booking.getDestination().equals(destination)){
-				destinationFilteredBookings.add(booking);
-			}
-		}
-		return destinationFilteredBookings;
-	}
-
     public void editBooking(Booking booking) {
 		for(int i=0; i<bookings.size(); i++){
 			var b = bookings.get(i);
@@ -328,4 +169,9 @@ public class BookingManager {
 			}
 		}
     }
+
+	public void removeBooking(Booking bookingToRemove) {
+		bookings.removeIf(booking -> booking.equals(bookingToRemove));
+	}
+
 }

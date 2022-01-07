@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -31,15 +30,13 @@ public class ManageVehiclesController
     @FXML private TableColumn<VehicleTableView, Button> tcMaintenance;
     @FXML private TableColumn<VehicleTableView, Button> tcRemove;
 
-    public void set(ScenesControllers scenesControllers)
-    {
+    public void set(ScenesControllers scenesControllers) {
         this.scenesControllers = scenesControllers;
         this.easyDriv = scenesControllers.getEasyDriv();
         configTableVehicles();
     }
 
-    private void configTableVehicles()
-    {
+    private void configTableVehicles() {
         tcMake.setCellValueFactory(new PropertyValueFactory<>("make"));
         tcModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         tcRegistrationPlate.setCellValueFactory(new PropertyValueFactory<>("registrationPlate"));
@@ -52,8 +49,7 @@ public class ManageVehiclesController
         maintenance = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("../Resources/Images/maintenance.png")));
     }
 
-    public void updateTableVehicles()
-    {
+    public void updateTableVehicles() {
         tvVehicles.getItems().clear();
 
         var vehicles = new ArrayList<VehicleTableView>();
@@ -65,16 +61,14 @@ public class ManageVehiclesController
     }
 
     @FXML
-    public void OnAddVehicle(MouseEvent mouseEvent) {
+    public void OnAddVehicle() {
         easyDriv.addVehicle();
         if (easyDriv.getActualState() == SystemState.ADD_VEHICLE)
             scenesControllers.addVehicle();
     }
 
-
     @FXML
-    public void OnCancel(MouseEvent mouseEvent)
-    {
+    public void OnCancel() {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MENU)
             scenesControllers.setAdminScene();

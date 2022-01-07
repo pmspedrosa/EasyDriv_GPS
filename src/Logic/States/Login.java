@@ -1,10 +1,6 @@
 package Logic.States;
 
 import Logic.Controller;
-import Logic.Data.User.User;
-import Logic.Data.User.UserManager;
-import jdk.jshell.execution.Util;
-import org.json.simple.JSONArray;
 
 public class Login extends StateAdapter {
 

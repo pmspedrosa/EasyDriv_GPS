@@ -2,10 +2,6 @@ package Logic.States;
 
 import Logic.Controller;
 import Logic.Data.Booking.Booking;
-import Logic.Data.User.User;
-import Logic.Data.Vehicle.Vehicle;
-
-import java.sql.Timestamp;
 
 public class Menu extends StateAdapter {
 
