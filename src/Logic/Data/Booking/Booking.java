@@ -15,13 +15,14 @@ public class Booking {
 	private boolean shared;
 	private ArrayList<User> users;
 	private Vehicle vehicle;
+	private int numSeats; //just informational don't use
 
-	public Booking(Timestamp startDatatime, Timestamp endDatatime, String destination, ArrayList<User> users, Vehicle vehicle) {
+	public Booking(Timestamp startDatatime, Timestamp endDatatime, String destination, Vehicle vehicle) {
 		this.startDatatime = startDatatime;
 		this.endDatatime = endDatatime;
 		this.destination = destination;
-		this.users = users;
 		this.vehicle = vehicle;
+		users = new ArrayList<>();
 
 		Logger.getInstance().debug("Booking criado");
 	}
@@ -36,12 +37,14 @@ public class Booking {
 		return this.destination;
 	}
 
-	public boolean getShared() {
+	public boolean isShared() {
 		return this.shared;
 	}
 
+	public void setShared(boolean shared) { this.shared = shared; }
+
 	public boolean addUser(User user) {
-		if(users.size()>1){
+		if (!users.contains(user)){
 			shared = true;
 		}
 		Logger.getInstance().debug("User adicionado ao booking");
@@ -73,4 +76,13 @@ public class Booking {
 		return this.vehicle;
 	}
 
+	public int getNumSeats()
+	{
+		return numSeats;
+	}
+
+	public void setNumSeats(int numSeats)
+	{
+		this.numSeats = numSeats;
+	}
 }

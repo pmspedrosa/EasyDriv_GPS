@@ -1,10 +1,7 @@
 package UnitTests;
 
-import Logic.Controller;
-import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Logic.Data.Vehicle.VehicleManager;
-import Logic.States.ManageVehicle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,13 +27,13 @@ public class VehicleTests {
     @Test
     public void editVehicleSuccess(){
         Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
-        Assertions.assertTrue(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(), 3, vehicle.getFuelType(), vehicle.getModel(), vehicle.getAvaliable()));
+        Assertions.assertTrue(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(), 3, vehicle.getFuelType(), vehicle.getModel(), vehicle.isAvaliable()));
     }
 
     @Test
     public void editVehicleFail(){
         Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
-        Assertions.assertFalse(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(),10, vehicle.getFuelType(), vehicle.getModel(), vehicle.getAvaliable()));
+        Assertions.assertFalse(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(),10, vehicle.getFuelType(), vehicle.getModel(), vehicle.isAvaliable()));
     }
 
     @Test
