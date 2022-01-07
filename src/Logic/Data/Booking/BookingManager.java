@@ -177,11 +177,13 @@ public class BookingManager {
 		return null;
 	}
 
-	public Booking getBookingByEmail(String email) {
+	public ArrayList<Booking> getBookingsByEmail(String email) {
+		var bookingByEmail = new ArrayList<Booking>();
 		for (Booking booking : bookings ) {
 			for (User user : booking.getUsers()) {
 				if (user.getEmail().equals(email)) {
-					return booking;
+					bookingByEmail.add(booking);
+					continue;
 				}
 			}
 		}
@@ -288,4 +290,26 @@ public class BookingManager {
 		}
 		return nonAvailableVehicles;
 	}
+
+	public ArrayList<Booking> getBookingsByDates(Timestamp startDatatime, Timestamp endDatatime) {
+		var timeFilteredBookings = new ArrayList<Booking>();
+		for (var booking : bookings){
+			if(isBetweed(startDatatime, booking.getStartDatatime(), endDatatime) || isBetweed(startDatatime, booking.getEndDatatime(), endDatatime)){
+				timeFilteredBookings.add(booking);
+			}
+		}
+		return timeFilteredBookings;
+	}
+
+	public ArrayList<Booking> getBookingsByDestination(String destination) {
+		var destinationFilteredBookings = new ArrayList<Booking>();
+		for (var booking : bookings){
+			if(booking.getDestination().equals(destination)){
+				destinationFilteredBookings.add(booking);
+			}
+		}
+		return destinationFilteredBookings;
+	}
+
+
 }

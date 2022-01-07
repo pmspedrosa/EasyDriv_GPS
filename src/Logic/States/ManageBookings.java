@@ -11,11 +11,11 @@ public class ManageBookings extends StateAdapter {
 	}
 
 
-//	@Override
-//	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-//		getController().search(startDatatime,endDatatime,destination,shared);
-//		return new ManageBookings(getController());
-//	}
+	@Override
+	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate) {
+		getController().search(startDatatime, endDatatime, destination, user, regPlate);
+		return new ManageBookings(getController());
+	}
 
 	@Override
 	public IState remove(Timestamp startDatatime, String email) {

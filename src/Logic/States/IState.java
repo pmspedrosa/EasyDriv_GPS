@@ -23,6 +23,8 @@ public interface IState {
 
 	IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats);
 
+	IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate);
+
 	IState booking(Booking booking);
 
 	IState deliver();

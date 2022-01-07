@@ -209,6 +209,30 @@ public class Controller {
 		}
 	}
 
+	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate) {
+		loadBookingManager();
+		
+			var allBookings = bookingManager.listBookings();
+
+			if (destination != null)
+				allBookings.removeIf(booking -> !booking.getDestination().equals(destination));
+
+			if (regPlate != null)
+				allBookings.removeIf(booking -> !booking.getVehicle().getRegisterPlate().equals(regPlate));
+
+			if (user != null)
+				allBookings.removeIf(booking -> !booking.containsUser(user));
+
+			if (startDatatime != null)
+				allBookings.removeIf(booking -> booking.getStartDatatime().before(startDatatime));
+
+			if (endDatatime != null)
+				allBookings.removeIf(booking -> booking.getEndDatatime().after(endDatatime));
+
+			listOfBookings = new ArrayList<>(allBookings);
+	}
+
+
 	public ArrayList<Booking> getListOfBookings()
 	{
 		return listOfBookings;
