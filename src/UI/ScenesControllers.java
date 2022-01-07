@@ -123,7 +123,7 @@ public class ScenesControllers
             loader = loaderFXML("ManageBookings/manageBookingsAdmin");
             manageBookingsRoot = loader.load();
             manageBookingsController = loader.getController();
-            manageBookingsScene = new Scene(manageBookingsRoot,650, 600); //TODO : passar para constante
+            manageBookingsScene = new Scene(manageBookingsRoot,MANAGE_BOOKINGS_WINDOW_WIDTH,MANAGE_BOOKINGS_WINDOW_HEIGHT );
 
             loader = loaderFXML("manageProfile");
             manageProfileRoot = loader.load();
@@ -133,7 +133,7 @@ public class ScenesControllers
             loader = loaderFXML("booking");
             bookingRoot = loader.load();
             bookingController = loader.getController();
-            bookingScene = new Scene(bookingRoot, 800, 550);//TODO : passar para constante
+            bookingScene = new Scene(bookingRoot, BOOKINGS_WINDOW_WIDTH, BOOKINGS_WINDOW_HEIGHT);
 
         } catch (IOException e)
         {
@@ -233,7 +233,7 @@ public class ScenesControllers
         {
             alertDialog("Incorrect phone number format",
                     "Please introduce a valid phone number",
-                    "Phone number must contain 9 digits and start with 91/92/93 or 96");
+                    "Phone number must contain 9 digits and start with 91/92/93 or 96.");
             return false;
         }
 
@@ -344,7 +344,7 @@ public class ScenesControllers
         if (!Validator.registerPlatevalidation(registrationPlate)){
             alertDialog("Incorect registration plate format",
                     "Please introduce a valid registration plate",
-                    "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA"); //TODO <--- completar frase e testar validator
+                    "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA");
             return;
         }
         easyDriv.addVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);

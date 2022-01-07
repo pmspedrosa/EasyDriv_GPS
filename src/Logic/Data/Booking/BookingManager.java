@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class BookingManager {
 
-	private ArrayList<Booking> bookings;
+	private final ArrayList<Booking> bookings;
 
 	public BookingManager() {
 		bookings = new ArrayList<>();
@@ -157,7 +157,6 @@ public class BookingManager {
 	public boolean removeBooking(String email) {
 		return bookings.removeIf(b -> b.getUserFromBooking(email).getEmail().equals(email));
 	}
-
 
 	public Booking getBooking(Timestamp startDatatime, String registrationPlate) {
 		for (Booking b : bookings) {
