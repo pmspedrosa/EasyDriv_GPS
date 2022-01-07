@@ -77,4 +77,12 @@ public class Booking {
 	{
 		this.numSeats = numSeats;
 	}
+
+	public boolean containsUser(String name)
+	{
+		for (var user : users)
+			if (user.getName().equals(name))
+				return true;
+		return false;
+	}
 }
