@@ -84,7 +84,7 @@ public class BookingController
         cbEndM.setItems(FXCollections.observableList(minutes));
 
 
-        cbDestination.setItems(FXCollections.observableArrayList(Validator.cityes));
+        cbDestination.setItems(FXCollections.observableArrayList(Validator.cities));
         configTableBookings();
     }
 
