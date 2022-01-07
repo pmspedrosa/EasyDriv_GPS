@@ -4,10 +4,8 @@ import Logic.Data.User.User;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
-import Utils.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 public class EditUserController
 {
@@ -29,7 +27,7 @@ public class EditUserController
 
 
     @FXML
-    public void OnSave(MouseEvent mouseEvent)
+    public void OnSave()
     {
         String email = tfEmail.getText();
         String name = tfName.getText();
@@ -42,7 +40,7 @@ public class EditUserController
     }
 
     @FXML
-    public void OnCancel(MouseEvent mouseEvent)
+    public void OnCancel()
     {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MANAGE_USERS)

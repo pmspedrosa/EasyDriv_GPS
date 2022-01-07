@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class BookingManager {
 
-	private ArrayList<Booking> bookings;
+	private final ArrayList<Booking> bookings;
 
 	public BookingManager() {
 		bookings = new ArrayList<>();
@@ -158,7 +158,6 @@ public class BookingManager {
 		return bookings.removeIf(b -> b.getUserFromBooking(email).getEmail().equals(email));
 	}
 
-
 	public Booking getBooking(Timestamp startDatatime, String registrationPlate) {
 		for (Booking b : bookings) {
 			if (b.getStartDatatime().equals(startDatatime) && b.getVehicle().getRegisterPlate().equals(registrationPlate)) {
@@ -277,6 +276,10 @@ public class BookingManager {
 			int availableSeats = vehicleSeats - booking.getUsers().size();
 			if (availableSeats <= 0 || isBetweed(bookingStartTime, endDatatime, bookingEndTime))
 			{
+				nonAvailableVehicles.add(vehicle);
+				continue;
+			}
+			if(bookingStartTime.compareTo(startDatatime) == 0 || bookingEndTime.compareTo(endDatatime) == 0) {
 				nonAvailableVehicles.add(vehicle);
 				continue;
 			}

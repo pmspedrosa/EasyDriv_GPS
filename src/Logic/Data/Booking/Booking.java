@@ -9,12 +9,12 @@ import java.util.*;
 
 public class Booking {
 
-	private Timestamp startDatatime;
-	private Timestamp endDatatime;
-	private String destination;
+	private final Timestamp startDatatime;
+	private final Timestamp endDatatime;
+	private final String destination;
 	private boolean shared;
-	private ArrayList<User> users;
-	private Vehicle vehicle;
+	private final ArrayList<User> users;
+	private final Vehicle vehicle;
 	private int numSeats; //just informational don't use
 
 	public Booking(Timestamp startDatatime, Timestamp endDatatime, String destination, Vehicle vehicle) {
@@ -49,14 +49,6 @@ public class Booking {
 		}
 		Logger.getInstance().debug("User adicionado ao booking");
 		return users.add(user);
-	}
-
-	public boolean removeUser(User user) {
-		if(users.size()<=1){
-			shared = false;
-		}
-		Logger.getInstance().debug("User removido do booking");
-		return users.remove(user);
 	}
 
 	public ArrayList<User> getUsers() {

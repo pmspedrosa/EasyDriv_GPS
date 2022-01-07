@@ -1,22 +1,10 @@
 package UI.Controllers;
 
 import Logic.EasyDriv;
-import Logic.States.SystemState;
 import UI.ScenesControllers;
-import UI.StartUI;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-
-import static UI.Resources.Constants.WINDOW_HEIGHT;
-import static UI.Resources.Constants.WINDOW_WIDTH;
 
 public class LoginController {
     private EasyDriv easyDriv;
@@ -32,7 +20,7 @@ public class LoginController {
     }
 
     @FXML
-    public void OnLogin(MouseEvent mouseEvent) {
+    public void OnLogin() {
         String email = tfEmail.getText();
         String pass = tfPassword.getText();
 
