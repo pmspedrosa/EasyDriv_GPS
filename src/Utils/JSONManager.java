@@ -1,6 +1,7 @@
 package Utils;
 
 import Logic.Data.Booking.Booking;
+import Logic.Data.Booking.BookingManager;
 import Logic.Data.User.UserManager;
 import Logic.Data.Vehicle.VehicleManager;
 import com.google.gson.Gson;
@@ -51,7 +52,7 @@ public class JSONManager{
                     return gson.fromJson(o, VehicleManager.class);
                 }
                 case BOOKING -> {
-                    return gson.fromJson(o, Booking.class);
+                    return gson.fromJson(o, BookingManager.class);
                 }
             }
 

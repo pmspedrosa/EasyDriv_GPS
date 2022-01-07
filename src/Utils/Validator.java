@@ -1,6 +1,7 @@
 package Utils;
 
 import java.security.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -78,6 +79,14 @@ public class Validator {
         put("Volvo",new String[]{"C30","S60","V40","XC60","XC90",});
     }};
 
+    public static final ArrayList<String> cityes = new ArrayList<>()
+    {
+        {
+            add("Coimbra");
+            add("Welele");
+            add("Kulhon");
+        }
+    };
 
     //TODO : acho que nao esta bom, testar este validator....
     public static boolean registerPlatevalidation(String rp) {

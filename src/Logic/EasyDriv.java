@@ -46,8 +46,13 @@ public class EasyDriv {
 		setState(state.editUser());
 	}
 
-	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		setState(state.search(startDatatime,endDatatime,destination,shared));
+	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats) {
+		setState(state.search(startDatatime,endDatatime,destination, nrOfSeats));
+	}
+
+	public ArrayList<Booking> getListOfSearchedBookings()
+	{
+		return controller.getListOfBookings();
 	}
 
 	public SystemState getActualState() {
@@ -62,9 +67,8 @@ public class EasyDriv {
 		setState(state.manageBookings());
 	}
 
-	public void booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
-		setState(state.booking(startDatatime, endDatatime, destination, user, vehicle));
-
+	public void booking(Booking booking) {
+		setState(state.booking(booking));
 	}
 
 	public void deliver() {

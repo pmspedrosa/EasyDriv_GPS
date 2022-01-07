@@ -1,6 +1,7 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.Booking.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
@@ -20,9 +21,9 @@ public interface IState {
 
 	IState manageBookings();
 
-	IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared);
+	IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats);
 
-	IState booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle);
+	IState booking(Booking booking);
 
 	IState deliver();
 

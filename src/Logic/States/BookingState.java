@@ -1,6 +1,7 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.Booking.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
@@ -13,15 +14,15 @@ public class BookingState extends StateAdapter {
 	}
 
 	@Override
-	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		getController().search(startDatatime,endDatatime,destination,shared);
+	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats) {
+		getController().search(startDatatime,endDatatime,destination, nrOfSeats);
 		return new BookingState(getController());
 	}
 
 	@Override
-	public IState booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle)
+	public IState booking(Booking booking)
 	{
-		getController().addBooking(startDatatime,endDatatime,destination,user,vehicle);
+		getController().addBooking(booking);
 		return new Menu(getController());
 	}
 

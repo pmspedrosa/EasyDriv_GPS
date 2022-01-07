@@ -4,22 +4,13 @@ import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.ScenesControllers;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 public class UserPanelController
 {
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
-    Scene loginScene;
-    private Stage stage;
 
-//    public void set(EasyDriv easyDriv, Stage stage, Scene loginScene) {
-//        this.easyDriv = easyDriv;
-//        this.stage = stage;
-//        this.loginScene = loginScene;
-//    }
     public void set(ScenesControllers scenesControllers)
     {
         this.scenesControllers = scenesControllers;
@@ -27,15 +18,22 @@ public class UserPanelController
     }
 
     @FXML
-    public void OnLogout(MouseEvent mouseEvent)
+    public void OnLogout()
     {
         easyDriv.logout();
         if (easyDriv.getActualState() == SystemState.LOGIN)
             scenesControllers.setLoginStage();
     }
 
-    public void OnManageProfile(MouseEvent mouseEvent) {
+    @FXML
+    public void OnManageProfile() {
         if (easyDriv.getActualState() == SystemState.MENU)
             scenesControllers.setManageProfileScene();
+    }
+
+    @FXML
+    public void OnBooking()
+    {
+        scenesControllers.onBooking();
     }
 }
