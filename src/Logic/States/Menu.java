@@ -1,6 +1,7 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.Booking.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
@@ -13,7 +14,7 @@ public class Menu extends StateAdapter {
 	}
 
 	@Override
-	public IState booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+	public IState booking(Booking booking) {
 		return new BookingState(getController());
 	}
 	@Override

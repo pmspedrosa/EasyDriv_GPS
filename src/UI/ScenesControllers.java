@@ -1,5 +1,6 @@
 package UI;
 
+import Logic.Data.Booking.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 import Logic.EasyDriv;
@@ -14,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import static UI.Resources.Constants.*;
 import static UI.Resources.Constants.ADD_USER_WINDOW_HEIGHT;
@@ -36,6 +38,7 @@ public class ScenesControllers
     private Parent editVehicleRoot;
     private Parent manageBookingsRoot;
     private Parent manageProfileRoot;
+    private Parent bookingRoot;
 
     private LoginController loginController;
     private AdminPanelController adminPanelController;
@@ -48,6 +51,7 @@ public class ScenesControllers
     private EditVehicleController editVehicleController;
     private ManageBookingsController manageBookingsController;
     private ManageProfileController manageProfileController;
+    private BookingController bookingController;
 
     private Scene loginScene;
     private Scene adminScene;
@@ -60,6 +64,7 @@ public class ScenesControllers
     private Scene editVehicleScene;
     private Scene manageBookingsScene;
     private Scene manageProfileScene;
+    private Scene bookingScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -125,6 +130,11 @@ public class ScenesControllers
             manageProfileController = loader.getController();
             manageProfileScene = new Scene(manageProfileRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
 
+            loader = loaderFXML("booking");
+            bookingRoot = loader.load();
+            bookingController = loader.getController();
+            bookingScene = new Scene(bookingRoot, 800, 550);//TODO : passar para constante
+
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -141,6 +151,7 @@ public class ScenesControllers
         editVehicleController.set(this);
         manageBookingsController.set(this);
         manageProfileController.set(this);
+        bookingController.set(this);
 
     }
 
@@ -375,5 +386,46 @@ public class ScenesControllers
         if(easyDriv.getActualState() != SystemState.MANAGE_PROFILE) return;
         manageProfileController.prepare(easyDriv.getUser());
         stage.setScene(manageProfileScene);
+    }
+
+    public void onBooking()
+    {
+        if (easyDriv.getActualState() != SystemState.MENU) return;
+        easyDriv.booking(new Booking(null,null,null,null));
+        if (easyDriv.getActualState() == SystemState.BOOKING)
+            stage.setScene(bookingScene);
+    }
+
+    public void book(Booking booking)
+    {
+        easyDriv.booking(booking);
+        setUserScene();
+    }
+
+    public void onRefreshBookings(Timestamp startTime, Timestamp endTime, String destination, Integer nrSeats)
+    {
+        if (destination == null || nrSeats == null)
+        {
+            alertDialog("Uncompleted fields",
+                    "Some fields don't have any value",
+                    "Complete all fields to continue");
+            return;
+        }
+        if (startTime.after(endTime))
+        {
+            alertDialog("Incorrect datas",
+                    "Please introduce a start time before end time",
+                    "Start data must be before end data.");
+            return;
+        }
+        easyDriv.search(startTime,endTime,destination,nrSeats);
+        bookingController.updateTableBookings();
+    }
+
+    public void pickerEmpty()
+    {
+        alertDialog("Uncompleted fields",
+                "Some fields don't have any value",
+                "Complete all fields to continue");
     }
 }

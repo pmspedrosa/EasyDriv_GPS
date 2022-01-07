@@ -43,7 +43,7 @@ public class Vehicle {
 		return this.model;
 	}
 
-	public boolean getAvaliable() {
+	public boolean isAvaliable() {
 		return this.avaliable;
 	}
 
@@ -77,5 +77,12 @@ public class Vehicle {
 		this.model = model;
 		this.avaliable = available;
 		Logger.getInstance().debug("Vehicle editado");
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		Vehicle receivedVehicle = (Vehicle) obj;
+		return this.registerPlate.equals(receivedVehicle.getRegisterPlate());
 	}
 }

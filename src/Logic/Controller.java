@@ -11,7 +11,6 @@ import Utils.JSONManager;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Controller {
 
@@ -29,24 +28,6 @@ public class Controller {
 		loadUserManager();
 		loadBookingManager();
 		loadVehicleManager();
-
-
-		User user;
-		Vehicle vehicle;
-		Calendar calAtual;
-		Calendar cal;
-
-
-		user = new User(false, "Renato", "renato@isec.pt", "912312343", "1", "Renas1!");
-		vehicle = new Vehicle("Fiat", "AA-01-AA", 5, "Dielsel", "Punto", true);
-
-		calAtual = Calendar.getInstance();
-
-		cal = calAtual;
-		cal.setTime(cal.getTime());
-		cal.add(Calendar.HOUR, 1);
-
-		bookingManager.addBooking(new Timestamp(calAtual.getTime().getTime()), new Timestamp(cal.getTime().getTime()), "Coimbra", user, vehicle);
 	}
 
 	public void addUser(String name, String email, String phoneNumber, String drivingLicense, String password) {
@@ -93,12 +74,12 @@ public class Controller {
 
 	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
 		loadBookingManager();
-		return bookingManager.getBookings(startDatatime,endDatatime,destination,shared);
+		return bookingManager.getBookings(startDatatime,endDatatime,destination);
 	}
 
-	public void addBooking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {
+	public void addBooking(Booking booking) {
 		loadBookingManager();
-		bookingManager.addBooking(startDatatime, endDatatime, destination, user, vehicle);
+		bookingManager.addBooking(booking, user);
 		saveBookingManager();
 	}
 
@@ -185,9 +166,47 @@ public class Controller {
 		 return false;
 	}
 
-	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
+	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats) {
 		loadBookingManager();
-		listOfBookings = bookingManager.getBookings(startDatatime, endDatatime, destination, shared);
+		loadVehicleManager();
+
+		var allVehicles = vehicleManager.listVehicles();
+		//TODO : testar cena das horas para ver se ta aqui
+		var sharedBookings = bookingManager.getSharedBookings(startDatatime, endDatatime, destination, nrOfSeats);
+		var nonSharedBookings = new ArrayList<Booking>();
+		var sharedVehicles = new ArrayList<Vehicle>();
+
+		for (var sharedBooking : sharedBookings)
+			sharedVehicles.add(sharedBooking.getVehicle());
+
+
+		allVehicles.removeAll(sharedVehicles);
+
+		var nonAvailableVehicles = bookingManager.getNonAvailableVehicles(startDatatime, endDatatime, nrOfSeats);
+
+		allVehicles.removeAll(nonAvailableVehicles);
+
+		allVehicles.removeIf(vehicle -> !vehicle.isAvaliable());
+
+		allVehicles.removeIf(vehicle -> vehicle.getNumOfSeats() < nrOfSeats);
+		//add to all vehicles
+
+
+//		var bookedVehicles = bookingManager.getAllBookedVehicles(startDatatime, endDatatime);
+//		var nonBookedVehicles = vehicleManager.listVehicles();
+//		nonBookedVehicles.removeAll(bookedVehicles);
+//
+		for (var vehicle : allVehicles)
+			nonSharedBookings.add(new Booking(startDatatime,endDatatime,destination,vehicle));
+
+		listOfBookings = new ArrayList<>();
+		listOfBookings.addAll(sharedBookings);
+		listOfBookings.addAll(nonSharedBookings);
+
+		for (var booking : listOfBookings)
+		{
+			booking.setNumSeats(nrOfSeats);
+		}
 	}
 
 	public ArrayList<Booking> getListOfBookings()

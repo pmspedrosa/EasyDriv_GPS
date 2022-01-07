@@ -1,6 +1,7 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.Booking.Booking;
 import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
@@ -26,9 +27,9 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState manageBookings() { return this; }
 	@Override
-	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) { return this; }
+	public IState search(Timestamp startDatatime, Timestamp endDatatime, String destination, int nrOfSeats) { return this; }
 	@Override
-	public IState booking(Timestamp startDatatime, Timestamp endDatatime, String destination, User user, Vehicle vehicle) {	return this; }
+	public IState booking(Booking booking) {	return this; }
 	@Override
 	public IState deliver() { return this; }
 	@Override
