@@ -14,7 +14,8 @@ public class AdminBookingTableView
     private String name;
     private String email;
     private String regPlate;
-    private String date;
+    private String startDate;
+    private String endDate;
     private Button btnEdit;
     private Button btnRemove;
 
@@ -36,7 +37,8 @@ public class AdminBookingTableView
         this.name = user.getName();
         this.email = user.getEmail();
         this.regPlate = vehicle.getRegisterPlate();
-        this.date = booking.getStartDatatime().toString();
+        this.startDate = booking.getStartDatatime().toString();
+        this.endDate = booking.getEndDatatime().toString();
 
         imgEdit.setFitHeight(20);
         imgEdit.setFitWidth(20);
@@ -62,9 +64,14 @@ public class AdminBookingTableView
         return regPlate;
     }
 
-    public String getDate()
+    public String getStartDate()
     {
-        return date;
+        return startDate;
+    }
+
+    public String getEndDate()
+    {
+        return endDate;
     }
 
     public Button getBtnEdit()

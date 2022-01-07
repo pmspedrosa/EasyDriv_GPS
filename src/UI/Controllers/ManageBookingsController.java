@@ -69,7 +69,8 @@ public class ManageBookingsController
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tcRegPlate.setCellValueFactory(new PropertyValueFactory<>("regPlate"));
-        tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tcStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tcEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         tcEdit.setCellValueFactory(new PropertyValueFactory<>("btnEdit"));
         tcRemove.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
 
