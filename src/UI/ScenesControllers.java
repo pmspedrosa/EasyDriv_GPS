@@ -6,6 +6,7 @@ import Logic.Data.Vehicle.Vehicle;
 import Logic.EasyDriv;
 import Logic.States.SystemState;
 import UI.Controllers.*;
+import UI.Resources.Constants;
 import Utils.Validator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,6 +40,7 @@ public class ScenesControllers
     private Parent manageBookingsRoot;
     private Parent manageProfileRoot;
     private Parent bookingRoot;
+    private Parent deliverRoot;
 
     private LoginController loginController;
     private AdminPanelController adminPanelController;
@@ -52,6 +54,7 @@ public class ScenesControllers
     private ManageBookingsController manageBookingsController;
     private ManageProfileController manageProfileController;
     private BookingController bookingController;
+    private DeliverController deliverController;
 
     private Scene loginScene;
     private Scene adminScene;
@@ -65,6 +68,7 @@ public class ScenesControllers
     private Scene manageBookingsScene;
     private Scene manageProfileScene;
     private Scene bookingScene;
+    private Scene deliverScene;
 
     public ScenesControllers(EasyDriv easyDriv, Stage stage)
     {
@@ -77,7 +81,6 @@ public class ScenesControllers
             loginRoot = loader.load();
             loginController = loader.getController();
             loginScene = new Scene(loginRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
-
 
             loader = loaderFXML("ManageUsers/addUser");
             addUserRoot = loader.load();
@@ -103,7 +106,6 @@ public class ScenesControllers
             adminPanelRoot = loader.load();
             adminPanelController = loader.getController();
             adminScene = new Scene(adminPanelRoot, WINDOW_WIDTH, WINDOW_HEIGHT);
-
 
             loader = loaderFXML("userPanel");
             userPanelRoot = loader.load();
@@ -135,6 +137,11 @@ public class ScenesControllers
             bookingController = loader.getController();
             bookingScene = new Scene(bookingRoot, BOOKINGS_WINDOW_WIDTH, BOOKINGS_WINDOW_HEIGHT);
 
+            loader = loaderFXML("deliver");
+            deliverRoot = loader.load();
+            deliverController = loader.getController();
+            deliverScene = new Scene(deliverRoot, DELIVER_WINDOW_WIDTH, DELIVER_WINDOW_HEIGHT);
+
         } catch (IOException e)
         {
             e.printStackTrace();
@@ -152,7 +159,7 @@ public class ScenesControllers
         manageBookingsController.set(this);
         manageProfileController.set(this);
         bookingController.set(this);
-
+        deliverController.set(this);
     }
 
     private FXMLLoader loaderFXML(String fxml) {
@@ -364,7 +371,7 @@ public class ScenesControllers
 
         if(easyDriv.getActualState() != SystemState.EDIT_VEHICLE) return;
         if (!Validator.registerPlatevalidation(registrationPlate)){
-            alertDialog("Incorect registration plate format",
+            alertDialog("Incorrect registration plate format",
                     "Please introduce a valid registration plate",
                     "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA");
             return;
@@ -372,6 +379,11 @@ public class ScenesControllers
         easyDriv.editVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);
         if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
             setManageVehiclesScene();
+    }
+
+    public void editMaintenance(String email, Boolean operational, Boolean lowPressureTires, Boolean lightsOnBoard, Boolean accident, Boolean cleaning, String other, Boolean allWentWell)
+    {
+
     }
 
     public void setManageBookingsScene()
@@ -382,18 +394,24 @@ public class ScenesControllers
 
     public void setManageProfileScene() {
         if (easyDriv.getActualState() != SystemState.MENU) return;
-        easyDriv.editUser();
+            easyDriv.editUser();
         if(easyDriv.getActualState() != SystemState.MANAGE_PROFILE) return;
-        manageProfileController.prepare(easyDriv.getUser());
+            manageProfileController.prepare(easyDriv.getUser());
+
         stage.setScene(manageProfileScene);
     }
 
     public void onBooking()
     {
         if (easyDriv.getActualState() != SystemState.MENU) return;
-        easyDriv.booking(new Booking(null,null,null,null));
+            easyDriv.booking(new Booking(null,null,null,null));
         if (easyDriv.getActualState() == SystemState.BOOKING)
             stage.setScene(bookingScene);
+    }
+
+    public void onDeliver() {
+        deliverController.updateTableBookings();
+        stage.setScene(deliverScene);
     }
 
     public void book(Booking booking)
@@ -428,4 +446,5 @@ public class ScenesControllers
                 "Some fields don't have any value",
                 "Complete all fields to continue");
     }
+
 }

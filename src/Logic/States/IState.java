@@ -25,7 +25,7 @@ public interface IState {
 
 	IState booking(Booking booking);
 
-	IState deliver();
+	IState deliver(Booking booking);
 
 	IState manageVehicles();
 

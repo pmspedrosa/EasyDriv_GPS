@@ -38,10 +38,14 @@ public class AdminBookingTableView
         this.regPlate = vehicle.getRegisterPlate();
         this.date = booking.getStartDatatime().toString();
 
-        imgEdit.setFitHeight(20);
-        imgEdit.setFitWidth(20);
-        imgRemove.setFitHeight(20);
-        imgRemove.setFitWidth(20);
+        if(imgEdit != null) {
+            imgEdit.setFitHeight(20);
+            imgEdit.setFitWidth(20);
+        }
+        if(imgRemove != null) {
+            imgRemove.setFitHeight(20);
+            imgRemove.setFitWidth(20);
+        }
 
         btnEdit = new Button("", imgEdit);
         btnRemove = new Button("", imgRemove);
@@ -76,4 +80,5 @@ public class AdminBookingTableView
     {
         return btnRemove;
     }
+
 }

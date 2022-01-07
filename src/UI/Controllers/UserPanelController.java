@@ -36,4 +36,9 @@ public class UserPanelController
     {
         scenesControllers.onBooking();
     }
+
+    public void OnDeliver() {
+        easyDriv.deliver(null);
+        scenesControllers.onDeliver();
+    }
 }

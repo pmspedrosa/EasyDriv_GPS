@@ -31,7 +31,7 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState booking(Booking booking) {	return this; }
 	@Override
-	public IState deliver() { return this; }
+	public IState deliver(Booking booking) { return this; }
 	@Override
 	public IState manageVehicles() { return this; }
 	@Override
