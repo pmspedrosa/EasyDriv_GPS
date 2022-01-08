@@ -7,7 +7,7 @@ The administrator will be responsible for adding cars and managing users within 
 
 Features
 
--Add/Edit/Remove vehicle: The software administrator must be able to perform all necessary operations on a vehicle. The data collected during the addition of a vehicle must be generic, such as: Make, Model, Registration, Fuel Type, Number of available seats. 
+- Add/Edit/Remove vehicle: The software administrator must be able to perform all necessary operations on a vehicle. The data collected during the addition of a vehicle must be generic, such as: Make, Model, Registration, Fuel Type, Number of available seats. 
 
 -Add/Edit/Remove user: The software administrator must be able to perform all necessary operations on a user. It is important to keep data such as: Name, Age, Driving License Number, Driving License Issue Date, Driving Type, Etc. 
 
