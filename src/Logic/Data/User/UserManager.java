@@ -21,7 +21,7 @@ public class UserManager {
 		if(!Validator.nameValidation(name) || !Validator.emailValidation(email) || !Validator.phoneNumberValidation(phoneNumber) || !Validator.drivingLicenseValidation(drivingLicense) || !Validator.passwordValidation(password)) {
 			return false;
 		}
-		if(emailAlreadyRegistered(email) || nameAlreadyExists(name)) {
+		if(emailAlreadyRegistered(email) || nameAlreadyExists(name, email) || drivingLicenseAlreadyExists(drivingLicense, email) || phoneNumberAlreadyExists(phoneNumber, email)) {
 			return false;
 		}
 
@@ -30,9 +30,9 @@ public class UserManager {
 		return true;
 	}
 
-	public boolean nameAlreadyExists(String name) {
+	public boolean nameAlreadyExists(String name, String email) {
 		for (User u:users) {
-			if(u.getName().equals(name)) {
+			if(u.getName().equals(name) && u.getEmail() != email) {
 				return true;
 			}
 		}
@@ -60,6 +60,10 @@ public class UserManager {
 
 	public boolean editUser(String email, String name, String phoneNumber, String drivingLicense, String password) {
 		if(!Validator.nameValidation(name) || !Validator.emailValidation(email) || !Validator.phoneNumberValidation(phoneNumber) || !Validator.drivingLicenseValidation(drivingLicense) || !Validator.passwordValidation(password)) {
+			return false;
+		}
+
+		if(nameAlreadyExists(name, email) || drivingLicenseAlreadyExists(drivingLicense, email) || phoneNumberAlreadyExists(phoneNumber, email)){
 			return false;
 		}
 
@@ -91,6 +95,22 @@ public class UserManager {
 			}
 		}
 		Logger.getInstance().debug("Login errado!");
+		return false;
+	}
+
+	public boolean drivingLicenseAlreadyExists(String drivingLicense, String email)
+	{
+		for (var user : users)
+			if (user.getDrivingLicense().equals(drivingLicense) && user.getEmail() != email)
+				return true;
+		return false;
+	}
+
+	public boolean phoneNumberAlreadyExists(String phoneNumber, String email)
+	{
+		for (var user : users)
+			if (user.getPhoneNumber().equals(phoneNumber) && user.getEmail() != email)
+				return true;
 		return false;
 	}
 }

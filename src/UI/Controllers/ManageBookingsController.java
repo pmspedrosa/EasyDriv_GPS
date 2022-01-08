@@ -120,7 +120,6 @@ public class ManageBookingsController
     }
 
     public void OnRefresh() {
-
         LocalDate startDate = dpStartData.getValue();
         LocalDate endDate = dpEndData.getValue();
 
@@ -190,17 +189,42 @@ public class ManageBookingsController
         }
     }
 
-    public void OnCleanStartDate(MouseEvent mouseEvent)
+    public void OnCleanStartDate()
     {
         dpStartData.getEditor().clear();
         dpStartData.setValue(null);
         OnRefresh();
     }
 
-    public void OnCleanEndDate(MouseEvent mouseEvent)
+    public void OnCleanEndDate()
     {
         dpEndData.getEditor().clear();
         dpEndData.setValue(null);
         OnRefresh();
+    }
+
+    public void OnUserClick(MouseEvent mouseEvent)
+    {
+        ArrayList<String> usersName = new ArrayList<>();
+        usersName.add("All");
+
+        for(var u : easyDriv.listUsers()) {
+            if (u.isAdmin()) continue;
+            usersName.add(u.getName());
+        }
+
+        cbUser.setItems(FXCollections.observableList(usersName));
+        cbUser.getSelectionModel().select(0);
+    }
+
+    public void OnDestinationClick(MouseEvent mouseEvent)
+    {
+        ArrayList<String> vehiclesRegPlates = new ArrayList<>();
+        vehiclesRegPlates.add("All");
+        for(var v : easyDriv.listVehicles()) {
+            vehiclesRegPlates.add(v.getRegisterPlate());
+        }
+        cbRegPlate.setItems(FXCollections.observableList(vehiclesRegPlates));
+        cbRegPlate.getSelectionModel().select(0);
     }
 }
