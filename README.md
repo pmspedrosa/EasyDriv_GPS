@@ -11,7 +11,7 @@ Features
 
 - Add/Edit/Remove user: The software administrator must be able to perform all necessary operations on a user. It is important to keep data such as: Name, Age, Driving License Number, Driving License Issue Date, Driving Type, Etc. 
 
--Change vehicle availability: For a variety of reasons, a vehicle can be inoperative. This change of status must be done by the Manager User. 
+- Change vehicle availability: For a variety of reasons, a vehicle can be inoperative. This change of status must be done by the Manager User. 
 
 - Book vehicle: To make a vehicle reservation, several details must be filled in: Date and time, required project, user who will make the reservation. This feature is the core of the software: after filling in the needs, the software must be able to identify which vehicles are available to carry out the trip. 
 
