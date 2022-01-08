@@ -1,6 +1,7 @@
 package Logic.States;
 
 import Logic.Controller;
+import Logic.Data.Vehicle.Vehicle;
 
 public class CheckMaintenance extends StateAdapter {
 
@@ -9,15 +10,14 @@ public class CheckMaintenance extends StateAdapter {
 	}
 
 	@Override
-	public IState confirm() {
+	public IState cancel() {
 		return new ManageVehicle(getController());
 	}
 
 	@Override
-	public IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard,
-								  boolean accident, boolean cleaning, String other, boolean allWentWell) {
-		getController().editMaintenance(operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell);
-		return new CheckMaintenance(getController());
+	public IState editMaintenance(Vehicle vehicle) {
+		getController().editMaintenance(vehicle);
+		return new ManageVehicle(getController());
 	}
 
 	@Override

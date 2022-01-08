@@ -9,12 +9,12 @@ import java.util.*;
 
 public class Booking {
 
-	private final Timestamp startDatatime;
-	private final Timestamp endDatatime;
+	private Timestamp startDatatime;
+	private Timestamp endDatatime;
 	private final String destination;
 	private boolean shared;
 	private final ArrayList<User> users;
-	private final Vehicle vehicle;
+	private Vehicle vehicle;
 	private int numSeats; //just informational don't use
 
 	public Booking(Timestamp startDatatime, Timestamp endDatatime, String destination, Vehicle vehicle) {
@@ -83,6 +83,41 @@ public class Booking {
 		for (var user : users)
 			if (user.getName().equals(name))
 				return true;
+		return false;
+	}
+
+	public boolean sameUsers(ArrayList<User> receivedUsers) {
+		if(users.size() != receivedUsers.size()) {
+			return false;
+		}
+
+		for(int i=0; i<users.size(); i++){
+			if(!users.get(i).getEmail().equals(receivedUsers.get(i).getEmail())){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public User getOwner(){ return this.users.get(0); }
+
+	public void setStartDatatime(Timestamp newStartTime) {
+		this.startDatatime = newStartTime; }
+
+	public void setEndDatatime(Timestamp newEndTime) {
+		this.endDatatime = newEndTime; }
+
+	public void setVehicle(Vehicle v) { this.vehicle = v; }
+
+	@Override
+	public boolean equals(Object obj) {
+		Booking receivedBooking = (Booking) obj;
+		if (startDatatime.compareTo(receivedBooking.startDatatime) == 0)
+			if (endDatatime.compareTo(receivedBooking.endDatatime) == 0)
+				if (destination.equals(receivedBooking.destination))
+					if (shared == receivedBooking.shared)
+						if (this.sameUsers(receivedBooking.users))
+							return vehicle.getRegisterPlate().equals(receivedBooking.getVehicle().getRegisterPlate());
 		return false;
 	}
 }

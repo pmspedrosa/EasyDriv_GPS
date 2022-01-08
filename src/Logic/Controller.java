@@ -83,16 +83,10 @@ public class Controller {
 		saveBookingManager();
 	}
 
-	public boolean removeBooking(Timestamp startDatatime, Vehicle vehicle) {
-		loadBookingManager();
-		boolean result = bookingManager.removeBooking(startDatatime, vehicle);
-		saveBookingManager();
-		return result;
-	}
 
-	public boolean removeBooking(Timestamp startDatatime, String email) {
+	public boolean removeBooking(Timestamp startDatatime, String regPlate) {
 		loadBookingManager();
-		boolean result = bookingManager.removeBooking(startDatatime, email);
+		boolean result = bookingManager.removeBooking(startDatatime, regPlate);
 		saveBookingManager();
 		return result;
 	}
@@ -171,7 +165,7 @@ public class Controller {
 		loadVehicleManager();
 
 		var allVehicles = vehicleManager.listVehicles();
-		//TODO : testar cena das horas para ver se ta aqui
+
 		var sharedBookings = bookingManager.getSharedBookings(startDatatime, endDatatime, destination, nrOfSeats);
 		var nonSharedBookings = new ArrayList<Booking>();
 		var sharedVehicles = new ArrayList<Vehicle>();
@@ -179,23 +173,16 @@ public class Controller {
 		for (var sharedBooking : sharedBookings)
 			sharedVehicles.add(sharedBooking.getVehicle());
 
-
 		allVehicles.removeAll(sharedVehicles);
 
 		var nonAvailableVehicles = bookingManager.getNonAvailableVehicles(startDatatime, endDatatime, nrOfSeats);
 
 		allVehicles.removeAll(nonAvailableVehicles);
 
-		allVehicles.removeIf(vehicle -> !vehicle.isAvaliable());
+		allVehicles.removeIf(vehicle -> !vehicle.isAvailable());
 
 		allVehicles.removeIf(vehicle -> vehicle.getNumOfSeats() < nrOfSeats);
-		//add to all vehicles
 
-
-//		var bookedVehicles = bookingManager.getAllBookedVehicles(startDatatime, endDatatime);
-//		var nonBookedVehicles = vehicleManager.listVehicles();
-//		nonBookedVehicles.removeAll(bookedVehicles);
-//
 		for (var vehicle : allVehicles)
 			nonSharedBookings.add(new Booking(startDatatime,endDatatime,destination,vehicle));
 
@@ -203,8 +190,7 @@ public class Controller {
 		listOfBookings.addAll(sharedBookings);
 		listOfBookings.addAll(nonSharedBookings);
 
-		for (var booking : listOfBookings)
-		{
+		for (var booking : listOfBookings) {
 			booking.setNumSeats(nrOfSeats);
 		}
 	}
@@ -212,41 +198,43 @@ public class Controller {
 	public void search(Timestamp startDatatime, Timestamp endDatatime, String destination, String user, String regPlate) {
 		loadBookingManager();
 
-			var allBookings = bookingManager.listBookings();
+		var allBookings = bookingManager.listBookings();
 
-			if (destination != null)
-				allBookings.removeIf(booking -> !booking.getDestination().equals(destination));
+		if (destination != null)
+			allBookings.removeIf(booking -> !booking.getDestination().equals(destination));
 
-			if (regPlate != null)
-				allBookings.removeIf(booking -> !booking.getVehicle().getRegisterPlate().equals(regPlate));
+		if (regPlate != null)
+			allBookings.removeIf(booking -> !booking.getVehicle().getRegisterPlate().equals(regPlate));
 
-			if (user != null)
-				allBookings.removeIf(booking -> !booking.containsUser(user));
+		if (user != null)
+			allBookings.removeIf(booking -> !booking.containsUser(user));
 
-			if (startDatatime != null)
-				allBookings.removeIf(booking -> booking.getStartDatatime().before(startDatatime));
+		if (startDatatime != null)
+			allBookings.removeIf(booking -> booking.getStartDatatime().before(startDatatime));
 
-			if (endDatatime != null)
-				allBookings.removeIf(booking -> booking.getEndDatatime().after(endDatatime));
+		if (endDatatime != null)
+			allBookings.removeIf(booking -> booking.getEndDatatime().after(endDatatime));
 
-			listOfBookings = new ArrayList<>(allBookings);
+		listOfBookings = new ArrayList<>(allBookings);
 	}
-
 
 	public ArrayList<Booking> getListOfBookings()
 	{
 		return listOfBookings;
 	}
 
-	public void editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) {
+	public void editMaintenance(Vehicle vehicle) {
 		loadVehicleManager();
-		selectedVehicle.getMaintenance().edit(operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell);
+		vehicleManager.editMaintenance(vehicle);
 		saveVehicleManager();
 	}
 
 	public void deliver(Booking booking) {
 		loadBookingManager();
-		bookingManager.removeBooking(null, user.getEmail());
+		loadVehicleManager();
+		vehicleManager.getVehicle(booking.getVehicle().getRegisterPlate()).setMaintenance(booking.getVehicle().getMaintenance());
+		bookingManager.removeBooking(booking);
+		saveVehicleManager();
 		saveBookingManager();
 	}
 
@@ -266,5 +254,11 @@ public class Controller {
 
 	public boolean nameAlreadyExists(String name) {
 		return userManager.nameAlreadyExists(name);
+	}
+
+	public void editBooking(Booking booking) {
+		loadBookingManager();
+		bookingManager.editBooking(booking);
+		saveBookingManager();
 	}
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class EasyDriv {
 
-	private Controller controller;
+	private final Controller controller;
 	private IState state;
 
 	public EasyDriv() {
@@ -103,9 +103,7 @@ public class EasyDriv {
 		setState(state.checkMaintenance());
 	}
 
-	public void editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) {
-		setState(state.editMaintenance(operational, lowPressureTires, lightsOnBoard, accident, cleaning, other, allWentWell));
-	}
+	public void editMaintenance(Vehicle vehicle) { setState(state.editMaintenance(vehicle)); }
 
 	public void remove(String key) {
 		setState(state.remove(key));
@@ -115,17 +113,8 @@ public class EasyDriv {
 		setState(state.remove(timestamp, key));
 	}
 
-
-	public void confirm() {
-		setState(state.confirm());
-	}
-
 	public void cancel() {
 		setState(state.cancel());
-	}
-
-	public void exit() {
-		//exit, no need state call
 	}
 
 	public User getUser() {
@@ -136,32 +125,12 @@ public class EasyDriv {
 		return controller.listUsers();
 	}
 
-	public ArrayList<Booking> getBookings(Timestamp startDatatime, Timestamp endDatatime, String destination, boolean shared) {
-		return controller.getBookings(startDatatime,endDatatime,destination,shared);
-	}
-
 	public Vehicle getVehicle(String registerPlate) {
 		return controller.getVehicle(registerPlate);
 	}
 
 	public ArrayList<Vehicle> listVehicles() {
 		return controller.listVehicles();
-	}
-
-	public void setSelectedVehicle(String registrationPlate) {
-		controller.setSelectedVehicle(registrationPlate);
-	}
-
-	public Vehicle getSelectedVehicle() {
-		return  controller.getSelectedVehicle();
-	}
-
-	public void setSelectedBooking(String registrationPlate) {
-		controller.setSelectedBooking(registrationPlate);
-	}
-
-	public Booking getSelectedBooking() {
-		return controller.getSelectedBooking();
 	}
 
 	public void logout()
@@ -186,4 +155,10 @@ public class EasyDriv {
 	public boolean nameAlreadyExists(String name) {
 		return controller.nameAlreadyExists(name);
 	}
+
+	public void editBooking() {
+		setState(state.editBooking());
+	}
+
+	public void editBooking(Booking booking) { setState(state.editBooking(booking)); }
 }

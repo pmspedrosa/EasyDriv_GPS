@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Logic.EasyDriv;
+import Logic.States.SystemState;
 import UI.Models.AdminBookingTableView;
 import UI.Models.DeliverBookingTableView;
 import UI.ScenesControllers;
@@ -49,25 +50,24 @@ public class DeliverController
         tcDeliver.setCellValueFactory(new PropertyValueFactory<>("btnDeliver"));
 
         deliver = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("../Resources/Images/deliver.png")));
-
     }
 
-    public void updateTableBookings()
-    {
+    public void updateTableBookings() {
         tvBookings.getItems().clear();
+        var myBookings = easyDriv.listBooking();
+        myBookings.removeIf(b -> !b.getOwner().getEmail().equals(easyDriv.getUser().getEmail()));
 
         var bookings = new ArrayList<DeliverBookingTableView>();
-        for (var booking : easyDriv.listBooking())
+        for (var booking : myBookings)
             bookings.add(new DeliverBookingTableView(scenesControllers, booking, new ImageView(deliver)));
 
         tvBookings.setItems(FXCollections.observableList(bookings));
     }
 
-    public void OnCancel(MouseEvent mouseEvent)
-    {
+    public void OnCancel() {
+        easyDriv.cancel();
+        if (easyDriv.getActualState() == SystemState.MENU)
+            scenesControllers.setUserScene();
     }
 
-    public void OnRefresh(MouseEvent mouseEvent)
-    {
-    }
 }

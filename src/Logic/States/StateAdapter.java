@@ -2,14 +2,13 @@ package Logic.States;
 
 import Logic.Controller;
 import Logic.Data.Booking.Booking;
-import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
 import java.sql.Timestamp;
 
 public abstract class StateAdapter implements IState {
 
-	private Controller controller;
+	private final Controller controller;
 	private IState state;
 
 	public StateAdapter(Controller controller) { this.controller = controller; }
@@ -50,8 +49,7 @@ public abstract class StateAdapter implements IState {
 	public IState confirm() { return this; }
 	@Override
 	public IState cancel() { return this; }
-	@Override
-	public IState exit() { return this; }
+
 	@Override
 	public IState addUser() { return this; }
 	@Override
@@ -61,7 +59,11 @@ public abstract class StateAdapter implements IState {
 	@Override
 	public IState editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) { return this; }
 	@Override
-	public IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell) { return this; }
+	public IState editMaintenance(Vehicle vehicle) { return this; }
+	@Override
+	public IState editBooking(){ return this; }
+	@Override
+	public IState editBooking(Booking booking){ return this; }
 	@Override
 	public Controller getController() { return controller; }
 }

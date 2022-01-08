@@ -18,9 +18,14 @@ public class ManageBookings extends StateAdapter {
 	}
 
 	@Override
-	public IState remove(Timestamp startDatatime, String email) {
-		getController().removeBooking(startDatatime, email);
+	public IState remove(Timestamp startDatatime, String regPlate) {
+		getController().removeBooking(startDatatime, regPlate);
 		return new ManageBookings(getController());
+	}
+
+	@Override
+	public IState editBooking(){
+		return new EditBooking(getController());
 	}
 
 	@Override

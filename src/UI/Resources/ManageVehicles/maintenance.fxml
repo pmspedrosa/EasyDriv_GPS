@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Separator layoutX="3.0" layoutY="82.0" prefHeight="1.0" prefWidth="291.0" />
-      <RadioButton id="rbOperational" layoutX="87.0" layoutY="14.0" mnemonicParsing="false" text="Operacional" />
-      <RadioButton id="rbInoperational" layoutX="87.0" layoutY="46.0" mnemonicParsing="false" text="Not Operational" />
-      <CheckBox id="chbTires" layoutX="47.0" layoutY="106.0" mnemonicParsing="false" text="Tires low pressure" />
-      <CheckBox id="chbLight" layoutX="47.0" layoutY="140.0" mnemonicParsing="false" text="Lights in board" />
-      <CheckBox id="chbAccident" layoutX="47.0" layoutY="172.0" mnemonicParsing="false" text="Accident happened" />
-      <CheckBox id="chbCleaning" layoutX="47.0" layoutY="206.0" mnemonicParsing="false" text="Need Cleaning" />
-      <CheckBox id="chbOther" layoutX="47.0" layoutY="236.0" mnemonicParsing="false" text="Other" />
-      <TextArea id="taOther" layoutX="10.0" layoutY="267.0" prefHeight="119.0" prefWidth="277.0" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0"
+            prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.Controllers.EditMaintenanceController">
+   <Separator layoutX="3.0" layoutY="82.0" prefHeight="1.0" prefWidth="291.0"/>
+   <RadioButton fx:id="rbOperational" layoutX="87.0" layoutY="14.0" mnemonicParsing="false"
+                onAction="#OnOperationalAction" text="Operacional"/>
+   <RadioButton fx:id="rbInoperational" layoutX="87.0" layoutY="46.0" mnemonicParsing="false"
+                onAction="#OnInoperationalAction" text="Not Operational"/>
+   <CheckBox fx:id="cbTires" layoutX="84.0" layoutY="108.0" mnemonicParsing="false" text="Tires low pressure"/>
+   <CheckBox fx:id="cbLight" layoutX="84.0" layoutY="142.0" mnemonicParsing="false" text="Lights in board"/>
+   <CheckBox fx:id="cbAccident" layoutX="84.0" layoutY="174.0" mnemonicParsing="false" text="Accident happened"/>
+   <CheckBox fx:id="cbCleaning" layoutX="84.0" layoutY="208.0" mnemonicParsing="false" text="Need Cleaning"/>
+   <TextArea fx:id="taOther" layoutX="10.0" layoutY="243.0" prefHeight="119.0" prefWidth="277.0"/>
+   <Button id="btnSave" layoutX="29.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#OnSave"
+           prefHeight="40.0" prefWidth="112.0" text="Save" AnchorPane.leftAnchor="29.0"/>
+   <Button id="btnCancel" layoutX="157.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#OnCancel"
+           prefHeight="40.0" prefWidth="112.0" text="Cancel" AnchorPane.rightAnchor="31.0"/>
+   <Button id="btnRepair" layoutX="93.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#OnRepair"
+           prefHeight="40.0" prefWidth="112.0" text="Repair All"/>
 </AnchorPane>

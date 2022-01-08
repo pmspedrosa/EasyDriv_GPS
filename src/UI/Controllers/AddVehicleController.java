@@ -33,7 +33,6 @@ public class AddVehicleController
         fuelTypes.add("Gasoline");
         fuelTypes.add("Electric");
         fuelTypes.add("Hibrid");
-        fuelTypes.add("Kulhon");
 
         ArrayList<Integer> nrSeats = new ArrayList<>();
         nrSeats.add(2);

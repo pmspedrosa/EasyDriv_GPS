@@ -2,7 +2,6 @@ package Logic.States;
 
 import Logic.Controller;
 import Logic.Data.Booking.Booking;
-import Logic.Data.User.User;
 import Logic.Data.Vehicle.Vehicle;
 
 import java.sql.Timestamp;
@@ -47,8 +46,6 @@ public interface IState {
 
 	SystemState getActualState();
 
-	IState exit();
-
 	IState addUser();
 
 	IState editUser(String email, String nome, String phoneNumber, String drivingLicense, String password);
@@ -57,7 +54,11 @@ public interface IState {
 
 	IState editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available);
 
-	IState editMaintenance(boolean operational, boolean lowPressureTires, boolean lightsOnBoard, boolean accident, boolean cleaning, String other, boolean allWentWell);
+	IState editMaintenance(Vehicle vehicle);
 
 	Controller getController();
+
+	IState editBooking();
+
+	IState editBooking(Booking booking);
 }

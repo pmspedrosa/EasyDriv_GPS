@@ -4,7 +4,7 @@ import Utils.Logger;
 
 public class User {
 
-	private boolean admin;
+	private final boolean admin;
 	private String name;
 	private String email;
 	private String phoneNumber;
@@ -42,11 +42,7 @@ public class User {
 
 	public String getPassword() { return this.password; }
 
-	public void setAdmin(boolean admin) { this.admin = admin; }
-
 	public void setName(String name) { this.name = name; }
-
-	public void setEmail(String email) { this.email = name; }
 
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
@@ -58,6 +54,6 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.drivingLicense = phoneNumber;
+		this.drivingLicense = drivingLicense;
 	}
 }
