@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -85,7 +86,7 @@ public class ScenesControllers
             loader = loaderFXML("ManageVehicles/addVehicle");
             Parent addVehicleRoot = loader.load();
             addVehicleController = loader.getController();
-            addVehicleScene = new Scene(addVehicleRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
+            addVehicleScene = new Scene(addVehicleRoot, ADD_VEHICLE_WINDOW_HEIGHT, ADD_VEHICLE_WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageVehicles/manageVehiclesPanel");
             Parent manageVehiclesRoot = loader.load();
@@ -284,7 +285,11 @@ public class ScenesControllers
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
         alert.setHeaderText(header);
-        alert.setContentText(description);
+
+        Label label = new Label(description);
+        label.setWrapText(true);
+
+        alert.getDialogPane().setContent(label);
 
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.initOwner(stage);
@@ -377,6 +382,14 @@ public class ScenesControllers
             alertDialog("Incorect registration plate format",
                     "Please introduce a valid registration plate",
                     "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA");
+            return;
+        }
+
+        if (easyDriv.getVehicle(registrationPlate) != null)
+        {
+            alertDialog("Incorect registration plate",
+                    "Please introduce a valid registration plate",
+                    registrationPlate + " already registred.");
             return;
         }
         easyDriv.addVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);

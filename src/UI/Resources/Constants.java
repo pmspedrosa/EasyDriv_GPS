@@ -5,6 +5,8 @@ public class Constants {
     public static final int WINDOW_HEIGHT = 400;
     public static final int ADD_USER_WINDOW_WIDTH = 310;
     public static final int ADD_USER_WINDOW_HEIGHT = 350;
+    public static final int ADD_VEHICLE_WINDOW_WIDTH = 310;
+    public static final int ADD_VEHICLE_WINDOW_HEIGHT = 300;
     public static final int MANAGE_BOOKINGS_WINDOW_WIDTH = 767;
     public static final int MANAGE_BOOKINGS_WINDOW_HEIGHT = 570;
     public static final int BOOKINGS_WINDOW_WIDTH = 800;
