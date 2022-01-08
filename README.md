@@ -1,5 +1,4 @@
-# EasyDriv_GPS
-Projeto GPS 2021/22
+# EasyDriv_GPS 2021/22
 With this project we expect to fulfill the need for an easier way to organize and schedule the cars provided by a company. 
 
 We intend to introduce in the company a software that does away with the problems that the current systems bring. EasyDriv will make the reservation of the vehicle and notice super important data. With an analysis system several recommendations will be made to the administrators. We also intend to provide the location of the vehicles and exchange bookings between users. 
