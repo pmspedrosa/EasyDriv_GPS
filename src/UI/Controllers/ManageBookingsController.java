@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -51,20 +52,29 @@ public class ManageBookingsController
         this.easyDriv = scenesControllers.getEasyDriv();
 
         ArrayList<String> usersName = new ArrayList<>();
+        usersName.add("All");
 
         for(var u : easyDriv.listUsers()) {
+            if (u.isAdmin()) continue;
             usersName.add(u.getName());
         }
-        cbUser.setItems(FXCollections.observableList(usersName));
 
-        cbDestination.setItems(FXCollections.observableArrayList(Validator.cities));
+        cbUser.setItems(FXCollections.observableList(usersName));
+        cbUser.getSelectionModel().select(0);
+
+        ArrayList<String> cities = new ArrayList<>();
+        cities.add("All");
+        cities.addAll(Validator.cities);
+        cbDestination.setItems(FXCollections.observableArrayList(cities));
+        cbDestination.getSelectionModel().select(0);
 
         ArrayList<String> vehiclesRegPlates = new ArrayList<>();
-
+        vehiclesRegPlates.add("All");
         for(var v : easyDriv.listVehicles()) {
             vehiclesRegPlates.add(v.getRegisterPlate());
         }
         cbRegPlate.setItems(FXCollections.observableList(vehiclesRegPlates));
+        cbRegPlate.getSelectionModel().select(0);
 
         configTableBookings();
         listAllBookings();
@@ -129,6 +139,13 @@ public class ManageBookingsController
         String user = (String) cbUser.getValue();
         String regPlate = (String) cbRegPlate.getValue();
 
+        if (destination != null && destination.equals("All"))
+            destination = null;
+        if (user != null && user.equals("All"))
+            user = null;
+        if (regPlate != null && regPlate.equals("All"))
+            regPlate = null;
+
         scenesControllers.onRefreshBookings(startDateTime, endDateTime, destination, user, regPlate);
     }
 
@@ -148,19 +165,21 @@ public class ManageBookingsController
 
     public void clear() {
         if(cbUser.getValue() != null) {
-            cbUser.getSelectionModel().clearSelection();
+            cbUser.getSelectionModel().select(0);
         }
 
         if(cbDestination.getValue() != null) {
-            cbDestination.getSelectionModel().clearSelection();
+            cbDestination.getSelectionModel().select(0);
         }
 
         if(cbRegPlate.getValue() != null) {
-            cbRegPlate.getSelectionModel().clearSelection();
+            cbRegPlate.getSelectionModel().select(0);
         }
 
         dpStartData.getEditor().clear();
         dpEndData.getEditor().clear();
+        dpStartData.setValue(null);
+        dpEndData.setValue(null);
     }
 
     public void updateLastList(){
@@ -169,5 +188,19 @@ public class ManageBookingsController
         } else {
             updateTableBookings();
         }
+    }
+
+    public void OnCleanStartDate(MouseEvent mouseEvent)
+    {
+        dpStartData.getEditor().clear();
+        dpStartData.setValue(null);
+        OnRefresh();
+    }
+
+    public void OnCleanEndDate(MouseEvent mouseEvent)
+    {
+        dpEndData.getEditor().clear();
+        dpEndData.setValue(null);
+        OnRefresh();
     }
 }

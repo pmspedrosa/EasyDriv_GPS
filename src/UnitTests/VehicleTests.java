@@ -27,13 +27,13 @@ public class VehicleTests {
     @Test
     public void editVehicleSuccess(){
         Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
-        Assertions.assertTrue(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(), 3, vehicle.getFuelType(), vehicle.getModel(), vehicle.isAvaliable()));
+        Assertions.assertTrue(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(), 3, vehicle.getFuelType(), vehicle.getModel(), vehicle.isAvailable()));
     }
 
     @Test
     public void editVehicleFail(){
         Vehicle vehicle = vehicleManager.getVehicle("AA-00-AA");
-        Assertions.assertFalse(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(),10, vehicle.getFuelType(), vehicle.getModel(), vehicle.isAvaliable()));
+        Assertions.assertFalse(vehicleManager.editVehicle(vehicle.getMake(), vehicle.getRegisterPlate(),10, vehicle.getFuelType(), vehicle.getModel(), vehicle.isAvailable()));
     }
 
     @Test

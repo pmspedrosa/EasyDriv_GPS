@@ -20,12 +20,12 @@
       </TableView>
       <Button id="btnAddUser" layoutX="80.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#OnAddUser" prefHeight="53.0" prefWidth="189.0" text="Add User" AnchorPane.leftAnchor="80.0" />
       <Button id="btnCancel" layoutX="341.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#OnCancel" prefHeight="53.0" prefWidth="189.0" text="Cancel" AnchorPane.rightAnchor="80.0" />
-      <ImageView id="imgAddUser" fitHeight="45.0" fitWidth="45.0" layoutX="93.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgAddUser" onMouseClicked="#OnAddUser" fitHeight="45.0" fitWidth="45.0" layoutX="93.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/addUser.png" />
          </image>
       </ImageView>
-      <ImageView id="imgCancel" fitHeight="45.0" fitWidth="45.0" layoutX="437.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgCancel" onMouseClicked="#OnCancel" fitHeight="45.0" fitWidth="45.0" layoutX="437.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/logout.png" />
          </image>

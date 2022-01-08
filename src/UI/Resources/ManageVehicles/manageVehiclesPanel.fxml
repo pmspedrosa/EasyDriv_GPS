@@ -21,12 +21,12 @@
       </TableView>
       <Button fx:id="btnAddVehicle" layoutX="57.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#OnAddVehicle" prefHeight="53.0" prefWidth="189.0" text="Add Vehicle" AnchorPane.leftAnchor="80.0" />
       <Button fx:id="btnCancel" layoutX="330.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#OnCancel" prefHeight="53.0" prefWidth="189.0" text="Cancel" AnchorPane.rightAnchor="80.0" />
-      <ImageView id="imgAddUser" fitHeight="45.0" fitWidth="45.0" layoutX="90.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgAddUser" onMouseClicked="#OnAddVehicle" fitHeight="45.0" fitWidth="45.0" layoutX="90.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/car.png" />
          </image>
       </ImageView>
-      <ImageView id="imgCancel" fitHeight="45.0" fitWidth="45.0" layoutX="464.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgCancel" onMouseClicked="#OnCancel" fitHeight="45.0" fitWidth="45.0" layoutX="464.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/logout.png" />
          </image>

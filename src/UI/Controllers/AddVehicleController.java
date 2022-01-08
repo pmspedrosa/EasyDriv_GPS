@@ -23,6 +23,8 @@ public class AddVehicleController
     private EasyDriv easyDriv;
     private ScenesControllers scenesControllers;
 
+    private boolean modelDontAtualize;
+
     public void set(ScenesControllers scenesControllers)
     {
         this.scenesControllers = scenesControllers;
@@ -48,6 +50,7 @@ public class AddVehicleController
     @FXML
     private void makeAction()
     {
+        if (modelDontAtualize) return;
         cbModel.setItems(FXCollections.observableList(Arrays.stream(Validator.vehicleList.get(cbMake.getValue())).toList()));
     }
 
@@ -74,13 +77,17 @@ public class AddVehicleController
     public void clear()
     {
         tfRegistrationPlate.setText("");
-        if(cbMake.getValue() != null) {
-            cbMake.getSelectionModel().clearSelection();
-        }
         if(cbModel.getValue() != null) {
             cbModel.getSelectionModel().clearSelection();
+            cbModel.setValue(null);
         }
 
+        if(cbMake.getValue() != null) {
+            modelDontAtualize = true;
+            cbMake.getSelectionModel().clearSelection();
+            cbMake.setValue(null);
+            modelDontAtualize = false;
+        }
         cbNumberOfSeats.getSelectionModel().clearSelection();
         cbFuelType.getSelectionModel().clearSelection();
     }

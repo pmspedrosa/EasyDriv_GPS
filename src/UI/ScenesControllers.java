@@ -11,11 +11,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 import static UI.Resources.Constants.*;
 import static UI.Resources.Constants.ADD_USER_WINDOW_HEIGHT;
@@ -80,7 +86,7 @@ public class ScenesControllers
             loader = loaderFXML("ManageVehicles/addVehicle");
             Parent addVehicleRoot = loader.load();
             addVehicleController = loader.getController();
-            addVehicleScene = new Scene(addVehicleRoot, ADD_USER_WINDOW_WIDTH, ADD_USER_WINDOW_HEIGHT);
+            addVehicleScene = new Scene(addVehicleRoot, ADD_VEHICLE_WINDOW_HEIGHT, ADD_VEHICLE_WINDOW_HEIGHT);
 
             loader = loaderFXML("ManageVehicles/manageVehiclesPanel");
             Parent manageVehiclesRoot = loader.load();
@@ -279,7 +285,11 @@ public class ScenesControllers
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
         alert.setHeaderText(header);
-        alert.setContentText(description);
+
+        Label label = new Label(description);
+        label.setWrapText(true);
+
+        alert.getDialogPane().setContent(label);
 
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.initOwner(stage);
@@ -374,6 +384,14 @@ public class ScenesControllers
                     "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA");
             return;
         }
+
+        if (easyDriv.getVehicle(registrationPlate) != null)
+        {
+            alertDialog("Incorect registration plate",
+                    "Please introduce a valid registration plate",
+                    registrationPlate + " already registred.");
+            return;
+        }
         easyDriv.addVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);
         if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
             setManageVehiclesScene();
@@ -446,9 +464,26 @@ public class ScenesControllers
         }
         if (startTime.after(endTime))
         {
-            alertDialog("Incorrect datas",
+            alertDialog("Incorrect dates",
                     "Please introduce a start time before end time",
-                    "Start data must be before end data.");
+                    "Start date must be before end date.");
+            return;
+        }
+        if (startTime.before(Timestamp.from(Instant.now())))
+        {
+            alertDialog("Incorrect start date",
+                    "Please introduce a start time after current time",
+                    "Start date must be after current time.");
+            return;
+        }
+        LocalDateTime futureDate = LocalDateTime.now().plusMonths(1);
+        Timestamp oneMonthFromNow = Timestamp.valueOf(futureDate);
+
+        if (endTime.after(oneMonthFromNow))
+        {
+            alertDialog("Incorrect end date",
+                    "Please introduce a end time maxiumu one month from current time",
+                    "Start date must be after maxiumu one month from current time.");
             return;
         }
         easyDriv.search(startTime,endTime,destination,nrSeats);

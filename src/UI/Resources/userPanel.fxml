@@ -11,22 +11,22 @@
       <Button id="btnBooking" layoutX="87.0" layoutY="115.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Booking" onMouseClicked="#OnBooking" />
       <Button id="btnDeliver" layoutX="87.0" layoutY="192.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="425.0" text="Deliver Vehicle" onMouseClicked="#OnDeliver" />
       <Button id="btnLogout" layoutX="323.0" layoutY="298.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="189.0" text="Logout" onMouseClicked="#OnLogout"/>
-      <ImageView id="imgManageProfile" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgManageProfile" onMouseClicked="#OnManageProfile" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/users.png" />
          </image>
       </ImageView>
-      <ImageView id="imgBooking" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgBooking" onMouseClicked="#OnBooking" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/car.png" />
          </image>
       </ImageView>
-      <ImageView id="imgDeliver" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgDeliver" onMouseClicked="#OnDeliver" fitHeight="45.0" fitWidth="45.0" layoutX="373.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/booking.png" />
          </image>
       </ImageView>
-      <ImageView id="imgLogout" fitHeight="45.0" fitWidth="45.0" layoutX="452.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="imgLogout" onMouseClicked="#OnLogout" fitHeight="45.0" fitWidth="45.0" layoutX="452.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/logout.png" />
          </image>
