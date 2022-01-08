@@ -16,6 +16,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 import static UI.Resources.Constants.*;
 import static UI.Resources.Constants.ADD_USER_WINDOW_HEIGHT;
@@ -446,9 +451,26 @@ public class ScenesControllers
         }
         if (startTime.after(endTime))
         {
-            alertDialog("Incorrect datas",
+            alertDialog("Incorrect dates",
                     "Please introduce a start time before end time",
-                    "Start data must be before end data.");
+                    "Start date must be before end date.");
+            return;
+        }
+        if (startTime.before(Timestamp.from(Instant.now())))
+        {
+            alertDialog("Incorrect start date",
+                    "Please introduce a start time after current time",
+                    "Start date must be after current time.");
+            return;
+        }
+        LocalDateTime futureDate = LocalDateTime.now().plusMonths(1);
+        Timestamp oneMonthFromNow = Timestamp.valueOf(futureDate);
+
+        if (endTime.after(oneMonthFromNow))
+        {
+            alertDialog("Incorrect end date",
+                    "Please introduce a end time maxiumu one month from current time",
+                    "Start date must be after maxiumu one month from current time.");
             return;
         }
         easyDriv.search(startTime,endTime,destination,nrSeats);

@@ -5,6 +5,8 @@ import UI.ScenesControllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class LoginController {
     private EasyDriv easyDriv;
@@ -66,5 +68,17 @@ public class LoginController {
     public void clearPassword()
     {
         tfPassword.setText("");
+    }
+
+    public void OnEnter(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
+        else OnLogin();
+    }
+
+    public void OnEnterEmail(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode() != KeyCode.ENTER && keyEvent.getCode() != KeyCode.TAB) return;
+        else tfPassword.requestFocus();
     }
 }
