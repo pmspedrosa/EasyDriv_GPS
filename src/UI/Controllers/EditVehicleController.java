@@ -6,11 +6,9 @@ import Logic.States.SystemState;
 import UI.ScenesControllers;
 import Utils.Validator;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +34,6 @@ public class EditVehicleController
         fuelTypes.add("Gasoline");
         fuelTypes.add("Electric");
         fuelTypes.add("Hibrid");
-        fuelTypes.add("Kulhon");
 
         ArrayList<Integer> nrSeats = new ArrayList<>();
         nrSeats.add(2);
@@ -49,7 +46,7 @@ public class EditVehicleController
     }
 
     @FXML
-    public void OnSave(MouseEvent mouseEvent)
+    public void OnSave()
     {
         String make = cbMake.getValue();
         String model = cbModel.getValue();
@@ -61,7 +58,7 @@ public class EditVehicleController
     }
 
     @FXML
-    public void OnCancel(MouseEvent mouseEvent)
+    public void OnCancel()
     {
         easyDriv.cancel();
         if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
@@ -69,7 +66,7 @@ public class EditVehicleController
     }
 
     @FXML
-    public void makeAction(ActionEvent actionEvent)
+    public void makeAction()
     {
         cbModel.setItems(FXCollections.observableList(Arrays.stream(Validator.vehicleList.get(cbMake.getValue())).toList()));
     }

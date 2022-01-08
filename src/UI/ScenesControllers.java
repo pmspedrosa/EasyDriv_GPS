@@ -18,13 +18,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 import static UI.Resources.Constants.*;
-import static UI.Resources.Constants.ADD_USER_WINDOW_HEIGHT;
 
 public class ScenesControllers
 {
@@ -277,6 +273,28 @@ public class ScenesControllers
                     "Password and password confirmation need to be equal.");
             return false;
         }
+
+        if(easyDriv.nameAlreadyExists(name, email)) {
+            alertDialog("Name already in use",
+                    "Please use another name",
+                    "You can't register the same name.");
+            return false;
+        }
+
+        if (easyDriv.drivingLicenseAlreadyExists(drivingLicense, email)) {
+            alertDialog("Driving License already in use",
+                    "Please use another driving license number",
+                    "You can't have the same driving license number.");
+            return false;
+        }
+
+        if (easyDriv.phoneNumberAlreadyExists(phoneNumber, email)) {
+            alertDialog("Phone number already in use",
+                    "Please use another phone number",
+                    "You can't have the same phone number.");
+            return false;
+        }
+
         return true;
     }
 
@@ -340,13 +358,6 @@ public class ScenesControllers
             alertDialog("E-mail already Registered",
                     "Please use another e-mail",
                     "You can't register the same e-mail.");
-            return;
-        }
-
-        if(easyDriv.nameAlreadyExists(name)) {
-            alertDialog("Name already in use",
-                    "Please use another name",
-                    "You can't register the same name.");
             return;
         }
 
@@ -482,8 +493,8 @@ public class ScenesControllers
         if (endTime.after(oneMonthFromNow))
         {
             alertDialog("Incorrect end date",
-                    "Please introduce a end time maxiumu one month from current time",
-                    "Start date must be after maxiumu one month from current time.");
+                    "Please introduce a end time within one month from current time",
+                    "Start date must be after within one month from current time.");
             return;
         }
         easyDriv.search(startTime,endTime,destination,nrSeats);
@@ -567,6 +578,7 @@ public class ScenesControllers
         if(easyDriv.getActualState() != SystemState.MANAGE_VEHICLE) {
             return;
         }
+        manageVehiclesController.updateTableVehicles();
         stage.setScene(manageVehiclesScene);
     }
 

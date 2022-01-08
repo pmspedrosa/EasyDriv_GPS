@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.ManageBookingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.ManageBookingsController">
    <children>
       <TableView fx:id="tvBookings" layoutX="4.0" layoutY="149.0" prefHeight="336.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
           <TableColumn fx:id="tcName" prefWidth="104.0" style="-fx-alignment: center" text="Name" />
           <TableColumn fx:id="tcDestination" prefWidth="133.0" style="-fx-alignment: center" text="Destination" />
-            <TableColumn fx:id="tcRegPlate" prefWidth="138.0" style="-fx-alignment: center" text="Registration Plate" />
-            <TableColumn fx:id="tcStartDate" prefWidth="112.0" style="-fx-alignment: center" text="Start Date" />
-            <TableColumn fx:id="tcEndDate" prefWidth="122.0" style="-fx-alignment: center" text="End Date" />
+            <TableColumn fx:id="tcRegPlate" prefWidth="98.0" style="-fx-alignment: center" text="Reg.Plate" />
+            <TableColumn fx:id="tcStartDate" prefWidth="139.0" style="-fx-alignment: center" text="Start Date" />
+            <TableColumn fx:id="tcEndDate" prefWidth="135.0" style="-fx-alignment: center" text="End Date" />
             <TableColumn fx:id="tcEdit" prefWidth="74.0" style="-fx-alignment: center" text="Edit" />
             <TableColumn fx:id="tcRemove" prefWidth="82.0" style="-fx-alignment: center" text="Remove" />
         </columns>
@@ -30,9 +24,9 @@
             <Image url="@../Images/logout.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="cbUser" layoutX="154.0" layoutY="24.0" onAction="#OnRefresh" prefWidth="150.0" />
+      <ComboBox fx:id="cbUser" layoutX="154.0" layoutY="24.0" onAction="#OnRefresh" onMouseClicked="#OnUserClick" prefWidth="150.0" />
       <ComboBox fx:id="cbDestination" layoutX="155.0" layoutY="60.0" onAction="#OnRefresh" prefWidth="150.0" />
-      <ComboBox fx:id="cbRegPlate" layoutX="154.0" layoutY="96.0" onAction="#OnRefresh" prefWidth="150.0" />
+      <ComboBox fx:id="cbRegPlate" layoutX="154.0" layoutY="96.0" onAction="#OnRefresh" onMouseClicked="#OnDestinationClick" prefWidth="150.0" />
       <DatePicker fx:id="dpStartData" layoutX="478.0" layoutY="22.0" onAction="#OnRefresh" prefHeight="24.0" prefWidth="122.0" />
       <DatePicker fx:id="dpEndData" layoutX="478.0" layoutY="58.0" onAction="#OnRefresh" prefHeight="24.0" prefWidth="122.0" />
       <Text layoutX="71.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" />

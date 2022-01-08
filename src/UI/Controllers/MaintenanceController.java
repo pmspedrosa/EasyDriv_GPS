@@ -51,7 +51,6 @@ public class MaintenanceController {
     @FXML
     private void OnOperationalAction() {
         rbInoperational.setSelected(false);
-        cbAllWentWell.setSelected(true);
         cbAllWentWell.setDisable(false);
     }
 
@@ -60,6 +59,9 @@ public class MaintenanceController {
         rbOperational.setSelected(false);
         cbAllWentWell.setSelected(false);
         cbAllWentWell.setDisable(true);
+        cbOther.setSelected(true);
+        taOther.setDisable(false);
+        taOther.requestFocus();
     }
 
     @FXML

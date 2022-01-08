@@ -30,6 +30,12 @@ public class VehicleTableView
 
         btnEdit = new Button("", imgEdit);
         btnMaintenance = new Button("", imgMaintenance);
+
+        if (!vehicle.getMaintenance().getOperational())
+        {
+            btnMaintenance.setStyle("-fx-background-color: #ff0000; ");
+        }
+
         btnRemove = new Button("", imgRemove);
 
         btnEdit.setOnMouseClicked(e -> scenesControllers.edit(vehicle));

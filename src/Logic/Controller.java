@@ -153,6 +153,7 @@ public class Controller {
 	}
 
 	public boolean login(String email, String password) {
+		loadUserManager();
 		if (userManager.login(email, password)) {
 			 user = userManager.getUser(email);
 			 return true;
@@ -252,13 +253,25 @@ public class Controller {
 		return userManager.emailAlreadyRegistered(email);
 	}
 
-	public boolean nameAlreadyExists(String name) {
-		return userManager.nameAlreadyExists(name);
+	public boolean nameAlreadyExists(String name, String email) {
+		return userManager.nameAlreadyExists(name,email);
 	}
 
 	public void editBooking(Booking booking) {
 		loadBookingManager();
 		bookingManager.editBooking(booking);
 		saveBookingManager();
+	}
+
+	public boolean drivingLicenseAlreadyExists(String drivingLicense, String email)
+	{
+		loadUserManager();
+		return userManager.drivingLicenseAlreadyExists(drivingLicense,email);
+	}
+
+	public boolean phoneNumberAlreadyExists(String phoneNumber, String email)
+	{
+		loadUserManager();
+		return userManager.phoneNumberAlreadyExists(phoneNumber,email);
 	}
 }

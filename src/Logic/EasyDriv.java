@@ -152,8 +152,8 @@ public class EasyDriv {
 		return controller.emailAlreadyRegistered(email);
 	}
 
-	public boolean nameAlreadyExists(String name) {
-		return controller.nameAlreadyExists(name);
+	public boolean nameAlreadyExists(String name, String email) {
+		return controller.nameAlreadyExists(name, email);
 	}
 
 	public void editBooking() {
@@ -161,4 +161,14 @@ public class EasyDriv {
 	}
 
 	public void editBooking(Booking booking) { setState(state.editBooking(booking)); }
+
+	public boolean drivingLicenseAlreadyExists(String drivingLicense, String email)
+	{
+		return controller.drivingLicenseAlreadyExists(drivingLicense, email);
+	}
+
+	public boolean phoneNumberAlreadyExists(String phoneNumber, String email)
+	{
+		return controller.phoneNumberAlreadyExists(phoneNumber, email);
+	}
 }
