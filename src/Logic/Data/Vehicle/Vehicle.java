@@ -54,10 +54,6 @@ public class Vehicle {
 
 	public void setMake(String make) { this.make = make; }
 
-	public void setRegisterPlate(String registerPlate) { this.registerPlate = registerPlate;}
-
-	public void setNumOfSeats(int numOfSeats){ this.numOfSeats = numOfSeats;}
-
 	public void setModel(String model) {this.model = model; }
 
 	public void setFuelType(String fuelType){this.fuelType = fuelType;}

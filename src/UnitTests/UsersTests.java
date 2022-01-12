@@ -10,13 +10,14 @@ public class UsersTests {
 
     public UsersTests() {
         userManager = new UserManager();
-        userManager.addUser("Liliana", "liliana@isec.pt", "913464545", "1", "Aa12345!");
+        userManager.addUser("Liliana", "liliana@isec.pt", "913464545", "123456789", "Aa12345!");
+        userManager.listUsers();
     }
 
     // ADD USER
     @Test
     void addUser(){
-        Assertions.assertTrue(userManager.addUser("Joao", "user2@isec.pt", "912839959", "1", "Aa12345!"));
+        Assertions.assertTrue(userManager.addUser("Joao", "user2@isec.pt", "912839959", "147156789", "Aa12345!"));
     }
 
     @Test
@@ -28,7 +29,7 @@ public class UsersTests {
     @Test
     void editUser(){
         var user = userManager.getUser("liliana@isec.pt");
-        Assertions.assertTrue(userManager.editUser(user.getEmail(), "Joao", "912384858", "9", "Aa12345!"));
+        Assertions.assertTrue(userManager.editUser(user.getEmail(), "Joao Parvalhao", "912384858", "164256789", "Aa12345!"));
     }
 
     // REMOVE USER

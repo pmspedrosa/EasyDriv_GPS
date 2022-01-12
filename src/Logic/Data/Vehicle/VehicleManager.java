@@ -52,17 +52,10 @@ public class VehicleManager {
 	public ArrayList<Vehicle> listVehicles() { return vehicles; }
 
     public boolean editVehicle(String make, String registerPlate, int numOfSeats, String fuelType, String model, boolean available) {
-		for(Vehicle v:vehicles){
-			if(v.getRegisterPlate().equals(registerPlate)){
-				v.setMake(make);
-				v.setRegisterPlate(registerPlate);
-				if(numOfSeats > 7) {
-					return false;
-				}
-				v.setNumOfSeats(numOfSeats);
-				v.setFuelType(fuelType);
-				v.setModel(model);
-				v.setAvailable(available);
+		if (numOfSeats > 5 ) return false;
+		for(Vehicle vehicle:vehicles){
+			if(vehicle.getRegisterPlate().equals(registerPlate)){
+				vehicle.edit(make, numOfSeats, fuelType, model, available);
 				Logger.getInstance().debug("Veículo editado");
 				return true;
 			}

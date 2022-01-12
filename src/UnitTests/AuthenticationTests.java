@@ -12,12 +12,13 @@ public class AuthenticationTests {
     public AuthenticationTests(){
         // BASE STATE
         controller = new Controller();
-        controller.addUser("admin", "admin@isec.pt", "", "", "1234");
+        controller.addUser("adminTest", "admin@isec.pt", "911111111", "111111111", "BigUser1!");
+
     }
 
     @Test
     public void loginSuccessful(){
-        Assertions.assertTrue(controller.login("admin@isec.pt", "1234"));
+        Assertions.assertTrue(controller.login("admin@isec.pt", "BigUser1!"));
     }
 
     @Test
