@@ -32,7 +32,7 @@ public class UserManager {
 
 	public boolean nameAlreadyExists(String name, String email) {
 		for (User u:users) {
-			if(u.getName().equals(name) && u.getEmail() != email) {
+			if(u.getName().equals(name) && !u.getEmail().equals(email)) {
 				return true;
 			}
 		}
@@ -101,7 +101,7 @@ public class UserManager {
 	public boolean drivingLicenseAlreadyExists(String drivingLicense, String email)
 	{
 		for (var user : users)
-			if (user.getDrivingLicense().equals(drivingLicense) && user.getEmail() != email)
+			if (user.getDrivingLicense().equals(drivingLicense) && !user.getEmail().equals(email))
 				return true;
 		return false;
 	}
@@ -109,7 +109,7 @@ public class UserManager {
 	public boolean phoneNumberAlreadyExists(String phoneNumber, String email)
 	{
 		for (var user : users)
-			if (user.getPhoneNumber().equals(phoneNumber) && user.getEmail() != email)
+			if (user.getPhoneNumber().equals(phoneNumber) && !user.getEmail().equals(email))
 				return true;
 		return false;
 	}
