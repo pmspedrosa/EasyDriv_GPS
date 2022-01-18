@@ -12,11 +12,13 @@ public class VehicleTests {
     public VehicleTests() {
         vehicleManager = new VehicleManager();
         vehicleManager.addVehicle("Fiat", "AA-00-AA", 5, "Diesel", "Punto", true);
+        vehicleManager.listVehicles();
+        vehicleManager.getVehicle("AA-00-AA").getMaintenance();
     }
 
     @Test
     public void addVehicleSuccess(){
-        Assertions.assertTrue(vehicleManager.addVehicle("Fiat", "AA-00-AA", 5, "Diesel", "Punto", true));
+        Assertions.assertTrue(vehicleManager.addVehicle("Fiat", "AA-00-BA", 5, "Diesel", "Punto", true));
     }
 
     @Test
