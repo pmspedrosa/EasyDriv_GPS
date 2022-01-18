@@ -42,6 +42,7 @@ public class BookingTableView
 
         btnBook.setOnMouseClicked(e -> {
             scenesControllers.book(booking);
+
         });
     }
 

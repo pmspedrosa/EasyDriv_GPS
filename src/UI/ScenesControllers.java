@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static UI.Resources.Constants.*;
 
@@ -315,6 +317,16 @@ public class ScenesControllers
         alert.showAndWait();
     }
 
+    private boolean successDialog(String title, String contentText)
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setContentText(contentText);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.OK;
+    }
+
     public void remove(User user)
     {
         easyDriv.remove(user.getEmail());
@@ -425,6 +437,9 @@ public class ScenesControllers
                     "Registration plate must be like AA-00-00 or 00-AA-00 or 00-00-AA or AA-00-AA");
             return;
         }
+
+        successDialog("Edit car", "A car is edited with success!");
+
         easyDriv.editVehicle(make,registrationPlate, numOfSeats, fuelType, model, true);
         if (easyDriv.getActualState() == SystemState.MANAGE_VEHICLE)
             setManageVehiclesScene();
@@ -460,6 +475,7 @@ public class ScenesControllers
 
     public void book(Booking booking)
     {
+        successDialog("Book", "A book was made!");
         easyDriv.booking(booking);
         setUserScene();
     }
